@@ -16,9 +16,10 @@
 .quiz-card {
   width: 100%;
   max-width: 100%;
-  min-height: 500px;
+  min-height: fit-content;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   margin: auto;
+  overflow: auto;
 }
 
 .quiz-content {
