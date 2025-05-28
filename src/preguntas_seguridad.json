@@ -1,0 +1,271 @@
+[
+  {
+    "question": "Seleccione TODAS las contramedidas recomendadas por OWASP para prevenir inyecciones, según la diapositiva sobre 'Cómo prevenirlo'.",
+    "options": [
+      "Queries parametrizadas",
+      "Validación de input con whitelists",
+      "Uso exclusivo de blacklists",
+      "Separar datos hostiles de comandos",
+      "Aplicar LIMIT y otros controles SQL"
+    ],
+    "correct": [
+      "Queries parametrizadas",
+      "Validación de input con whitelists",
+      "Separar datos hostiles de comandos",
+      "Aplicar LIMIT y otros controles SQL"
+    ],
+    "source": "OWASP-top-10-v2.pdf p.65-72",
+    "id": 1
+  },
+  {
+    "question": "En un ataque de ingeniería social tipo 'Dumpster diving', ¿cuáles de los siguientes datos son ejemplos de información sensible que podría recuperarse?",
+    "options": [
+      "Contraseñas anotadas en papel",
+      "Planos de red internos",
+      "Archivos binarios compilados",
+      "Tarjetas de acceso desmagnetizadas",
+      "Documentos de facturación"
+    ],
+    "correct": [
+      "Contraseñas anotadas en papel",
+      "Planos de red internos",
+      "Documentos de facturación"
+    ],
+    "source": "2da_clase_Footprinting_IngenieriaSocial-v2_1 (1).pdf p.29-32",
+    "id": 2
+  },
+  {
+    "question": "De acuerdo con la guía sobre Software and Data Integrity Failures, ¿qué prácticas ayudan a evitarlos?",
+    "options": [
+      "Verificar firmas digitales de los paquetes",
+      "Permitir descargas de CDNs no verificadas",
+      "Usar repositorios de confianza en el gestor de dependencias",
+      "Firmar firmware antes de distribución",
+      "Eliminar controles de segregación en el pipeline"
+    ],
+    "correct": [
+      "Verificar firmas digitales de los paquetes",
+      "Usar repositorios de confianza en el gestor de dependencias",
+      "Firmar firmware antes de distribución"
+    ],
+    "source": "OWASP-top-10-v2.pdf p.27-33",
+    "id": 3
+  },
+  {
+    "question": "En la categoría OWASP Top 10 2021 'Software and Data Integrity Failures', ¿cuál es la principal causa que origina la vulnerabilidad según la presentación?",
+    "options": [
+      "Confianza ciega en actualizaciones o datos sin verificación de integridad",
+      "Exposición involuntaria de credenciales en repositorios públicos",
+      "Uso de algoritmos criptográficos obsoletos",
+      "Parámetros no parametrizados en sentencias SQL"
+    ],
+    "correct": [
+      "Confianza ciega en actualizaciones o datos sin verificación de integridad"
+    ],
+    "source": "OWASP-top-10-v2.pdf p.65-72",
+    "id": 4
+  },
+  {
+    "question": "Según la Cloud Security Alliance, ¿cuáles de las siguientes se clasifican como amenazas 'Notorious Nine'?",
+    "options": [
+      "Data Breaches",
+      "Insecure APIs",
+      "Watering Hole",
+      "Insufficient Due Diligence",
+      "Shared Technology Issues"
+    ],
+    "correct": [
+      "Data Breaches",
+      "Insecure APIs",
+      "Insufficient Due Diligence",
+      "Shared Technology Issues"
+    ],
+    "source": "Seguridad-Cloud-(1).pdf p.4-18",
+    "id": 5
+  },
+  {
+    "question": "Según la guía SAST/DAST para UNLaM, ¿en qué etapa del pipeline CI/CD se recomienda ubicar las pruebas DAST?",
+    "options": [
+      "Previo al merge en la rama principal",
+      "Durante la compilación",
+      "Luego del despliegue en un entorno staging",
+      "En producción en caliente"
+    ],
+    "correct": [
+      "Luego del despliegue en un entorno staging"
+    ],
+    "source": "SAST--DAST-para-UNLaM.pdf p.5-12",
+    "id": 6
+  },
+  {
+    "question": "De acuerdo con la lectura sobre Cloud Security, ¿qué modelo de despliegue representa el uso simultáneo de nubes públicas y privadas coordinadas?",
+    "options": [
+      "Community",
+      "Hybrid",
+      "Private",
+      "Edge"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "source": "Seguridad-Cloud-(1).pdf p.4-18",
+    "id": 7
+  },
+  {
+    "question": "Según la diapositiva de OWASP sobre prevención de inyecciones, ¿qué técnica se recomienda como PRIMERA línea de defensa cuando la aplicación no puede separar datos hostiles de los comandos SQL?",
+    "options": [
+      "Escapado de caracteres context‑aware",
+      "Uso de queries parametrizadas/ORM",
+      "Aplicar la cláusula LIMIT",
+      "Validar con listas negras"
+    ],
+    "correct": [
+      "Uso de queries parametrizadas/ORM"
+    ],
+    "source": "OWASP-top-10-v2.pdf p.65-72",
+    "id": 8
+  },
+  {
+    "question": "En la enumeración de Nmap, ¿qué tipo de escaneo envía paquetes TCP con todos los flags desactivados para evadir algunos firewalls?",
+    "options": [
+      "FIN scan",
+      "Null scan",
+      "XMAS scan",
+      "ACK scan"
+    ],
+    "correct": [
+      "Null scan"
+    ],
+    "source": "Scanning_Enumeration2022_1.pdf p.10-25",
+    "id": 9
+  },
+  {
+    "question": "En el modelo CIA, según la introducción a seguridad en redes, ¿qué propiedad se ve comprometida cuando un atacante modifica un registro de log?",
+    "options": [
+      "Disponibilidad",
+      "Confidencialidad",
+      "Integridad",
+      "No repudio"
+    ],
+    "correct": [
+      "Integridad"
+    ],
+    "source": "1ra_clase_Introduccion-Seguridad-en-redes (1).pdf p.4-8",
+    "id": 10
+  },
+  {
+    "question": "En la categoría OWASP Top 10 2021 'Security Logging and Monitoring Failures', ¿cuál es la principal causa que origina la vulnerabilidad según la presentación?",
+    "options": [
+      "La ausencia de logs auditables impide detectar incidentes activos",
+      "Exposición involuntaria de credenciales en repositorios públicos",
+      "Uso de algoritmos criptográficos obsoletos",
+      "Parámetros no parametrizados en sentencias SQL"
+    ],
+    "correct": [
+      "La ausencia de logs auditables impide detectar incidentes activos"
+    ],
+    "source": "OWASP-top-10-v2.pdf p.65-72",
+    "id": 11
+  },
+  {
+    "question": "De acuerdo con el estudio de caso SolarWinds, ¿cuánto tiempo permaneció latente el malware antes de contactar a su C2?",
+    "options": [
+      "24 horas",
+      "7 días",
+      "14 días",
+      "30 días"
+    ],
+    "correct": [
+      "14 días"
+    ],
+    "source": "OWASP-top-10-v2.pdf p.27-33",
+    "id": 12
+  },
+  {
+    "question": "El nuevo OWASP Top 10 2021 se basa principalmente en la causa raíz de las vulnerabilidades. ¿Cuántos de sus puntos provienen de datos empíricos según la presentación?",
+    "options": [
+      "10",
+      "8",
+      "2",
+      "5"
+    ],
+    "correct": [
+      "8"
+    ],
+    "source": "OWASP-top-10-v2.pdf p.65-72",
+    "id": 13
+  },
+  {
+    "question": "En la categoría OWASP Top 10 2021 'Server‑Side Request Forgery (SSRF)', ¿cuál es la principal causa que origina la vulnerabilidad según la presentación?",
+    "options": [
+      "Se envía un request HTTP a una URL provista por el usuario sin validación previa",
+      "Exposición involuntaria de credenciales en repositorios públicos",
+      "Uso de algoritmos criptográficos obsoletos",
+      "Parámetros no parametrizados en sentencias SQL"
+    ],
+    "correct": [
+      "Se envía un request HTTP a una URL provista por el usuario sin validación previa"
+    ],
+    "source": "OWASP-top-10-v2.pdf p.65-72",
+    "id": 14
+  },
+  {
+    "question": "Según la clase de Ingeniería Social, ¿qué ataque 'human‑based' consiste en observar físicamente las pulsaciones de un usuario para robar credenciales?",
+    "options": [
+      "Dumpster diving",
+      "Shoulder surfing",
+      "Suplantación de soporte técnico",
+      "Pretexting de confianza"
+    ],
+    "correct": [
+      "Shoulder surfing"
+    ],
+    "source": "2da_clase_Footprinting_IngenieriaSocial-v2_1 (1).pdf p.29-32",
+    "id": 15
+  },
+  {
+    "question": "En el escenario de 'Cryptographic Failures ‑ Escenario 1', ¿qué tipo de ataque expone los números de tarjeta de crédito en texto claro?",
+    "options": [
+      "Cross‑Site Scripting que lee cookies",
+      "SQL Injection sobre una base con cifrado automático",
+      "Man‑in‑the‑Middle en tránsito",
+      "Ataque de diccionario sobre hashes SHA‑1"
+    ],
+    "correct": [
+      "SQL Injection sobre una base con cifrado automático"
+    ],
+    "source": "OWASP-top-10-v2.pdf p.65-72",
+    "id": 16
+  },
+  {
+    "question": "Indique TODAS las características de Nessus Manager según la clase de escaneo de vulnerabilidades.",
+    "options": [
+      "Escaneo distribuido",
+      "Gestión centralizada",
+      "Licencia gratuita para uso personal",
+      "Generación de informes en tiempo real",
+      "Integración con SIEMs"
+    ],
+    "correct": [
+      "Escaneo distribuido",
+      "Gestión centralizada",
+      "Generación de informes en tiempo real"
+    ],
+    "source": "3ra--Clase-introducccion-scaneo-de-vulnerabilidades.pdf p.11-18",
+    "id": 17
+  },
+  {
+    "question": "En las versiones de Nessus descritas, ¿qué edición permite escaneo distribuido con gestión centralizada para equipos?",
+    "options": [
+      "Nessus Professional",
+      "Nessus Essentials",
+      "Nessus Manager",
+      "Nessus Lite"
+    ],
+    "correct": [
+      "Nessus Manager"
+    ],
+    "source": "3ra--Clase-introducccion-scaneo-de-vulnerabilidades.pdf p.11-18",
+    "id": 18
+  }
+]

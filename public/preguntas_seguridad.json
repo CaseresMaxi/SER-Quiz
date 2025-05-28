@@ -1,0 +1,292 @@
+[
+  {
+    "id": 1,
+    "question": "¿Cuáles son las mejores prácticas para crear contraseñas seguras?",
+    "options": [
+      "Usar al menos 8 caracteres",
+      "Incluir mayúsculas, minúsculas, números y símbolos",
+      "Usar la misma contraseña para todas las cuentas",
+      "Cambiar contraseñas regularmente",
+      "Usar información personal como fechas de nacimiento"
+    ],
+    "correct": ["Usar al menos 8 caracteres", "Incluir mayúsculas, minúsculas, números y símbolos", "Cambiar contraseñas regularmente"]
+  },
+  {
+    "id": 2,
+    "question": "¿Qué es el phishing?",
+    "options": [
+      "Un tipo de malware",
+      "Una técnica para obtener información confidencial mediante engaño",
+      "Un protocolo de seguridad",
+      "Un tipo de firewall"
+    ],
+    "correct": ["Una técnica para obtener información confidencial mediante engaño"]
+  },
+  {
+    "id": 3,
+    "question": "¿Cuáles son signos de un correo electrónico de phishing?",
+    "options": [
+      "Remitente desconocido o sospechoso",
+      "Urgencia excesiva en el mensaje",
+      "Enlaces que no coinciden con el dominio oficial",
+      "Solicitud de información personal",
+      "Ortografía y gramática perfectas"
+    ],
+    "correct": ["Remitente desconocido o sospechoso", "Urgencia excesiva en el mensaje", "Enlaces que no coinciden con el dominio oficial", "Solicitud de información personal"]
+  },
+  {
+    "id": 4,
+    "question": "¿Qué es la autenticación de dos factores (2FA)?",
+    "options": [
+      "Usar dos contraseñas diferentes",
+      "Un método que requiere dos formas de verificación de identidad",
+      "Tener dos cuentas de usuario",
+      "Un tipo de encriptación"
+    ],
+    "correct": ["Un método que requiere dos formas de verificación de identidad"]
+  },
+  {
+    "id": 5,
+    "question": "¿Cuáles son tipos comunes de malware?",
+    "options": [
+      "Virus",
+      "Troyanos",
+      "Ransomware",
+      "Spyware",
+      "Antivirus"
+    ],
+    "correct": ["Virus", "Troyanos", "Ransomware", "Spyware"]
+  },
+  {
+    "id": 6,
+    "question": "¿Qué debes hacer si sospechas que tu computadora está infectada con malware?",
+    "options": [
+      "Ignorar el problema",
+      "Desconectar de internet",
+      "Ejecutar un análisis antivirus",
+      "Cambiar todas las contraseñas desde otro dispositivo",
+      "Continuar usando normalmente"
+    ],
+    "correct": ["Desconectar de internet", "Ejecutar un análisis antivirus", "Cambiar todas las contraseñas desde otro dispositivo"]
+  },
+  {
+    "id": 7,
+    "question": "¿Qué es una VPN?",
+    "options": [
+      "Virtual Private Network",
+      "Very Personal Network",
+      "Verified Protection Network",
+      "Virtual Public Network"
+    ],
+    "correct": ["Virtual Private Network"]
+  },
+  {
+    "id": 8,
+    "question": "¿Cuáles son beneficios de usar una VPN?",
+    "options": [
+      "Oculta tu dirección IP",
+      "Encripta tu tráfico de internet",
+      "Aumenta la velocidad de internet",
+      "Permite acceso a contenido geo-restringido",
+      "Elimina todos los virus"
+    ],
+    "correct": ["Oculta tu dirección IP", "Encripta tu tráfico de internet", "Permite acceso a contenido geo-restringido"]
+  },
+  {
+    "id": 9,
+    "question": "¿Qué información NO debes compartir en redes sociales?",
+    "options": [
+      "Tu ubicación en tiempo real",
+      "Números de teléfono completos",
+      "Fotos de tus comidas",
+      "Información financiera",
+      "Planes de vacaciones detallados"
+    ],
+    "correct": ["Tu ubicación en tiempo real", "Números de teléfono completos", "Información financiera", "Planes de vacaciones detallados"]
+  },
+  {
+    "id": 10,
+    "question": "¿Qué es el ransomware?",
+    "options": [
+      "Un tipo de antivirus",
+      "Malware que encripta archivos y exige pago por la clave",
+      "Un protocolo de seguridad",
+      "Una herramienta de backup"
+    ],
+    "correct": ["Malware que encripta archivos y exige pago por la clave"]
+  },
+  {
+    "id": 11,
+    "question": "¿Cuáles son buenas prácticas para navegación segura?",
+    "options": [
+      "Verificar que los sitios web usen HTTPS",
+      "Mantener el navegador actualizado",
+      "Descargar software solo de fuentes oficiales",
+      "Hacer clic en todos los anuncios",
+      "Usar bloqueadores de anuncios"
+    ],
+    "correct": ["Verificar que los sitios web usen HTTPS", "Mantener el navegador actualizado", "Descargar software solo de fuentes oficiales", "Usar bloqueadores de anuncios"]
+  },
+  {
+    "id": 12,
+    "question": "¿Qué significa HTTPS?",
+    "options": [
+      "HyperText Transfer Protocol Secure",
+      "High Transfer Protocol System",
+      "HyperText Transport Protocol Safe",
+      "HTTP Security"
+    ],
+    "correct": ["HyperText Transfer Protocol Secure"]
+  },
+  {
+    "id": 13,
+    "question": "¿Cuáles son señales de que un sitio web puede no ser seguro?",
+    "options": [
+      "No tiene certificado SSL (no usa HTTPS)",
+      "Solicita información personal innecesaria",
+      "Tiene muchos pop-ups y anuncios",
+      "Tiene un diseño profesional",
+      "Contiene errores de ortografía"
+    ],
+    "correct": ["No tiene certificado SSL (no usa HTTPS)", "Solicita información personal innecesaria", "Tiene muchos pop-ups y anuncios", "Contiene errores de ortografía"]
+  },
+  {
+    "id": 14,
+    "question": "¿Qué es la ingeniería social en ciberseguridad?",
+    "options": [
+      "Diseño de redes sociales",
+      "Manipulación psicológica para obtener información confidencial",
+      "Programación de software social",
+      "Análisis de comportamiento en línea"
+    ],
+    "correct": ["Manipulación psicológica para obtener información confidencial"]
+  },
+  {
+    "id": 15,
+    "question": "¿Cuáles son métodos comunes de ingeniería social?",
+    "options": [
+      "Pretexting (crear escenarios falsos)",
+      "Baiting (ofrecer algo atractivo)",
+      "Tailgating (seguir a alguien autorizado)",
+      "Programación legítima",
+      "Quid pro quo (intercambio de favores)"
+    ],
+    "correct": ["Pretexting (crear escenarios falsos)", "Baiting (ofrecer algo atractivo)", "Tailgating (seguir a alguien autorizado)", "Quid pro quo (intercambio de favores)"]
+  },
+  {
+    "id": 16,
+    "question": "¿Qué debes hacer antes de conectarte a una red WiFi pública?",
+    "options": [
+      "Verificar que sea una red legítima",
+      "Usar una VPN",
+      "Evitar acceder a información sensible",
+      "Conectarse automáticamente",
+      "Desactivar el firewall"
+    ],
+    "correct": ["Verificar que sea una red legítima", "Usar una VPN", "Evitar acceder a información sensible"]
+  },
+  {
+    "id": 17,
+    "question": "¿Qué es un firewall?",
+    "options": [
+      "Un programa antivirus",
+      "Una barrera de seguridad que controla el tráfico de red",
+      "Un tipo de malware",
+      "Una herramienta de backup"
+    ],
+    "correct": ["Una barrera de seguridad que controla el tráfico de red"]
+  },
+  {
+    "id": 18,
+    "question": "¿Cuáles son tipos de backup recomendados?",
+    "options": [
+      "Backup local en disco duro externo",
+      "Backup en la nube",
+      "Backup en el mismo dispositivo",
+      "Backup en múltiples ubicaciones",
+      "No hacer backup"
+    ],
+    "correct": ["Backup local en disco duro externo", "Backup en la nube", "Backup en múltiples ubicaciones"]
+  },
+  {
+    "id": 19,
+    "question": "¿Con qué frecuencia debes actualizar tu software?",
+    "options": [
+      "Nunca",
+      "Solo cuando hay problemas",
+      "Tan pronto como estén disponibles las actualizaciones de seguridad",
+      "Una vez al año"
+    ],
+    "correct": ["Tan pronto como estén disponibles las actualizaciones de seguridad"]
+  },
+  {
+    "id": 20,
+    "question": "¿Qué información puede revelar los metadatos de una foto?",
+    "options": [
+      "Ubicación GPS donde se tomó",
+      "Fecha y hora",
+      "Tipo de dispositivo usado",
+      "Solo el tamaño del archivo",
+      "Configuraciones de la cámara"
+    ],
+    "correct": ["Ubicación GPS donde se tomó", "Fecha y hora", "Tipo de dispositivo usado", "Configuraciones de la cámara"]
+  },
+  {
+    "id": 21,
+    "question": "¿Qué es el spoofing?",
+    "options": [
+      "Un tipo de encriptación",
+      "Falsificar la identidad de una fuente confiable",
+      "Un protocolo de seguridad",
+      "Una herramienta antivirus"
+    ],
+    "correct": ["Falsificar la identidad de una fuente confiable"]
+  },
+  {
+    "id": 22,
+    "question": "¿Cuáles son señales de que tu cuenta ha sido comprometida?",
+    "options": [
+      "Actividad no reconocida en tu cuenta",
+      "Cambios en configuraciones que no hiciste",
+      "Mensajes enviados que no escribiste",
+      "Funcionamiento normal de la cuenta",
+      "Notificaciones de inicio de sesión desde ubicaciones desconocidas"
+    ],
+    "correct": ["Actividad no reconocida en tu cuenta", "Cambios en configuraciones que no hiciste", "Mensajes enviados que no escribiste", "Notificaciones de inicio de sesión desde ubicaciones desconocidas"]
+  },
+  {
+    "id": 23,
+    "question": "¿Qué es la autenticación biométrica?",
+    "options": [
+      "Usar contraseñas complejas",
+      "Verificación de identidad usando características físicas únicas",
+      "Autenticación de dos factores",
+      "Usar múltiples dispositivos"
+    ],
+    "correct": ["Verificación de identidad usando características físicas únicas"]
+  },
+  {
+    "id": 24,
+    "question": "¿Cuáles son ejemplos de autenticación biométrica?",
+    "options": [
+      "Huella dactilar",
+      "Reconocimiento facial",
+      "Escaneo de iris",
+      "Contraseña",
+      "Reconocimiento de voz"
+    ],
+    "correct": ["Huella dactilar", "Reconocimiento facial", "Escaneo de iris", "Reconocimiento de voz"]
+  },
+  {
+    "id": 25,
+    "question": "¿Qué debes hacer si recibes un mensaje sospechoso de un amigo?",
+    "options": [
+      "Responder inmediatamente",
+      "Verificar con tu amigo por otro medio de comunicación",
+      "Hacer clic en cualquier enlace para investigar",
+      "Ignorar completamente",
+      "Reportar como spam si es necesario"
+    ],
+    "correct": ["Verificar con tu amigo por otro medio de comunicación", "Reportar como spam si es necesario"]
+  }
+] 

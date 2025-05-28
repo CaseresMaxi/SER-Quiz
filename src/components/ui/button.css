@@ -1,0 +1,57 @@
+/* Mobile First - Button styles */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: none;
+  padding: 14px 20px;
+  background-color: #1f2937;
+  color: white;
+  width: 100%;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+.button:hover {
+  background-color: #374151;
+  transform: translateY(-1px);
+}
+
+.button:active {
+  background-color: #111827;
+  transform: translateY(0);
+}
+
+.button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Tablet styles - min-width: 640px */
+@media (min-width: 640px) {
+  .button {
+    font-size: 15px;
+    padding: 12px 18px;
+    min-height: 44px;
+  }
+}
+
+/* Desktop styles - min-width: 1024px */
+@media (min-width: 1024px) {
+  .button {
+    font-size: 14px;
+    padding: 10px 16px;
+    min-height: 40px;
+  }
+} 

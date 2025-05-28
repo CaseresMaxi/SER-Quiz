@@ -1,0 +1,43 @@
+/* Mobile First - Checkbox styles */
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checkbox:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.checkbox:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.checkbox:hover {
+  border-color: #9ca3af;
+}
+
+/* Tablet styles - min-width: 640px */
+@media (min-width: 640px) {
+  .checkbox {
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+  }
+}
+
+/* Desktop styles - min-width: 1024px */
+@media (min-width: 1024px) {
+  .checkbox {
+    width: 16px;
+    height: 16px;
+    margin-top: 0;
+  }
+} 

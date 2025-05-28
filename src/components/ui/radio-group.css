@@ -1,0 +1,57 @@
+/* Mobile First - Radio Group styles */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.radio-item {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.radio-item:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.radio-item:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.radio-item:hover {
+  border-color: #9ca3af;
+}
+
+/* Tablet styles - min-width: 640px */
+@media (min-width: 640px) {
+  .radio-group {
+    gap: 10px;
+  }
+  
+  .radio-item {
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+  }
+}
+
+/* Desktop styles - min-width: 1024px */
+@media (min-width: 1024px) {
+  .radio-group {
+    gap: 8px;
+  }
+  
+  .radio-item {
+    width: 16px;
+    height: 16px;
+    margin-top: 0;
+  }
+} 

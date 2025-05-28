@@ -1,0 +1,7002 @@
+[
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "FIN scan",
+      "TCP connect scan",
+      "Windows scan",
+      "SYN scan"
+    ],
+    "correct": [
+      "SYN scan"
+    ],
+    "id": 1
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "SaaS",
+      "Zone transfer",
+      "IaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 2
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Identification and Authentication Failures",
+      "Cross-Site Request Forgery (CSRF)",
+      "Privilege Escalation",
+      "Vulnerable and Outdated Components",
+      "Data Tampering"
+    ],
+    "correct": [
+      "Vulnerable and Outdated Components",
+      "Identification and Authentication Failures"
+    ],
+    "id": 3
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "FIN scan",
+      "ACK scan",
+      "Banner grabbing",
+      "Port knocking"
+    ],
+    "correct": [
+      "FIN scan"
+    ],
+    "id": 4
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Integridad",
+      "Autenticidad",
+      "Confidencialidad",
+      "No Repudio",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 5
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Disponibilidad",
+      "Confidencialidad",
+      "No Repudio",
+      "Integridad",
+      "Autenticidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 6
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "SYN scan",
+      "Banner grabbing",
+      "Null scan",
+      "SNMP walk"
+    ],
+    "correct": [
+      "SYN scan"
+    ],
+    "id": 7
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Abuse of Cloud Services",
+      "Data Breaches",
+      "Pharming",
+      "Insufficient Due Diligence",
+      "Data Loss"
+    ],
+    "correct": [
+      "Data Breaches",
+      "Data Loss"
+    ],
+    "id": 8
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Disponibilidad",
+      "No Repudio",
+      "Integridad",
+      "Confidencialidad",
+      "Autenticidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 9
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Hybrid",
+      "Community",
+      "Public",
+      "Private"
+    ],
+    "correct": [
+      "Public"
+    ],
+    "id": 10
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Traceroute",
+      "Zone transfer",
+      "Idle scan",
+      "ACK scan"
+    ],
+    "correct": [
+      "Idle scan"
+    ],
+    "id": 11
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Abuse of Cloud Services",
+      "Insecure APIs",
+      "Pharming",
+      "Shared Technology Issues",
+      "Data Loss"
+    ],
+    "correct": [
+      "Shared Technology Issues",
+      "Insecure APIs"
+    ],
+    "id": 12
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Directory Traversal",
+      "Vulnerable and Outdated Components",
+      "Injection",
+      "Path Disclosure"
+    ],
+    "correct": [
+      "Injection"
+    ],
+    "id": 13
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Hybrid",
+      "Public",
+      "Edge",
+      "Community"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 14
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Traceroute",
+      "SYN scan",
+      "FIN scan",
+      "TCP connect scan"
+    ],
+    "correct": [
+      "SYN scan"
+    ],
+    "id": 15
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Path Disclosure",
+      "Security Misconfiguration",
+      "Identification and Authentication Failures",
+      "Security Logging and Monitoring Failures",
+      "Data Tampering"
+    ],
+    "correct": [
+      "Security Misconfiguration",
+      "Security Logging and Monitoring Failures"
+    ],
+    "id": 16
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "TCP connect scan",
+      "ACK scan",
+      "SNMP walk",
+      "Null scan"
+    ],
+    "correct": [
+      "Null scan"
+    ],
+    "id": 17
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Windows scan",
+      "Traceroute",
+      "SYN scan",
+      "Port knocking",
+      "XMAS tree scan"
+    ],
+    "correct": [
+      "Windows scan",
+      "SYN scan"
+    ],
+    "id": 18
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Denial of Service",
+      "Insecure APIs",
+      "Insufficient Due Diligence",
+      "Data Loss"
+    ],
+    "correct": [
+      "Insufficient Due Diligence"
+    ],
+    "id": 19
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "IaaS",
+      "Timing Attack",
+      "SaaS",
+      "PaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 20
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "XMAS tree scan",
+      "TCP connect scan",
+      "Idle scan",
+      "Zone transfer"
+    ],
+    "correct": [
+      "XMAS tree scan"
+    ],
+    "id": 21
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Idle scan",
+      "Null scan",
+      "Zone transfer",
+      "Windows scan"
+    ],
+    "correct": [
+      "Windows scan"
+    ],
+    "id": 22
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Shared Technology Issues",
+      "Denial of Service",
+      "Abuse of Cloud Services",
+      "Data Breaches"
+    ],
+    "correct": [
+      "Denial of Service"
+    ],
+    "id": 23
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "IaaS",
+      "SaaS",
+      "Timing Attack"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 24
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Abuse of Cloud Services",
+      "Insider Threats",
+      "Shared Technology Issues",
+      "Denial of Service"
+    ],
+    "correct": [
+      "Denial of Service"
+    ],
+    "id": 25
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Shared Technology Issues",
+      "Insecure APIs",
+      "Abuse of Cloud Services",
+      "Data Loss"
+    ],
+    "correct": [
+      "Shared Technology Issues"
+    ],
+    "id": 26
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "SaaS",
+      "IaaS",
+      "None of the above",
+      "PaaS"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 27
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Timing Attack",
+      "Identification and Authentication Failures",
+      "Security Misconfiguration",
+      "Denial of Service"
+    ],
+    "correct": [
+      "Security Misconfiguration"
+    ],
+    "id": 28
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Security Logging and Monitoring Failures",
+      "Cross-Site Request Forgery (CSRF)",
+      "Privilege Escalation",
+      "Timing Attack"
+    ],
+    "correct": [
+      "Security Logging and Monitoring Failures"
+    ],
+    "id": 29
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "IaaS",
+      "Community",
+      "Hybrid",
+      "Private",
+      "Edge"
+    ],
+    "correct": [
+      "IaaS",
+      "Private"
+    ],
+    "id": 30
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Confidencialidad",
+      "Autenticidad",
+      "No Repudio",
+      "Integridad",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 31
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Community",
+      "Hybrid",
+      "Public",
+      "Fog",
+      "SaaS"
+    ],
+    "correct": [
+      "Hybrid",
+      "Community"
+    ],
+    "id": 32
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Broken Access Control",
+      "Server-Side Request Forgery (SSRF)",
+      "Race Condition",
+      "Identification and Authentication Failures",
+      "Software and Data Integrity Failures"
+    ],
+    "correct": [
+      "Software and Data Integrity Failures",
+      "Identification and Authentication Failures"
+    ],
+    "id": 33
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Public",
+      "Fog",
+      "Edge",
+      "Hybrid",
+      "Private"
+    ],
+    "correct": [
+      "Hybrid",
+      "Public"
+    ],
+    "id": 34
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Abuse of Cloud Services",
+      "Denial of Service",
+      "Insufficient Due Diligence",
+      "Insecure APIs",
+      "Pharming"
+    ],
+    "correct": [
+      "Abuse of Cloud Services",
+      "Insecure APIs"
+    ],
+    "id": 35
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "SaaS",
+      "IaaS",
+      "Buffer Overflow",
+      "PaaS"
+    ],
+    "correct": [
+      "SaaS"
+    ],
+    "id": 36
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Data Loss",
+      "Shared Technology Issues",
+      "SQL Injection",
+      "Denial of Service"
+    ],
+    "correct": [
+      "Data Loss"
+    ],
+    "id": 37
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Account Hijacking",
+      "Data Breaches",
+      "SQL Injection",
+      "Insufficient Due Diligence"
+    ],
+    "correct": [
+      "Account Hijacking"
+    ],
+    "id": 38
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "Path Disclosure",
+      "SaaS",
+      "IaaS",
+      "PaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 39
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "No Repudio",
+      "Autenticidad",
+      "Confidencialidad",
+      "Integridad",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 40
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Private",
+      "Edge",
+      "Public",
+      "IaaS",
+      "PaaS"
+    ],
+    "correct": [
+      "Public",
+      "IaaS"
+    ],
+    "id": 41
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Shared Technology Issues",
+      "Data Breaches",
+      "Watering Hole",
+      "Abuse of Cloud Services",
+      "Pharming"
+    ],
+    "correct": [
+      "Data Breaches",
+      "Abuse of Cloud Services"
+    ],
+    "id": 42
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Zone transfer",
+      "TCP connect scan",
+      "UDP scan",
+      "XMAS tree scan"
+    ],
+    "correct": [
+      "TCP connect scan"
+    ],
+    "id": 43
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "SNMP walk",
+      "Idle scan",
+      "Zone transfer",
+      "XMAS tree scan"
+    ],
+    "correct": [
+      "XMAS tree scan"
+    ],
+    "id": 44
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "SaaS",
+      "Cross-Site Request Forgery (CSRF)",
+      "IaaS",
+      "PaaS"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 45
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "Privilege Escalation",
+      "IaaS",
+      "PaaS",
+      "SaaS"
+    ],
+    "correct": [
+      "SaaS"
+    ],
+    "id": 46
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Software and Data Integrity Failures",
+      "Identification and Authentication Failures",
+      "Cryptographic Failures",
+      "Path Disclosure",
+      "Data Tampering"
+    ],
+    "correct": [
+      "Cryptographic Failures",
+      "Software and Data Integrity Failures"
+    ],
+    "id": 47
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Port knocking",
+      "Null scan",
+      "Idle scan",
+      "ACK scan",
+      "UDP scan"
+    ],
+    "correct": [
+      "Idle scan",
+      "UDP scan"
+    ],
+    "id": 48
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Insecure APIs",
+      "Abuse of Cloud Services",
+      "Account Hijacking",
+      "Denial of Service"
+    ],
+    "correct": [
+      "Abuse of Cloud Services"
+    ],
+    "id": 49
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Account Hijacking",
+      "Insider Threats",
+      "SQL Injection",
+      "Insecure APIs"
+    ],
+    "correct": [
+      "Insider Threats"
+    ],
+    "id": 50
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Insecure Design",
+      "Injection",
+      "Security Logging and Monitoring Failures",
+      "Timing Attack",
+      "Data Tampering"
+    ],
+    "correct": [
+      "Insecure Design",
+      "Security Logging and Monitoring Failures"
+    ],
+    "id": 51
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Insecure Design",
+      "Security Misconfiguration",
+      "Security Logging and Monitoring Failures",
+      "Cross-Site Request Forgery (CSRF)",
+      "Broken Access Control"
+    ],
+    "correct": [
+      "Broken Access Control",
+      "Insecure Design"
+    ],
+    "id": 52
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Identification and Authentication Failures",
+      "Insecure Design",
+      "Broken Access Control",
+      "Path Disclosure"
+    ],
+    "correct": [
+      "Identification and Authentication Failures"
+    ],
+    "id": 53
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "Zone transfer",
+      "IaaS",
+      "SaaS",
+      "PaaS"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 54
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Data Tampering",
+      "Broken Access Control",
+      "Server-Side Request Forgery (SSRF)",
+      "Insecure Design",
+      "Privilege Escalation"
+    ],
+    "correct": [
+      "Server-Side Request Forgery (SSRF)",
+      "Insecure Design"
+    ],
+    "id": 55
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Hybrid",
+      "Community",
+      "Public",
+      "Private"
+    ],
+    "correct": [
+      "Private"
+    ],
+    "id": 56
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Autenticidad",
+      "Integridad",
+      "No Repudio",
+      "Confidencialidad",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 57
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Abuse of Cloud Services",
+      "Insufficient Due Diligence",
+      "Denial of Service",
+      "Account Hijacking"
+    ],
+    "correct": [
+      "Abuse of Cloud Services"
+    ],
+    "id": 58
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Edge",
+      "Public",
+      "Private",
+      "Community"
+    ],
+    "correct": [
+      "Private"
+    ],
+    "id": 59
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "SNMP walk",
+      "PaaS",
+      "SaaS",
+      "IaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 60
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Idle scan",
+      "Zone transfer",
+      "WHOIS lookup",
+      "Null scan"
+    ],
+    "correct": [
+      "Idle scan"
+    ],
+    "id": 61
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "SYN scan",
+      "Null scan",
+      "Windows scan",
+      "Banner grabbing",
+      "Idle scan"
+    ],
+    "correct": [
+      "Windows scan",
+      "Null scan"
+    ],
+    "id": 62
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Community",
+      "Edge",
+      "Hybrid",
+      "Public"
+    ],
+    "correct": [
+      "Community"
+    ],
+    "id": 63
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "IaaS",
+      "Public",
+      "PaaS",
+      "Private",
+      "SaaS"
+    ],
+    "correct": [
+      "Private",
+      "IaaS"
+    ],
+    "id": 64
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "IaaS",
+      "Community",
+      "PaaS",
+      "Private",
+      "Fog"
+    ],
+    "correct": [
+      "PaaS",
+      "Community"
+    ],
+    "id": 65
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Hybrid",
+      "Private",
+      "Community",
+      "SaaS",
+      "Fog"
+    ],
+    "correct": [
+      "SaaS",
+      "Hybrid"
+    ],
+    "id": 66
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Edge",
+      "Hybrid",
+      "Public",
+      "Private"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 67
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Vulnerable and Outdated Components",
+      "Cross-Site Request Forgery (CSRF)",
+      "Server-Side Request Forgery (SSRF)",
+      "Broken Access Control"
+    ],
+    "correct": [
+      "Broken Access Control"
+    ],
+    "id": 68
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Windows scan",
+      "ACK scan",
+      "FIN scan",
+      "UDP scan"
+    ],
+    "correct": [
+      "Windows scan"
+    ],
+    "id": 69
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Data Tampering",
+      "Identification and Authentication Failures",
+      "Privilege Escalation",
+      "Software and Data Integrity Failures"
+    ],
+    "correct": [
+      "Identification and Authentication Failures"
+    ],
+    "id": 70
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Abuse of Cloud Services",
+      "Insecure APIs",
+      "Watering Hole",
+      "Pharming",
+      "Insider Threats"
+    ],
+    "correct": [
+      "Insecure APIs",
+      "Abuse of Cloud Services"
+    ],
+    "id": 71
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Security Misconfiguration",
+      "Identification and Authentication Failures",
+      "Broken Access Control",
+      "Denial of Service",
+      "Cryptographic Failures"
+    ],
+    "correct": [
+      "Cryptographic Failures",
+      "Broken Access Control"
+    ],
+    "id": 72
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Denial of Service",
+      "Watering Hole",
+      "Insider Threats",
+      "Abuse of Cloud Services",
+      "Insecure APIs"
+    ],
+    "correct": [
+      "Denial of Service",
+      "Insider Threats"
+    ],
+    "id": 73
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Integridad",
+      "Confidencialidad",
+      "No Repudio",
+      "Autenticidad",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 74
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Account Hijacking",
+      "Data Breaches",
+      "Abuse of Cloud Services",
+      "Denial of Service",
+      "Insider Threats"
+    ],
+    "correct": [
+      "Abuse of Cloud Services",
+      "Data Breaches"
+    ],
+    "id": 75
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "SaaS",
+      "Timing Attack",
+      "IaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 76
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "SaaS",
+      "Fog",
+      "Private",
+      "IaaS",
+      "Hybrid"
+    ],
+    "correct": [
+      "SaaS",
+      "Private"
+    ],
+    "id": 77
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "IaaS",
+      "Hybrid",
+      "Private",
+      "Community",
+      "Public"
+    ],
+    "correct": [
+      "Hybrid",
+      "Community"
+    ],
+    "id": 78
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Data Breaches",
+      "Insecure APIs",
+      "Data Loss",
+      "Shared Technology Issues"
+    ],
+    "correct": [
+      "Shared Technology Issues"
+    ],
+    "id": 79
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Data Breaches",
+      "Insecure APIs",
+      "Pharming",
+      "Abuse of Cloud Services",
+      "Insufficient Due Diligence"
+    ],
+    "correct": [
+      "Abuse of Cloud Services",
+      "Insufficient Due Diligence"
+    ],
+    "id": 80
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "FIN scan",
+      "Windows scan",
+      "SNMP walk",
+      "Idle scan"
+    ],
+    "correct": [
+      "Windows scan"
+    ],
+    "id": 81
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "Phishing",
+      "SaaS",
+      "IaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 82
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Zone transfer",
+      "TCP connect scan",
+      "FIN scan",
+      "Banner grabbing",
+      "ACK scan"
+    ],
+    "correct": [
+      "FIN scan",
+      "TCP connect scan"
+    ],
+    "id": 83
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Community",
+      "Hybrid",
+      "Private",
+      "Edge"
+    ],
+    "correct": [
+      "Private"
+    ],
+    "id": 84
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Identification and Authentication Failures",
+      "Privilege Escalation",
+      "Server-Side Request Forgery (SSRF)",
+      "Software and Data Integrity Failures"
+    ],
+    "correct": [
+      "Software and Data Integrity Failures"
+    ],
+    "id": 85
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Denial of Service",
+      "Shared Technology Issues",
+      "SQL Injection",
+      "Data Loss"
+    ],
+    "correct": [
+      "Denial of Service"
+    ],
+    "id": 86
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Insecure APIs",
+      "Data Breaches",
+      "Abuse of Cloud Services",
+      "Data Loss"
+    ],
+    "correct": [
+      "Data Loss"
+    ],
+    "id": 87
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Windows scan",
+      "Port knocking",
+      "Idle scan",
+      "Zone transfer",
+      "UDP scan"
+    ],
+    "correct": [
+      "Windows scan",
+      "Idle scan"
+    ],
+    "id": 88
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "SYN scan",
+      "ACK scan",
+      "Ping sweep",
+      "Null scan"
+    ],
+    "correct": [
+      "Null scan"
+    ],
+    "id": 89
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Denial of Service",
+      "Insider Threats",
+      "Account Hijacking",
+      "Watering Hole",
+      "Data Breaches"
+    ],
+    "correct": [
+      "Denial of Service",
+      "Data Breaches"
+    ],
+    "id": 90
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Account Hijacking",
+      "Shared Technology Issues",
+      "Insufficient Due Diligence",
+      "Data Breaches",
+      "Watering Hole"
+    ],
+    "correct": [
+      "Shared Technology Issues",
+      "Account Hijacking"
+    ],
+    "id": 91
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "Race Condition",
+      "IaaS",
+      "SaaS"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 92
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "PaaS",
+      "IaaS",
+      "Hybrid",
+      "Community",
+      "Edge"
+    ],
+    "correct": [
+      "PaaS",
+      "IaaS"
+    ],
+    "id": 93
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Account Hijacking",
+      "Insufficient Due Diligence",
+      "Insecure APIs",
+      "Abuse of Cloud Services"
+    ],
+    "correct": [
+      "Insufficient Due Diligence"
+    ],
+    "id": 94
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Identification and Authentication Failures",
+      "Cross-Site Request Forgery (CSRF)",
+      "Injection",
+      "Buffer Overflow"
+    ],
+    "correct": [
+      "Injection"
+    ],
+    "id": 95
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Shared Technology Issues",
+      "Pharming",
+      "Insider Threats",
+      "Account Hijacking",
+      "Watering Hole"
+    ],
+    "correct": [
+      "Shared Technology Issues",
+      "Insider Threats"
+    ],
+    "id": 96
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Timing Attack",
+      "Security Misconfiguration",
+      "Injection",
+      "Buffer Overflow"
+    ],
+    "correct": [
+      "Injection"
+    ],
+    "id": 97
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Shared Technology Issues",
+      "Insecure APIs",
+      "Insider Threats",
+      "Data Breaches",
+      "Denial of Service"
+    ],
+    "correct": [
+      "Denial of Service",
+      "Shared Technology Issues"
+    ],
+    "id": 98
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Data Tampering",
+      "Server-Side Request Forgery (SSRF)",
+      "Security Misconfiguration",
+      "Vulnerable and Outdated Components",
+      "Cross-Site Request Forgery (CSRF)"
+    ],
+    "correct": [
+      "Server-Side Request Forgery (SSRF)",
+      "Security Misconfiguration"
+    ],
+    "id": 99
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Identification and Authentication Failures",
+      "Cross-Site Request Forgery (CSRF)",
+      "Cryptographic Failures",
+      "Insecure Design"
+    ],
+    "correct": [
+      "Insecure Design"
+    ],
+    "id": 100
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "IaaS",
+      "SaaS",
+      "PaaS",
+      "Port knocking"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 101
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "UDP scan",
+      "Traceroute",
+      "ACK scan",
+      "SYN scan",
+      "TCP connect scan"
+    ],
+    "correct": [
+      "ACK scan",
+      "TCP connect scan"
+    ],
+    "id": 102
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Data Breaches",
+      "Denial of Service",
+      "Shared Technology Issues",
+      "Insecure APIs",
+      "Insider Threats"
+    ],
+    "correct": [
+      "Shared Technology Issues",
+      "Insider Threats"
+    ],
+    "id": 103
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Autenticidad",
+      "No Repudio",
+      "Integridad",
+      "Disponibilidad",
+      "Confidencialidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 104
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Server-Side Request Forgery (SSRF)",
+      "Race Condition",
+      "Cryptographic Failures",
+      "Cross-Site Request Forgery (CSRF)"
+    ],
+    "correct": [
+      "Cryptographic Failures"
+    ],
+    "id": 105
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Race Condition",
+      "Phishing",
+      "Injection",
+      "Identification and Authentication Failures"
+    ],
+    "correct": [
+      "Injection"
+    ],
+    "id": 106
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Ping sweep",
+      "Null scan",
+      "Port knocking",
+      "TCP connect scan"
+    ],
+    "correct": [
+      "TCP connect scan"
+    ],
+    "id": 107
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Software and Data Integrity Failures",
+      "Denial of Service",
+      "Cryptographic Failures",
+      "Vulnerable and Outdated Components",
+      "Identification and Authentication Failures"
+    ],
+    "correct": [
+      "Identification and Authentication Failures",
+      "Vulnerable and Outdated Components"
+    ],
+    "id": 108
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Idle scan",
+      "Windows scan",
+      "Zone transfer",
+      "Banner grabbing",
+      "Null scan"
+    ],
+    "correct": [
+      "Null scan",
+      "Idle scan"
+    ],
+    "id": 109
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Confidencialidad",
+      "Autenticidad",
+      "No Repudio",
+      "Integridad",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 110
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Abuse of Cloud Services",
+      "Insecure APIs",
+      "Shared Technology Issues",
+      "Data Breaches"
+    ],
+    "correct": [
+      "Abuse of Cloud Services"
+    ],
+    "id": 111
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "SaaS",
+      "Fog",
+      "Edge",
+      "Public",
+      "Private"
+    ],
+    "correct": [
+      "SaaS",
+      "Public"
+    ],
+    "id": 112
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Edge",
+      "Community",
+      "Hybrid",
+      "Private"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 113
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "SaaS",
+      "Buffer Overflow",
+      "IaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 114
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "TCP connect scan",
+      "WHOIS lookup",
+      "FIN scan",
+      "Null scan",
+      "UDP scan"
+    ],
+    "correct": [
+      "FIN scan",
+      "UDP scan"
+    ],
+    "id": 115
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Ping sweep",
+      "Zone transfer",
+      "Port knocking",
+      "Windows scan"
+    ],
+    "correct": [
+      "Windows scan"
+    ],
+    "id": 116
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Directory Traversal",
+      "Vulnerable and Outdated Components",
+      "Data Tampering",
+      "Cross-Site Request Forgery (CSRF)",
+      "Broken Access Control"
+    ],
+    "correct": [
+      "Broken Access Control",
+      "Vulnerable and Outdated Components"
+    ],
+    "id": 117
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "SaaS",
+      "IaaS",
+      "Todas las anteriores",
+      "PaaS"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 118
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Account Hijacking",
+      "Pharming",
+      "Insider Threats",
+      "Insecure APIs",
+      "Abuse of Cloud Services"
+    ],
+    "correct": [
+      "Insecure APIs",
+      "Abuse of Cloud Services"
+    ],
+    "id": 119
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Identification and Authentication Failures",
+      "Server-Side Request Forgery (SSRF)",
+      "Vulnerable and Outdated Components",
+      "Race Condition"
+    ],
+    "correct": [
+      "Vulnerable and Outdated Components"
+    ],
+    "id": 120
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Software and Data Integrity Failures",
+      "Denial of Service",
+      "Data Tampering",
+      "Broken Access Control",
+      "Cross-Site Request Forgery (CSRF)"
+    ],
+    "correct": [
+      "Broken Access Control",
+      "Software and Data Integrity Failures"
+    ],
+    "id": 121
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "ACK scan",
+      "WHOIS lookup",
+      "UDP scan",
+      "SYN scan"
+    ],
+    "correct": [
+      "SYN scan"
+    ],
+    "id": 122
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Autenticidad",
+      "Disponibilidad",
+      "Confidencialidad",
+      "No Repudio",
+      "Integridad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 123
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Insecure APIs",
+      "Insufficient Due Diligence",
+      "Shared Technology Issues",
+      "Account Hijacking"
+    ],
+    "correct": [
+      "Account Hijacking"
+    ],
+    "id": 124
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Timing Attack",
+      "Broken Access Control",
+      "Privilege Escalation",
+      "Injection",
+      "Security Misconfiguration"
+    ],
+    "correct": [
+      "Broken Access Control",
+      "Security Misconfiguration"
+    ],
+    "id": 125
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Community",
+      "Public",
+      "SaaS",
+      "Private",
+      "Hybrid"
+    ],
+    "correct": [
+      "SaaS",
+      "Public"
+    ],
+    "id": 126
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "No Repudio",
+      "Integridad",
+      "Disponibilidad",
+      "Confidencialidad",
+      "Autenticidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 127
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Directory Traversal",
+      "Denial of Service",
+      "Injection",
+      "Software and Data Integrity Failures",
+      "Server-Side Request Forgery (SSRF)"
+    ],
+    "correct": [
+      "Injection",
+      "Server-Side Request Forgery (SSRF)"
+    ],
+    "id": 128
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Edge",
+      "Private",
+      "Hybrid",
+      "PaaS",
+      "Fog"
+    ],
+    "correct": [
+      "Hybrid",
+      "PaaS"
+    ],
+    "id": 129
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Insecure APIs",
+      "SQL Injection",
+      "Account Hijacking",
+      "Insider Threats"
+    ],
+    "correct": [
+      "Account Hijacking"
+    ],
+    "id": 130
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Private",
+      "Hybrid",
+      "Edge",
+      "Public"
+    ],
+    "correct": [
+      "Private"
+    ],
+    "id": 131
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "IaaS",
+      "SaaS",
+      "Directory Traversal"
+    ],
+    "correct": [
+      "SaaS"
+    ],
+    "id": 132
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Insecure APIs",
+      "Account Hijacking",
+      "Watering Hole",
+      "Insufficient Due Diligence",
+      "Denial of Service"
+    ],
+    "correct": [
+      "Account Hijacking",
+      "Insufficient Due Diligence"
+    ],
+    "id": 133
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "FIN scan",
+      "XMAS tree scan",
+      "Null scan",
+      "Idle scan",
+      "Zone transfer"
+    ],
+    "correct": [
+      "Idle scan",
+      "Null scan"
+    ],
+    "id": 134
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Timing Attack",
+      "Security Misconfiguration",
+      "Path Disclosure",
+      "Cryptographic Failures"
+    ],
+    "correct": [
+      "Cryptographic Failures"
+    ],
+    "id": 135
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Null scan",
+      "FIN scan",
+      "Banner grabbing",
+      "SYN scan"
+    ],
+    "correct": [
+      "Null scan"
+    ],
+    "id": 136
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "SYN scan",
+      "ACK scan",
+      "Banner grabbing",
+      "Null scan"
+    ],
+    "correct": [
+      "ACK scan"
+    ],
+    "id": 137
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Idle scan",
+      "SYN scan",
+      "Windows scan",
+      "TCP connect scan"
+    ],
+    "correct": [
+      "Windows scan"
+    ],
+    "id": 138
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Injection",
+      "Timing Attack",
+      "Identification and Authentication Failures",
+      "Insecure Design",
+      "Buffer Overflow"
+    ],
+    "correct": [
+      "Identification and Authentication Failures",
+      "Injection"
+    ],
+    "id": 139
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Port knocking",
+      "SYN scan",
+      "Windows scan",
+      "UDP scan",
+      "Traceroute"
+    ],
+    "correct": [
+      "UDP scan",
+      "SYN scan"
+    ],
+    "id": 140
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Abuse of Cloud Services",
+      "Data Loss",
+      "Denial of Service",
+      "Shared Technology Issues"
+    ],
+    "correct": [
+      "Data Loss"
+    ],
+    "id": 141
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "SNMP walk",
+      "ACK scan",
+      "Windows scan",
+      "TCP connect scan"
+    ],
+    "correct": [
+      "ACK scan"
+    ],
+    "id": 142
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Abuse of Cloud Services",
+      "Insider Threats",
+      "SQL Injection",
+      "Data Breaches"
+    ],
+    "correct": [
+      "Data Breaches"
+    ],
+    "id": 143
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "SYN scan",
+      "Zone transfer",
+      "Banner grabbing",
+      "Null scan",
+      "Idle scan"
+    ],
+    "correct": [
+      "SYN scan",
+      "Null scan"
+    ],
+    "id": 144
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Timing Attack",
+      "Data Tampering",
+      "Broken Access Control",
+      "Software and Data Integrity Failures"
+    ],
+    "correct": [
+      "Broken Access Control"
+    ],
+    "id": 145
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Public",
+      "IaaS",
+      "Edge",
+      "Fog",
+      "Private"
+    ],
+    "correct": [
+      "Private",
+      "IaaS"
+    ],
+    "id": 146
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Traceroute",
+      "Banner grabbing",
+      "WHOIS lookup",
+      "Idle scan"
+    ],
+    "correct": [
+      "Idle scan"
+    ],
+    "id": 147
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "IaaS",
+      "PaaS",
+      "SaaS",
+      "WHOIS lookup"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 148
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "SaaS",
+      "IaaS",
+      "SNMP walk",
+      "PaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 149
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Integridad",
+      "No Repudio",
+      "Confidencialidad",
+      "Autenticidad",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 150
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Data Breaches",
+      "Insufficient Due Diligence",
+      "Insecure APIs",
+      "Data Loss"
+    ],
+    "correct": [
+      "Data Breaches"
+    ],
+    "id": 151
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Security Logging and Monitoring Failures",
+      "Buffer Overflow",
+      "Injection",
+      "Insecure Design"
+    ],
+    "correct": [
+      "Security Logging and Monitoring Failures"
+    ],
+    "id": 152
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Zone transfer",
+      "ACK scan",
+      "Idle scan",
+      "SNMP walk"
+    ],
+    "correct": [
+      "ACK scan"
+    ],
+    "id": 153
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Confidencialidad",
+      "Integridad",
+      "No Repudio",
+      "Autenticidad",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 154
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "ACK scan",
+      "FIN scan",
+      "Port knocking",
+      "WHOIS lookup"
+    ],
+    "correct": [
+      "ACK scan"
+    ],
+    "id": 155
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Vulnerable and Outdated Components",
+      "Server-Side Request Forgery (SSRF)",
+      "Cryptographic Failures",
+      "Race Condition"
+    ],
+    "correct": [
+      "Server-Side Request Forgery (SSRF)"
+    ],
+    "id": 156
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Identification and Authentication Failures",
+      "Data Tampering",
+      "Security Misconfiguration",
+      "Vulnerable and Outdated Components",
+      "Broken Access Control"
+    ],
+    "correct": [
+      "Identification and Authentication Failures",
+      "Vulnerable and Outdated Components"
+    ],
+    "id": 157
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Server-Side Request Forgery (SSRF)",
+      "Phishing",
+      "Security Logging and Monitoring Failures",
+      "Broken Access Control",
+      "Vulnerable and Outdated Components"
+    ],
+    "correct": [
+      "Vulnerable and Outdated Components",
+      "Broken Access Control"
+    ],
+    "id": 158
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Ping sweep",
+      "FIN scan",
+      "ACK scan",
+      "Zone transfer"
+    ],
+    "correct": [
+      "ACK scan"
+    ],
+    "id": 159
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Hybrid",
+      "PaaS",
+      "Private",
+      "Edge",
+      "IaaS"
+    ],
+    "correct": [
+      "Hybrid",
+      "IaaS"
+    ],
+    "id": 160
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Broken Access Control",
+      "Cryptographic Failures",
+      "Buffer Overflow",
+      "Injection"
+    ],
+    "correct": [
+      "Broken Access Control"
+    ],
+    "id": 161
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "Data Tampering",
+      "IaaS",
+      "SaaS"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 162
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "UDP scan",
+      "Idle scan",
+      "XMAS tree scan",
+      "Windows scan"
+    ],
+    "correct": [
+      "Windows scan"
+    ],
+    "id": 163
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "UDP scan",
+      "Null scan",
+      "ACK scan",
+      "Banner grabbing",
+      "WHOIS lookup"
+    ],
+    "correct": [
+      "Null scan",
+      "ACK scan"
+    ],
+    "id": 164
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Broken Access Control",
+      "Identification and Authentication Failures",
+      "Injection",
+      "Server-Side Request Forgery (SSRF)"
+    ],
+    "correct": [
+      "Identification and Authentication Failures"
+    ],
+    "id": 165
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "SaaS",
+      "Community",
+      "IaaS",
+      "Private",
+      "Hybrid"
+    ],
+    "correct": [
+      "SaaS",
+      "Community"
+    ],
+    "id": 166
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Data Tampering",
+      "Identification and Authentication Failures",
+      "Insecure Design",
+      "Directory Traversal",
+      "Broken Access Control"
+    ],
+    "correct": [
+      "Insecure Design",
+      "Identification and Authentication Failures"
+    ],
+    "id": 167
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Null scan",
+      "ACK scan",
+      "XMAS tree scan",
+      "FIN scan",
+      "SNMP walk"
+    ],
+    "correct": [
+      "XMAS tree scan",
+      "Null scan"
+    ],
+    "id": 168
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Confidencialidad",
+      "Integridad",
+      "Autenticidad",
+      "No Repudio",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 169
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Integridad",
+      "Confidencialidad",
+      "No Repudio",
+      "Autenticidad",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 170
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Windows scan",
+      "SYN scan",
+      "SNMP walk",
+      "ACK scan",
+      "TCP connect scan"
+    ],
+    "correct": [
+      "Windows scan",
+      "ACK scan"
+    ],
+    "id": 171
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "SaaS",
+      "IaaS",
+      "PaaS",
+      "Zone transfer"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 172
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "SQL Injection",
+      "Insufficient Due Diligence",
+      "Account Hijacking",
+      "Abuse of Cloud Services"
+    ],
+    "correct": [
+      "Abuse of Cloud Services"
+    ],
+    "id": 173
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "Banner grabbing",
+      "IaaS",
+      "SaaS"
+    ],
+    "correct": [
+      "SaaS"
+    ],
+    "id": 174
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Null scan",
+      "SNMP walk",
+      "UDP scan",
+      "Ping sweep"
+    ],
+    "correct": [
+      "Null scan"
+    ],
+    "id": 175
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Broken Access Control",
+      "Vulnerable and Outdated Components",
+      "Software and Data Integrity Failures",
+      "Security Logging and Monitoring Failures",
+      "Cross-Site Request Forgery (CSRF)"
+    ],
+    "correct": [
+      "Security Logging and Monitoring Failures",
+      "Software and Data Integrity Failures"
+    ],
+    "id": 176
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "SQL Injection",
+      "Insider Threats",
+      "Insufficient Due Diligence",
+      "Denial of Service"
+    ],
+    "correct": [
+      "Denial of Service"
+    ],
+    "id": 177
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Banner grabbing",
+      "FIN scan",
+      "Null scan",
+      "Port knocking",
+      "XMAS tree scan"
+    ],
+    "correct": [
+      "FIN scan",
+      "Null scan"
+    ],
+    "id": 178
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "TCP connect scan",
+      "ACK scan",
+      "FIN scan",
+      "SYN scan",
+      "Null scan"
+    ],
+    "correct": [
+      "Null scan",
+      "SYN scan"
+    ],
+    "id": 179
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "No Repudio",
+      "Integridad",
+      "Confidencialidad",
+      "Disponibilidad",
+      "Autenticidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 180
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "PaaS",
+      "IaaS",
+      "Private",
+      "SaaS",
+      "Community"
+    ],
+    "correct": [
+      "Private",
+      "PaaS"
+    ],
+    "id": 181
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Buffer Overflow",
+      "Software and Data Integrity Failures",
+      "Identification and Authentication Failures",
+      "Security Misconfiguration",
+      "Injection"
+    ],
+    "correct": [
+      "Injection",
+      "Security Misconfiguration"
+    ],
+    "id": 182
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "PaaS",
+      "Fog",
+      "Public",
+      "Community",
+      "SaaS"
+    ],
+    "correct": [
+      "SaaS",
+      "Community"
+    ],
+    "id": 183
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Abuse of Cloud Services",
+      "Pharming",
+      "Shared Technology Issues",
+      "Insecure APIs",
+      "Data Loss"
+    ],
+    "correct": [
+      "Abuse of Cloud Services",
+      "Insecure APIs"
+    ],
+    "id": 184
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Denial of Service",
+      "Data Breaches",
+      "Account Hijacking",
+      "SQL Injection"
+    ],
+    "correct": [
+      "Data Breaches"
+    ],
+    "id": 185
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Edge",
+      "Community",
+      "Hybrid",
+      "Private"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 186
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Integridad",
+      "No Repudio",
+      "Autenticidad",
+      "Disponibilidad",
+      "Confidencialidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 187
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Disponibilidad",
+      "Integridad",
+      "No Repudio",
+      "Autenticidad",
+      "Confidencialidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 188
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Timing Attack",
+      "Software and Data Integrity Failures",
+      "Security Logging and Monitoring Failures",
+      "Broken Access Control"
+    ],
+    "correct": [
+      "Broken Access Control"
+    ],
+    "id": 189
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Public",
+      "Hybrid",
+      "Private",
+      "Edge"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 190
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "No Repudio",
+      "Integridad",
+      "Confidencialidad",
+      "Autenticidad",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 191
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "No Repudio",
+      "Autenticidad",
+      "Integridad",
+      "Disponibilidad",
+      "Confidencialidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 192
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Public",
+      "Hybrid",
+      "Edge",
+      "Private"
+    ],
+    "correct": [
+      "Public"
+    ],
+    "id": 193
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "SaaS",
+      "PaaS",
+      "WHOIS lookup",
+      "IaaS"
+    ],
+    "correct": [
+      "SaaS"
+    ],
+    "id": 194
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "IaaS",
+      "WHOIS lookup",
+      "SaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 195
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "SNMP walk",
+      "SaaS",
+      "IaaS",
+      "PaaS"
+    ],
+    "correct": [
+      "SaaS"
+    ],
+    "id": 196
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Phishing",
+      "Injection",
+      "Vulnerable and Outdated Components",
+      "Broken Access Control",
+      "Security Logging and Monitoring Failures"
+    ],
+    "correct": [
+      "Broken Access Control",
+      "Injection"
+    ],
+    "id": 197
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "ACK scan",
+      "SYN scan",
+      "Ping sweep",
+      "Traceroute"
+    ],
+    "correct": [
+      "SYN scan"
+    ],
+    "id": 198
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Private",
+      "Community",
+      "Hybrid",
+      "Edge"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 199
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Insider Threats",
+      "Abuse of Cloud Services",
+      "Pharming",
+      "Insecure APIs",
+      "Denial of Service"
+    ],
+    "correct": [
+      "Abuse of Cloud Services",
+      "Insider Threats"
+    ],
+    "id": 200
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Autenticidad",
+      "Integridad",
+      "Disponibilidad",
+      "Confidencialidad",
+      "No Repudio"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 201
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Software and Data Integrity Failures",
+      "Cross-Site Request Forgery (CSRF)",
+      "Denial of Service",
+      "Race Condition"
+    ],
+    "correct": [
+      "Software and Data Integrity Failures"
+    ],
+    "id": 202
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "XMAS tree scan",
+      "UDP scan",
+      "FIN scan",
+      "ACK scan",
+      "Null scan"
+    ],
+    "correct": [
+      "UDP scan",
+      "XMAS tree scan"
+    ],
+    "id": 203
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "IaaS",
+      "SNMP walk",
+      "SaaS",
+      "PaaS"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 204
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Confidencialidad",
+      "Integridad",
+      "Disponibilidad",
+      "No Repudio",
+      "Autenticidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 205
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Hybrid",
+      "IaaS",
+      "Private",
+      "Public",
+      "PaaS"
+    ],
+    "correct": [
+      "Private",
+      "Hybrid"
+    ],
+    "id": 206
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "SYN scan",
+      "Idle scan",
+      "TCP connect scan",
+      "Windows scan"
+    ],
+    "correct": [
+      "Idle scan"
+    ],
+    "id": 207
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Shared Technology Issues",
+      "Insecure APIs",
+      "Account Hijacking",
+      "Data Breaches"
+    ],
+    "correct": [
+      "Shared Technology Issues"
+    ],
+    "id": 208
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "XMAS tree scan",
+      "UDP scan",
+      "Null scan",
+      "SNMP walk",
+      "TCP connect scan"
+    ],
+    "correct": [
+      "Null scan",
+      "XMAS tree scan"
+    ],
+    "id": 209
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Shared Technology Issues",
+      "Data Breaches",
+      "Account Hijacking",
+      "Insecure APIs",
+      "Abuse of Cloud Services"
+    ],
+    "correct": [
+      "Account Hijacking",
+      "Shared Technology Issues"
+    ],
+    "id": 210
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "No Repudio",
+      "Autenticidad",
+      "Confidencialidad",
+      "Disponibilidad",
+      "Integridad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 211
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Shared Technology Issues",
+      "Denial of Service",
+      "Abuse of Cloud Services",
+      "Insecure APIs",
+      "Account Hijacking"
+    ],
+    "correct": [
+      "Shared Technology Issues",
+      "Denial of Service"
+    ],
+    "id": 212
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Null scan",
+      "Ping sweep",
+      "Windows scan",
+      "WHOIS lookup",
+      "Traceroute"
+    ],
+    "correct": [
+      "Windows scan",
+      "Null scan"
+    ],
+    "id": 213
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Null scan",
+      "WHOIS lookup",
+      "Traceroute",
+      "SNMP walk"
+    ],
+    "correct": [
+      "Null scan"
+    ],
+    "id": 214
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "SaaS",
+      "Edge",
+      "Private",
+      "PaaS",
+      "IaaS"
+    ],
+    "correct": [
+      "Private",
+      "PaaS"
+    ],
+    "id": 215
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Hybrid",
+      "Private",
+      "Public",
+      "Edge"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 216
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Null scan",
+      "SYN scan",
+      "Ping sweep",
+      "Windows scan",
+      "UDP scan"
+    ],
+    "correct": [
+      "UDP scan",
+      "SYN scan"
+    ],
+    "id": 217
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Pharming",
+      "Denial of Service",
+      "Account Hijacking",
+      "Insider Threats",
+      "Shared Technology Issues"
+    ],
+    "correct": [
+      "Shared Technology Issues",
+      "Denial of Service"
+    ],
+    "id": 218
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "UDP scan",
+      "ACK scan",
+      "SNMP walk",
+      "WHOIS lookup",
+      "Windows scan"
+    ],
+    "correct": [
+      "UDP scan",
+      "Windows scan"
+    ],
+    "id": 219
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Traceroute",
+      "Windows scan",
+      "Idle scan",
+      "Port knocking"
+    ],
+    "correct": [
+      "Idle scan"
+    ],
+    "id": 220
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Private",
+      "Hybrid",
+      "Public",
+      "Edge"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 221
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Data Loss",
+      "Data Breaches",
+      "Abuse of Cloud Services",
+      "Insufficient Due Diligence"
+    ],
+    "correct": [
+      "Abuse of Cloud Services"
+    ],
+    "id": 222
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Security Misconfiguration",
+      "Identification and Authentication Failures",
+      "Broken Access Control",
+      "Cross-Site Request Forgery (CSRF)",
+      "Directory Traversal"
+    ],
+    "correct": [
+      "Broken Access Control",
+      "Identification and Authentication Failures"
+    ],
+    "id": 223
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Ping sweep",
+      "SNMP walk",
+      "SYN scan",
+      "UDP scan",
+      "Traceroute"
+    ],
+    "correct": [
+      "SYN scan",
+      "UDP scan"
+    ],
+    "id": 224
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "FIN scan",
+      "Windows scan",
+      "TCP connect scan",
+      "Banner grabbing"
+    ],
+    "correct": [
+      "FIN scan"
+    ],
+    "id": 225
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Denial of Service",
+      "Data Loss",
+      "Insider Threats",
+      "Data Breaches"
+    ],
+    "correct": [
+      "Insider Threats"
+    ],
+    "id": 226
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Identification and Authentication Failures",
+      "Server-Side Request Forgery (SSRF)",
+      "Security Logging and Monitoring Failures",
+      "Broken Access Control",
+      "Race Condition"
+    ],
+    "correct": [
+      "Security Logging and Monitoring Failures",
+      "Identification and Authentication Failures"
+    ],
+    "id": 227
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Banner grabbing",
+      "Zone transfer",
+      "XMAS tree scan",
+      "ACK scan",
+      "SYN scan"
+    ],
+    "correct": [
+      "XMAS tree scan",
+      "ACK scan"
+    ],
+    "id": 228
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Null scan",
+      "Windows scan",
+      "Idle scan",
+      "WHOIS lookup"
+    ],
+    "correct": [
+      "Idle scan"
+    ],
+    "id": 229
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Integridad",
+      "No Repudio",
+      "Autenticidad",
+      "Disponibilidad",
+      "Confidencialidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 230
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Integridad",
+      "Disponibilidad",
+      "Autenticidad",
+      "No Repudio",
+      "Confidencialidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 231
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Integridad",
+      "Autenticidad",
+      "Confidencialidad",
+      "No Repudio",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 232
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Insider Threats",
+      "Insufficient Due Diligence",
+      "Account Hijacking",
+      "Data Loss"
+    ],
+    "correct": [
+      "Insider Threats"
+    ],
+    "id": 233
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Null scan",
+      "FIN scan",
+      "ACK scan",
+      "Port knocking",
+      "Windows scan"
+    ],
+    "correct": [
+      "FIN scan",
+      "Windows scan"
+    ],
+    "id": 234
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Community",
+      "Hybrid",
+      "Edge",
+      "IaaS",
+      "Private"
+    ],
+    "correct": [
+      "Private",
+      "Community"
+    ],
+    "id": 235
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Directory Traversal",
+      "Timing Attack",
+      "Insecure Design",
+      "Injection"
+    ],
+    "correct": [
+      "Injection"
+    ],
+    "id": 236
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Cryptographic Failures",
+      "Race Condition",
+      "Identification and Authentication Failures",
+      "Privilege Escalation"
+    ],
+    "correct": [
+      "Cryptographic Failures"
+    ],
+    "id": 237
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Private",
+      "Edge",
+      "Public",
+      "Hybrid"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 238
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Data Breaches",
+      "Insider Threats",
+      "Denial of Service",
+      "Abuse of Cloud Services",
+      "Watering Hole"
+    ],
+    "correct": [
+      "Insider Threats",
+      "Denial of Service"
+    ],
+    "id": 239
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Insufficient Due Diligence",
+      "Abuse of Cloud Services",
+      "Watering Hole",
+      "Account Hijacking",
+      "Insider Threats"
+    ],
+    "correct": [
+      "Abuse of Cloud Services",
+      "Insider Threats"
+    ],
+    "id": 240
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "Privilege Escalation",
+      "PaaS",
+      "SaaS",
+      "IaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 241
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Edge",
+      "Hybrid",
+      "Community",
+      "Public"
+    ],
+    "correct": [
+      "Community"
+    ],
+    "id": 242
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Hybrid",
+      "Public",
+      "Edge",
+      "Private"
+    ],
+    "correct": [
+      "Private"
+    ],
+    "id": 243
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "WHOIS lookup",
+      "SaaS",
+      "PaaS",
+      "IaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 244
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "No Repudio",
+      "Autenticidad",
+      "Confidencialidad",
+      "Disponibilidad",
+      "Integridad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 245
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Public",
+      "PaaS",
+      "Private",
+      "Fog",
+      "Community"
+    ],
+    "correct": [
+      "PaaS",
+      "Public"
+    ],
+    "id": 246
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Public",
+      "Edge",
+      "Hybrid",
+      "Community"
+    ],
+    "correct": [
+      "Public"
+    ],
+    "id": 247
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Hybrid",
+      "Community",
+      "Private",
+      "Public"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 248
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Vulnerable and Outdated Components",
+      "Injection",
+      "Security Misconfiguration",
+      "Data Tampering",
+      "Security Logging and Monitoring Failures"
+    ],
+    "correct": [
+      "Injection",
+      "Vulnerable and Outdated Components"
+    ],
+    "id": 249
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Path Disclosure",
+      "Privilege Escalation",
+      "Timing Attack",
+      "Insecure Design",
+      "Vulnerable and Outdated Components"
+    ],
+    "correct": [
+      "Insecure Design",
+      "Vulnerable and Outdated Components"
+    ],
+    "id": 250
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Cryptographic Failures",
+      "Injection",
+      "Directory Traversal",
+      "Phishing",
+      "Broken Access Control"
+    ],
+    "correct": [
+      "Cryptographic Failures",
+      "Broken Access Control"
+    ],
+    "id": 251
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "No Repudio",
+      "Autenticidad",
+      "Disponibilidad",
+      "Integridad",
+      "Confidencialidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 252
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Pharming",
+      "Insecure APIs",
+      "Abuse of Cloud Services",
+      "Data Breaches",
+      "Shared Technology Issues"
+    ],
+    "correct": [
+      "Data Breaches",
+      "Insecure APIs"
+    ],
+    "id": 253
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Security Misconfiguration",
+      "Identification and Authentication Failures",
+      "Timing Attack",
+      "Broken Access Control"
+    ],
+    "correct": [
+      "Broken Access Control"
+    ],
+    "id": 254
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "SaaS",
+      "Banner grabbing",
+      "PaaS",
+      "IaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 255
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Denial of Service",
+      "Shared Technology Issues",
+      "Pharming",
+      "Account Hijacking",
+      "Insufficient Due Diligence"
+    ],
+    "correct": [
+      "Shared Technology Issues",
+      "Insufficient Due Diligence"
+    ],
+    "id": 256
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Abuse of Cloud Services",
+      "Denial of Service",
+      "Data Loss",
+      "Insider Threats"
+    ],
+    "correct": [
+      "Abuse of Cloud Services"
+    ],
+    "id": 257
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Hybrid",
+      "Fog",
+      "IaaS",
+      "Public",
+      "Private"
+    ],
+    "correct": [
+      "Public",
+      "Hybrid"
+    ],
+    "id": 258
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Windows scan",
+      "Traceroute",
+      "Null scan",
+      "Ping sweep"
+    ],
+    "correct": [
+      "Windows scan"
+    ],
+    "id": 259
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "SaaS",
+      "IaaS",
+      "PaaS",
+      "Ping sweep"
+    ],
+    "correct": [
+      "SaaS"
+    ],
+    "id": 260
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Hybrid",
+      "Public",
+      "Community",
+      "Edge"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 261
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Insufficient Due Diligence",
+      "Data Breaches",
+      "Insider Threats",
+      "Insecure APIs",
+      "Shared Technology Issues"
+    ],
+    "correct": [
+      "Shared Technology Issues",
+      "Insider Threats"
+    ],
+    "id": 262
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Data Breaches",
+      "Shared Technology Issues",
+      "Denial of Service",
+      "Insecure APIs"
+    ],
+    "correct": [
+      "Denial of Service"
+    ],
+    "id": 263
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Privilege Escalation",
+      "Vulnerable and Outdated Components",
+      "Directory Traversal",
+      "Broken Access Control",
+      "Cryptographic Failures"
+    ],
+    "correct": [
+      "Vulnerable and Outdated Components",
+      "Broken Access Control"
+    ],
+    "id": 264
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Edge",
+      "Public",
+      "Community",
+      "Private"
+    ],
+    "correct": [
+      "Community"
+    ],
+    "id": 265
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "SaaS",
+      "IaaS",
+      "Phishing"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 266
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Path Disclosure",
+      "Broken Access Control",
+      "Privilege Escalation",
+      "Security Misconfiguration",
+      "Cryptographic Failures"
+    ],
+    "correct": [
+      "Security Misconfiguration",
+      "Cryptographic Failures"
+    ],
+    "id": 267
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "SaaS",
+      "Zone transfer",
+      "IaaS",
+      "PaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 268
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Security Logging and Monitoring Failures",
+      "Server-Side Request Forgery (SSRF)",
+      "Path Disclosure",
+      "Privilege Escalation"
+    ],
+    "correct": [
+      "Server-Side Request Forgery (SSRF)"
+    ],
+    "id": 269
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Confidencialidad",
+      "Integridad",
+      "Autenticidad",
+      "No Repudio",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 270
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "IaaS",
+      "SaaS",
+      "PaaS",
+      "Privilege Escalation"
+    ],
+    "correct": [
+      "SaaS"
+    ],
+    "id": 271
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Insufficient Due Diligence",
+      "Data Loss",
+      "Insecure APIs",
+      "Data Breaches",
+      "Abuse of Cloud Services"
+    ],
+    "correct": [
+      "Abuse of Cloud Services",
+      "Insecure APIs"
+    ],
+    "id": 272
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "FIN scan",
+      "Idle scan",
+      "SYN scan",
+      "XMAS tree scan",
+      "Banner grabbing"
+    ],
+    "correct": [
+      "Idle scan",
+      "SYN scan"
+    ],
+    "id": 273
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Data Tampering",
+      "Path Disclosure",
+      "Vulnerable and Outdated Components",
+      "Software and Data Integrity Failures",
+      "Security Logging and Monitoring Failures"
+    ],
+    "correct": [
+      "Software and Data Integrity Failures",
+      "Security Logging and Monitoring Failures"
+    ],
+    "id": 274
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "Directory Traversal",
+      "IaaS",
+      "SaaS"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 275
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Directory Traversal",
+      "Vulnerable and Outdated Components",
+      "Server-Side Request Forgery (SSRF)",
+      "Cross-Site Request Forgery (CSRF)"
+    ],
+    "correct": [
+      "Vulnerable and Outdated Components"
+    ],
+    "id": 276
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "XMAS tree scan",
+      "Banner grabbing",
+      "Null scan",
+      "Idle scan",
+      "Windows scan"
+    ],
+    "correct": [
+      "Windows scan",
+      "Idle scan"
+    ],
+    "id": 277
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "UDP scan",
+      "SNMP walk",
+      "Ping sweep",
+      "SYN scan"
+    ],
+    "correct": [
+      "SYN scan"
+    ],
+    "id": 278
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Community",
+      "Private",
+      "Edge",
+      "Hybrid"
+    ],
+    "correct": [
+      "Community"
+    ],
+    "id": 279
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Cryptographic Failures",
+      "Vulnerable and Outdated Components",
+      "Software and Data Integrity Failures",
+      "Race Condition",
+      "Data Tampering"
+    ],
+    "correct": [
+      "Vulnerable and Outdated Components",
+      "Software and Data Integrity Failures"
+    ],
+    "id": 280
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Edge",
+      "Hybrid",
+      "Private",
+      "Public"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 281
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Hybrid",
+      "SaaS",
+      "Fog",
+      "PaaS",
+      "Community"
+    ],
+    "correct": [
+      "Community",
+      "Hybrid"
+    ],
+    "id": 282
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Cryptographic Failures",
+      "Security Misconfiguration",
+      "Identification and Authentication Failures",
+      "Cross-Site Request Forgery (CSRF)"
+    ],
+    "correct": [
+      "Security Misconfiguration"
+    ],
+    "id": 283
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Integridad",
+      "Autenticidad",
+      "Confidencialidad",
+      "No Repudio",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 284
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Security Logging and Monitoring Failures",
+      "Injection",
+      "Vulnerable and Outdated Components",
+      "Buffer Overflow"
+    ],
+    "correct": [
+      "Vulnerable and Outdated Components"
+    ],
+    "id": 285
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Idle scan",
+      "ACK scan",
+      "Windows scan",
+      "SNMP walk",
+      "UDP scan"
+    ],
+    "correct": [
+      "UDP scan",
+      "ACK scan"
+    ],
+    "id": 286
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "None of the above",
+      "SaaS",
+      "IaaS",
+      "PaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 287
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Banner grabbing",
+      "Windows scan",
+      "Idle scan",
+      "Null scan",
+      "FIN scan"
+    ],
+    "correct": [
+      "Idle scan",
+      "FIN scan"
+    ],
+    "id": 288
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Watering Hole",
+      "Insider Threats",
+      "Insufficient Due Diligence",
+      "Shared Technology Issues",
+      "Pharming"
+    ],
+    "correct": [
+      "Insider Threats",
+      "Insufficient Due Diligence"
+    ],
+    "id": 289
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Vulnerable and Outdated Components",
+      "Security Logging and Monitoring Failures",
+      "Insecure Design",
+      "Software and Data Integrity Failures"
+    ],
+    "correct": [
+      "Insecure Design"
+    ],
+    "id": 290
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Software and Data Integrity Failures",
+      "Server-Side Request Forgery (SSRF)",
+      "Timing Attack",
+      "Vulnerable and Outdated Components"
+    ],
+    "correct": [
+      "Server-Side Request Forgery (SSRF)"
+    ],
+    "id": 291
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Insecure APIs",
+      "Insider Threats",
+      "Insufficient Due Diligence",
+      "Account Hijacking"
+    ],
+    "correct": [
+      "Insecure APIs"
+    ],
+    "id": 292
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "XMAS tree scan",
+      "TCP connect scan",
+      "Windows scan",
+      "Null scan",
+      "Idle scan"
+    ],
+    "correct": [
+      "Windows scan",
+      "TCP connect scan"
+    ],
+    "id": 293
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "SYN scan",
+      "Banner grabbing",
+      "UDP scan",
+      "WHOIS lookup",
+      "ACK scan"
+    ],
+    "correct": [
+      "SYN scan",
+      "UDP scan"
+    ],
+    "id": 294
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "SNMP walk",
+      "ACK scan",
+      "TCP connect scan",
+      "Port knocking"
+    ],
+    "correct": [
+      "ACK scan"
+    ],
+    "id": 295
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Hybrid",
+      "Private",
+      "PaaS",
+      "Public",
+      "IaaS"
+    ],
+    "correct": [
+      "Private",
+      "IaaS"
+    ],
+    "id": 296
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "Privilege Escalation",
+      "IaaS",
+      "SaaS"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 297
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Data Breaches",
+      "Data Loss",
+      "Watering Hole",
+      "Shared Technology Issues",
+      "Abuse of Cloud Services"
+    ],
+    "correct": [
+      "Data Loss",
+      "Shared Technology Issues"
+    ],
+    "id": 298
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Integridad",
+      "Disponibilidad",
+      "Autenticidad",
+      "Confidencialidad",
+      "No Repudio"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 299
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "SaaS",
+      "Community",
+      "IaaS",
+      "Private",
+      "Public"
+    ],
+    "correct": [
+      "Private",
+      "Public"
+    ],
+    "id": 300
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Public",
+      "IaaS",
+      "Private",
+      "Community",
+      "SaaS"
+    ],
+    "correct": [
+      "Private",
+      "SaaS"
+    ],
+    "id": 301
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Denial of Service",
+      "Insider Threats",
+      "Data Loss",
+      "SQL Injection"
+    ],
+    "correct": [
+      "Denial of Service"
+    ],
+    "id": 302
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Identification and Authentication Failures",
+      "Cryptographic Failures",
+      "Injection",
+      "Privilege Escalation",
+      "Security Misconfiguration"
+    ],
+    "correct": [
+      "Identification and Authentication Failures",
+      "Cryptographic Failures"
+    ],
+    "id": 303
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Integridad",
+      "Disponibilidad",
+      "Autenticidad",
+      "Confidencialidad",
+      "No Repudio"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 304
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Public",
+      "Community",
+      "Edge",
+      "Hybrid"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 305
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "IaaS",
+      "Community",
+      "Hybrid",
+      "SaaS",
+      "Private"
+    ],
+    "correct": [
+      "Private",
+      "SaaS"
+    ],
+    "id": 306
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "Data Tampering",
+      "SaaS",
+      "PaaS",
+      "IaaS"
+    ],
+    "correct": [
+      "SaaS"
+    ],
+    "id": 307
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Idle scan",
+      "SNMP walk",
+      "FIN scan",
+      "ACK scan",
+      "UDP scan"
+    ],
+    "correct": [
+      "Idle scan",
+      "UDP scan"
+    ],
+    "id": 308
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Autenticidad",
+      "Confidencialidad",
+      "No Repudio",
+      "Disponibilidad",
+      "Integridad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 309
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Fog",
+      "IaaS",
+      "Hybrid",
+      "Public",
+      "Private"
+    ],
+    "correct": [
+      "Hybrid",
+      "Public"
+    ],
+    "id": 310
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "XMAS tree scan",
+      "Port knocking",
+      "Windows scan",
+      "ACK scan"
+    ],
+    "correct": [
+      "XMAS tree scan"
+    ],
+    "id": 311
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Identification and Authentication Failures",
+      "Cryptographic Failures",
+      "Software and Data Integrity Failures",
+      "Vulnerable and Outdated Components",
+      "Timing Attack"
+    ],
+    "correct": [
+      "Cryptographic Failures",
+      "Software and Data Integrity Failures"
+    ],
+    "id": 312
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Community",
+      "Fog",
+      "Public",
+      "SaaS",
+      "PaaS"
+    ],
+    "correct": [
+      "Public",
+      "Community"
+    ],
+    "id": 313
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Edge",
+      "Community",
+      "Hybrid",
+      "Private"
+    ],
+    "correct": [
+      "Private"
+    ],
+    "id": 314
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Account Hijacking",
+      "Denial of Service",
+      "Insufficient Due Diligence",
+      "Shared Technology Issues"
+    ],
+    "correct": [
+      "Denial of Service"
+    ],
+    "id": 315
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Windows scan",
+      "FIN scan",
+      "SNMP walk",
+      "Zone transfer",
+      "Idle scan"
+    ],
+    "correct": [
+      "Idle scan",
+      "FIN scan"
+    ],
+    "id": 316
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Buffer Overflow",
+      "Data Tampering",
+      "Phishing",
+      "Insecure Design"
+    ],
+    "correct": [
+      "Insecure Design"
+    ],
+    "id": 317
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Hybrid",
+      "Edge",
+      "Private",
+      "IaaS",
+      "SaaS"
+    ],
+    "correct": [
+      "SaaS",
+      "Hybrid"
+    ],
+    "id": 318
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Autenticidad",
+      "Disponibilidad",
+      "Integridad",
+      "Confidencialidad",
+      "No Repudio"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 319
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Hybrid",
+      "Edge",
+      "Private",
+      "Public"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 320
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Abuse of Cloud Services",
+      "Data Breaches",
+      "Denial of Service",
+      "Data Loss"
+    ],
+    "correct": [
+      "Data Breaches"
+    ],
+    "id": 321
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Edge",
+      "Community",
+      "Private",
+      "Hybrid"
+    ],
+    "correct": [
+      "Private"
+    ],
+    "id": 322
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Edge",
+      "Community",
+      "Public",
+      "Private"
+    ],
+    "correct": [
+      "Private"
+    ],
+    "id": 323
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "UDP scan",
+      "XMAS tree scan",
+      "FIN scan",
+      "Windows scan",
+      "SNMP walk"
+    ],
+    "correct": [
+      "XMAS tree scan",
+      "UDP scan"
+    ],
+    "id": 324
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "SYN scan",
+      "Idle scan",
+      "ACK scan",
+      "TCP connect scan",
+      "Port knocking"
+    ],
+    "correct": [
+      "ACK scan",
+      "Idle scan"
+    ],
+    "id": 325
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "ACK scan",
+      "FIN scan",
+      "Windows scan",
+      "WHOIS lookup"
+    ],
+    "correct": [
+      "FIN scan"
+    ],
+    "id": 326
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "IaaS",
+      "Timing Attack",
+      "PaaS",
+      "SaaS"
+    ],
+    "correct": [
+      "SaaS"
+    ],
+    "id": 327
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Windows scan",
+      "ACK scan",
+      "Traceroute",
+      "SNMP walk"
+    ],
+    "correct": [
+      "ACK scan"
+    ],
+    "id": 328
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Shared Technology Issues",
+      "Account Hijacking",
+      "Abuse of Cloud Services",
+      "Data Loss"
+    ],
+    "correct": [
+      "Data Loss"
+    ],
+    "id": 329
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Null scan",
+      "TCP connect scan",
+      "WHOIS lookup",
+      "SYN scan",
+      "SNMP walk"
+    ],
+    "correct": [
+      "SYN scan",
+      "Null scan"
+    ],
+    "id": 330
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "TCP connect scan",
+      "SYN scan",
+      "UDP scan",
+      "Zone transfer",
+      "ACK scan"
+    ],
+    "correct": [
+      "SYN scan",
+      "TCP connect scan"
+    ],
+    "id": 331
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "SYN scan",
+      "ACK scan",
+      "Null scan",
+      "Idle scan",
+      "Ping sweep"
+    ],
+    "correct": [
+      "Null scan",
+      "Idle scan"
+    ],
+    "id": 332
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "ACK scan",
+      "TCP connect scan",
+      "WHOIS lookup",
+      "SYN scan",
+      "Windows scan"
+    ],
+    "correct": [
+      "ACK scan",
+      "TCP connect scan"
+    ],
+    "id": 333
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Broken Access Control",
+      "Injection",
+      "Server-Side Request Forgery (SSRF)",
+      "Directory Traversal",
+      "Software and Data Integrity Failures"
+    ],
+    "correct": [
+      "Broken Access Control",
+      "Software and Data Integrity Failures"
+    ],
+    "id": 334
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Private",
+      "Hybrid",
+      "Public",
+      "PaaS",
+      "IaaS"
+    ],
+    "correct": [
+      "IaaS",
+      "Hybrid"
+    ],
+    "id": 335
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Banner grabbing",
+      "TCP connect scan",
+      "Port knocking",
+      "Idle scan"
+    ],
+    "correct": [
+      "Idle scan"
+    ],
+    "id": 336
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Cryptographic Failures",
+      "Timing Attack",
+      "Software and Data Integrity Failures",
+      "Race Condition",
+      "Injection"
+    ],
+    "correct": [
+      "Software and Data Integrity Failures",
+      "Cryptographic Failures"
+    ],
+    "id": 337
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Cryptographic Failures",
+      "Directory Traversal",
+      "Insecure Design",
+      "Server-Side Request Forgery (SSRF)"
+    ],
+    "correct": [
+      "Insecure Design"
+    ],
+    "id": 338
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Public",
+      "IaaS",
+      "Fog",
+      "Private",
+      "Edge"
+    ],
+    "correct": [
+      "Public",
+      "IaaS"
+    ],
+    "id": 339
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Data Breaches",
+      "Insider Threats",
+      "Account Hijacking",
+      "Watering Hole",
+      "Data Loss"
+    ],
+    "correct": [
+      "Data Breaches",
+      "Insider Threats"
+    ],
+    "id": 340
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Software and Data Integrity Failures",
+      "Server-Side Request Forgery (SSRF)",
+      "Vulnerable and Outdated Components",
+      "Cross-Site Request Forgery (CSRF)"
+    ],
+    "correct": [
+      "Software and Data Integrity Failures"
+    ],
+    "id": 341
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "SaaS",
+      "Port knocking",
+      "IaaS",
+      "PaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 342
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Identification and Authentication Failures",
+      "Denial of Service",
+      "Race Condition",
+      "Injection"
+    ],
+    "correct": [
+      "Identification and Authentication Failures"
+    ],
+    "id": 343
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Port knocking",
+      "Banner grabbing",
+      "Null scan",
+      "UDP scan"
+    ],
+    "correct": [
+      "UDP scan"
+    ],
+    "id": 344
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Software and Data Integrity Failures",
+      "Security Logging and Monitoring Failures",
+      "Injection",
+      "Security Misconfiguration"
+    ],
+    "correct": [
+      "Security Misconfiguration"
+    ],
+    "id": 345
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Insider Threats",
+      "Account Hijacking",
+      "Abuse of Cloud Services",
+      "Denial of Service",
+      "Watering Hole"
+    ],
+    "correct": [
+      "Denial of Service",
+      "Account Hijacking"
+    ],
+    "id": 346
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Insecure APIs",
+      "Data Loss",
+      "Insider Threats",
+      "Abuse of Cloud Services"
+    ],
+    "correct": [
+      "Abuse of Cloud Services"
+    ],
+    "id": 347
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Denial of Service",
+      "Insecure APIs",
+      "Shared Technology Issues",
+      "Data Breaches",
+      "Insider Threats"
+    ],
+    "correct": [
+      "Data Breaches",
+      "Shared Technology Issues"
+    ],
+    "id": 348
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Fog",
+      "IaaS",
+      "Community",
+      "Public",
+      "SaaS"
+    ],
+    "correct": [
+      "Community",
+      "IaaS"
+    ],
+    "id": 349
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Insecure APIs",
+      "Watering Hole",
+      "Abuse of Cloud Services",
+      "Account Hijacking",
+      "Insider Threats"
+    ],
+    "correct": [
+      "Insider Threats",
+      "Insecure APIs"
+    ],
+    "id": 350
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Edge",
+      "Community",
+      "Public",
+      "Private"
+    ],
+    "correct": [
+      "Private"
+    ],
+    "id": 351
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "ACK scan",
+      "SYN scan",
+      "Windows scan",
+      "FIN scan",
+      "Port knocking"
+    ],
+    "correct": [
+      "ACK scan",
+      "SYN scan"
+    ],
+    "id": 352
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "Denial of Service",
+      "IaaS",
+      "PaaS",
+      "SaaS"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 353
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Denial of Service",
+      "Insider Threats",
+      "Account Hijacking",
+      "Insufficient Due Diligence",
+      "Shared Technology Issues"
+    ],
+    "correct": [
+      "Denial of Service",
+      "Account Hijacking"
+    ],
+    "id": 354
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Banner grabbing",
+      "ACK scan",
+      "Ping sweep",
+      "Port knocking"
+    ],
+    "correct": [
+      "ACK scan"
+    ],
+    "id": 355
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Phishing",
+      "Vulnerable and Outdated Components",
+      "Software and Data Integrity Failures",
+      "Data Tampering",
+      "Security Logging and Monitoring Failures"
+    ],
+    "correct": [
+      "Vulnerable and Outdated Components",
+      "Software and Data Integrity Failures"
+    ],
+    "id": 356
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "XMAS tree scan",
+      "Null scan",
+      "SYN scan",
+      "Idle scan",
+      "Windows scan"
+    ],
+    "correct": [
+      "XMAS tree scan",
+      "Null scan"
+    ],
+    "id": 357
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Edge",
+      "Public",
+      "Community",
+      "Hybrid"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 358
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Insecure APIs",
+      "Insider Threats",
+      "Data Loss",
+      "Data Breaches",
+      "Account Hijacking"
+    ],
+    "correct": [
+      "Insider Threats",
+      "Insecure APIs"
+    ],
+    "id": 359
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Windows scan",
+      "UDP scan",
+      "Null scan",
+      "TCP connect scan"
+    ],
+    "correct": [
+      "UDP scan"
+    ],
+    "id": 360
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Hybrid",
+      "Edge",
+      "Community",
+      "Public"
+    ],
+    "correct": [
+      "Community"
+    ],
+    "id": 361
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Data Breaches",
+      "Denial of Service",
+      "Data Loss",
+      "Insider Threats"
+    ],
+    "correct": [
+      "Data Loss"
+    ],
+    "id": 362
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Community",
+      "Public",
+      "Edge",
+      "Hybrid"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 363
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "IaaS",
+      "PaaS",
+      "SaaS",
+      "Cross-Site Request Forgery (CSRF)"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 364
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Null scan",
+      "Traceroute",
+      "Idle scan",
+      "UDP scan"
+    ],
+    "correct": [
+      "Idle scan"
+    ],
+    "id": 365
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Data Tampering",
+      "Broken Access Control",
+      "Identification and Authentication Failures",
+      "Buffer Overflow",
+      "Security Misconfiguration"
+    ],
+    "correct": [
+      "Identification and Authentication Failures",
+      "Security Misconfiguration"
+    ],
+    "id": 366
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "None of the above",
+      "PaaS",
+      "IaaS",
+      "SaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 367
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Broken Access Control",
+      "Software and Data Integrity Failures",
+      "Cryptographic Failures",
+      "Identification and Authentication Failures",
+      "Data Tampering"
+    ],
+    "correct": [
+      "Software and Data Integrity Failures",
+      "Identification and Authentication Failures"
+    ],
+    "id": 368
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Abuse of Cloud Services",
+      "Account Hijacking",
+      "Data Loss",
+      "Data Breaches",
+      "Pharming"
+    ],
+    "correct": [
+      "Data Loss",
+      "Abuse of Cloud Services"
+    ],
+    "id": 369
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "SYN scan",
+      "Ping sweep",
+      "TCP connect scan",
+      "UDP scan"
+    ],
+    "correct": [
+      "UDP scan"
+    ],
+    "id": 370
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "No Repudio",
+      "Integridad",
+      "Confidencialidad",
+      "Autenticidad",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 371
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Insecure Design",
+      "Denial of Service",
+      "Broken Access Control",
+      "Identification and Authentication Failures",
+      "Injection"
+    ],
+    "correct": [
+      "Broken Access Control",
+      "Insecure Design"
+    ],
+    "id": 372
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Public",
+      "Edge",
+      "Community",
+      "Hybrid"
+    ],
+    "correct": [
+      "Community"
+    ],
+    "id": 373
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Confidencialidad",
+      "Disponibilidad",
+      "No Repudio",
+      "Integridad",
+      "Autenticidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 374
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Shared Technology Issues",
+      "Insufficient Due Diligence",
+      "Data Loss",
+      "Insecure APIs"
+    ],
+    "correct": [
+      "Data Loss"
+    ],
+    "id": 375
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Community",
+      "Public",
+      "Private",
+      "Hybrid"
+    ],
+    "correct": [
+      "Community"
+    ],
+    "id": 376
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Disponibilidad",
+      "No Repudio",
+      "Confidencialidad",
+      "Integridad",
+      "Autenticidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 377
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Private",
+      "Community",
+      "Fog",
+      "SaaS",
+      "PaaS"
+    ],
+    "correct": [
+      "PaaS",
+      "Community"
+    ],
+    "id": 378
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "SaaS",
+      "Hybrid",
+      "Public",
+      "Edge",
+      "Fog"
+    ],
+    "correct": [
+      "Hybrid",
+      "Public"
+    ],
+    "id": 379
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Software and Data Integrity Failures",
+      "Injection",
+      "Cryptographic Failures",
+      "Path Disclosure"
+    ],
+    "correct": [
+      "Software and Data Integrity Failures"
+    ],
+    "id": 380
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "PaaS",
+      "Hybrid",
+      "Public",
+      "IaaS",
+      "Private"
+    ],
+    "correct": [
+      "PaaS",
+      "Hybrid"
+    ],
+    "id": 381
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Hybrid",
+      "Public",
+      "Private",
+      "Community"
+    ],
+    "correct": [
+      "Public"
+    ],
+    "id": 382
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "ACK scan",
+      "Null scan",
+      "Idle scan",
+      "SNMP walk",
+      "UDP scan"
+    ],
+    "correct": [
+      "ACK scan",
+      "Idle scan"
+    ],
+    "id": 383
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Server-Side Request Forgery (SSRF)",
+      "Cross-Site Request Forgery (CSRF)",
+      "Path Disclosure",
+      "Software and Data Integrity Failures"
+    ],
+    "correct": [
+      "Server-Side Request Forgery (SSRF)"
+    ],
+    "id": 384
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Edge",
+      "Public",
+      "Hybrid",
+      "Private"
+    ],
+    "correct": [
+      "Private"
+    ],
+    "id": 385
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Insider Threats",
+      "Insecure APIs",
+      "Denial of Service",
+      "Abuse of Cloud Services",
+      "Account Hijacking"
+    ],
+    "correct": [
+      "Abuse of Cloud Services",
+      "Insecure APIs"
+    ],
+    "id": 386
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Identification and Authentication Failures",
+      "Server-Side Request Forgery (SSRF)",
+      "Vulnerable and Outdated Components",
+      "Buffer Overflow"
+    ],
+    "correct": [
+      "Server-Side Request Forgery (SSRF)"
+    ],
+    "id": 387
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Shared Technology Issues",
+      "Data Loss",
+      "Account Hijacking",
+      "Insecure APIs"
+    ],
+    "correct": [
+      "Shared Technology Issues"
+    ],
+    "id": 388
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "TCP connect scan",
+      "ACK scan",
+      "UDP scan",
+      "WHOIS lookup",
+      "Ping sweep"
+    ],
+    "correct": [
+      "TCP connect scan",
+      "ACK scan"
+    ],
+    "id": 389
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Community",
+      "Edge",
+      "Private",
+      "Hybrid"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 390
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Denial of Service",
+      "Insecure APIs",
+      "Abuse of Cloud Services",
+      "Data Breaches",
+      "Account Hijacking"
+    ],
+    "correct": [
+      "Account Hijacking",
+      "Denial of Service"
+    ],
+    "id": 391
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Race Condition",
+      "Denial of Service",
+      "Security Logging and Monitoring Failures",
+      "Cross-Site Request Forgery (CSRF)",
+      "Broken Access Control"
+    ],
+    "correct": [
+      "Security Logging and Monitoring Failures",
+      "Broken Access Control"
+    ],
+    "id": 392
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Abuse of Cloud Services",
+      "Insufficient Due Diligence",
+      "Shared Technology Issues",
+      "Account Hijacking",
+      "Data Loss"
+    ],
+    "correct": [
+      "Shared Technology Issues",
+      "Data Loss"
+    ],
+    "id": 393
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Broken Access Control",
+      "Cross-Site Request Forgery (CSRF)",
+      "Security Misconfiguration",
+      "Buffer Overflow"
+    ],
+    "correct": [
+      "Broken Access Control"
+    ],
+    "id": 394
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Autenticidad",
+      "Disponibilidad",
+      "Integridad",
+      "No Repudio",
+      "Confidencialidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 395
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Disponibilidad",
+      "Autenticidad",
+      "No Repudio",
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 396
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Abuse of Cloud Services",
+      "Shared Technology Issues",
+      "Data Loss",
+      "Data Breaches",
+      "Account Hijacking"
+    ],
+    "correct": [
+      "Shared Technology Issues",
+      "Abuse of Cloud Services"
+    ],
+    "id": 397
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Shared Technology Issues",
+      "Data Loss",
+      "Account Hijacking",
+      "Abuse of Cloud Services"
+    ],
+    "correct": [
+      "Shared Technology Issues"
+    ],
+    "id": 398
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Shared Technology Issues",
+      "Insecure APIs",
+      "Denial of Service",
+      "Watering Hole",
+      "Abuse of Cloud Services"
+    ],
+    "correct": [
+      "Shared Technology Issues",
+      "Denial of Service"
+    ],
+    "id": 399
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Insecure APIs",
+      "Shared Technology Issues",
+      "Data Breaches",
+      "Abuse of Cloud Services"
+    ],
+    "correct": [
+      "Abuse of Cloud Services"
+    ],
+    "id": 400
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Shared Technology Issues",
+      "Insider Threats",
+      "Data Loss",
+      "Denial of Service",
+      "Data Breaches"
+    ],
+    "correct": [
+      "Denial of Service",
+      "Insider Threats"
+    ],
+    "id": 401
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Injection",
+      "Identification and Authentication Failures",
+      "Security Misconfiguration",
+      "Directory Traversal",
+      "Timing Attack"
+    ],
+    "correct": [
+      "Security Misconfiguration",
+      "Injection"
+    ],
+    "id": 402
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Buffer Overflow",
+      "Cryptographic Failures",
+      "Data Tampering",
+      "Broken Access Control",
+      "Server-Side Request Forgery (SSRF)"
+    ],
+    "correct": [
+      "Broken Access Control",
+      "Server-Side Request Forgery (SSRF)"
+    ],
+    "id": 403
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Private",
+      "Public",
+      "Edge",
+      "Hybrid"
+    ],
+    "correct": [
+      "Private"
+    ],
+    "id": 404
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Hybrid",
+      "Edge",
+      "IaaS",
+      "Private",
+      "Public"
+    ],
+    "correct": [
+      "IaaS",
+      "Private"
+    ],
+    "id": 405
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Insecure APIs",
+      "Denial of Service",
+      "Shared Technology Issues",
+      "SQL Injection"
+    ],
+    "correct": [
+      "Shared Technology Issues"
+    ],
+    "id": 406
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Broken Access Control",
+      "Vulnerable and Outdated Components",
+      "Cryptographic Failures",
+      "Injection"
+    ],
+    "correct": [
+      "Broken Access Control"
+    ],
+    "id": 407
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Denial of Service",
+      "Abuse of Cloud Services",
+      "Insufficient Due Diligence",
+      "Insecure APIs"
+    ],
+    "correct": [
+      "Denial of Service"
+    ],
+    "id": 408
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Hybrid",
+      "Fog",
+      "Public",
+      "PaaS",
+      "Edge"
+    ],
+    "correct": [
+      "Hybrid",
+      "PaaS"
+    ],
+    "id": 409
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Cryptographic Failures",
+      "Injection",
+      "Server-Side Request Forgery (SSRF)",
+      "Software and Data Integrity Failures",
+      "Broken Access Control"
+    ],
+    "correct": [
+      "Injection",
+      "Software and Data Integrity Failures"
+    ],
+    "id": 410
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "UDP scan",
+      "TCP connect scan",
+      "Null scan",
+      "Port knocking",
+      "Ping sweep"
+    ],
+    "correct": [
+      "UDP scan",
+      "TCP connect scan"
+    ],
+    "id": 411
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Shared Technology Issues",
+      "Insecure APIs",
+      "Insider Threats",
+      "Pharming",
+      "Denial of Service"
+    ],
+    "correct": [
+      "Insecure APIs",
+      "Insider Threats"
+    ],
+    "id": 412
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "PaaS",
+      "Fog",
+      "Community",
+      "Edge",
+      "SaaS"
+    ],
+    "correct": [
+      "Community",
+      "SaaS"
+    ],
+    "id": 413
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Abuse of Cloud Services",
+      "Insufficient Due Diligence",
+      "Insecure APIs",
+      "Pharming",
+      "Denial of Service"
+    ],
+    "correct": [
+      "Insufficient Due Diligence",
+      "Abuse of Cloud Services"
+    ],
+    "id": 414
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Community",
+      "Hybrid",
+      "Edge",
+      "Private"
+    ],
+    "correct": [
+      "Private"
+    ],
+    "id": 415
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "UDP scan",
+      "ACK scan",
+      "Zone transfer",
+      "FIN scan",
+      "Banner grabbing"
+    ],
+    "correct": [
+      "UDP scan",
+      "FIN scan"
+    ],
+    "id": 416
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "SNMP walk",
+      "UDP scan",
+      "Ping sweep",
+      "Zone transfer"
+    ],
+    "correct": [
+      "UDP scan"
+    ],
+    "id": 417
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Data Breaches",
+      "Insider Threats",
+      "Abuse of Cloud Services",
+      "Insufficient Due Diligence"
+    ],
+    "correct": [
+      "Data Breaches"
+    ],
+    "id": 418
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Injection",
+      "Phishing",
+      "Cryptographic Failures",
+      "Race Condition",
+      "Software and Data Integrity Failures"
+    ],
+    "correct": [
+      "Injection",
+      "Software and Data Integrity Failures"
+    ],
+    "id": 419
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "No Repudio",
+      "Autenticidad",
+      "Disponibilidad",
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 420
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Software and Data Integrity Failures",
+      "Security Logging and Monitoring Failures",
+      "Timing Attack",
+      "Injection",
+      "Identification and Authentication Failures"
+    ],
+    "correct": [
+      "Identification and Authentication Failures",
+      "Software and Data Integrity Failures"
+    ],
+    "id": 421
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "IaaS",
+      "PaaS",
+      "SaaS",
+      "Data Tampering"
+    ],
+    "correct": [
+      "SaaS"
+    ],
+    "id": 422
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Software and Data Integrity Failures",
+      "Privilege Escalation",
+      "Directory Traversal",
+      "Vulnerable and Outdated Components"
+    ],
+    "correct": [
+      "Software and Data Integrity Failures"
+    ],
+    "id": 423
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Private",
+      "Public",
+      "PaaS",
+      "IaaS",
+      "Edge"
+    ],
+    "correct": [
+      "IaaS",
+      "Private"
+    ],
+    "id": 424
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "No Repudio",
+      "Autenticidad",
+      "Confidencialidad",
+      "Integridad",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 425
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Shared Technology Issues",
+      "Watering Hole",
+      "Data Breaches",
+      "Abuse of Cloud Services",
+      "Account Hijacking"
+    ],
+    "correct": [
+      "Account Hijacking",
+      "Shared Technology Issues"
+    ],
+    "id": 426
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Hybrid",
+      "Community",
+      "Public",
+      "Private"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 427
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Disponibilidad",
+      "Integridad",
+      "Confidencialidad",
+      "No Repudio",
+      "Autenticidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 428
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "ACK scan",
+      "TCP connect scan",
+      "SNMP walk",
+      "Null scan",
+      "Traceroute"
+    ],
+    "correct": [
+      "Null scan",
+      "ACK scan"
+    ],
+    "id": 429
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Insider Threats",
+      "Abuse of Cloud Services",
+      "Denial of Service",
+      "Data Loss"
+    ],
+    "correct": [
+      "Insider Threats"
+    ],
+    "id": 430
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Autenticidad",
+      "Disponibilidad",
+      "Integridad",
+      "Confidencialidad",
+      "No Repudio"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 431
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "XMAS tree scan",
+      "ACK scan",
+      "WHOIS lookup",
+      "FIN scan"
+    ],
+    "correct": [
+      "FIN scan"
+    ],
+    "id": 432
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Shared Technology Issues",
+      "SQL Injection",
+      "Data Loss",
+      "Account Hijacking"
+    ],
+    "correct": [
+      "Shared Technology Issues"
+    ],
+    "id": 433
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Data Breaches",
+      "Abuse of Cloud Services",
+      "Shared Technology Issues",
+      "Insider Threats",
+      "Account Hijacking"
+    ],
+    "correct": [
+      "Abuse of Cloud Services",
+      "Insider Threats"
+    ],
+    "id": 434
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Privilege Escalation",
+      "Insecure Design",
+      "Identification and Authentication Failures",
+      "Broken Access Control"
+    ],
+    "correct": [
+      "Broken Access Control"
+    ],
+    "id": 435
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "IaaS",
+      "SaaS",
+      "Banner grabbing"
+    ],
+    "correct": [
+      "SaaS"
+    ],
+    "id": 436
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "TCP connect scan",
+      "FIN scan",
+      "UDP scan",
+      "Port knocking"
+    ],
+    "correct": [
+      "FIN scan"
+    ],
+    "id": 437
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Hybrid",
+      "SaaS",
+      "Community",
+      "Public",
+      "PaaS"
+    ],
+    "correct": [
+      "PaaS",
+      "Public"
+    ],
+    "id": 438
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Community",
+      "Hybrid",
+      "Edge",
+      "Private"
+    ],
+    "correct": [
+      "Private"
+    ],
+    "id": 439
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "PaaS",
+      "SaaS",
+      "IaaS",
+      "Banner grabbing"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 440
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "IaaS",
+      "Zone transfer",
+      "SaaS",
+      "PaaS"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 441
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Integridad",
+      "Disponibilidad",
+      "Confidencialidad",
+      "Autenticidad",
+      "No Repudio"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 442
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Vulnerable and Outdated Components",
+      "Insecure Design",
+      "Software and Data Integrity Failures",
+      "Buffer Overflow",
+      "Server-Side Request Forgery (SSRF)"
+    ],
+    "correct": [
+      "Software and Data Integrity Failures",
+      "Server-Side Request Forgery (SSRF)"
+    ],
+    "id": 443
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Data Breaches",
+      "Shared Technology Issues",
+      "Data Loss",
+      "Insufficient Due Diligence"
+    ],
+    "correct": [
+      "Insufficient Due Diligence"
+    ],
+    "id": 444
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "IaaS",
+      "PaaS",
+      "SaaS",
+      "SNMP walk"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 445
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Confidencialidad",
+      "Integridad",
+      "No Repudio",
+      "Autenticidad",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 446
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "SaaS",
+      "Community",
+      "Edge",
+      "PaaS",
+      "Hybrid"
+    ],
+    "correct": [
+      "Hybrid",
+      "SaaS"
+    ],
+    "id": 447
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Denial of Service",
+      "Software and Data Integrity Failures",
+      "Broken Access Control",
+      "Server-Side Request Forgery (SSRF)",
+      "Security Logging and Monitoring Failures"
+    ],
+    "correct": [
+      "Software and Data Integrity Failures",
+      "Broken Access Control"
+    ],
+    "id": 448
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Cross-Site Request Forgery (CSRF)",
+      "Identification and Authentication Failures",
+      "Data Tampering",
+      "Injection"
+    ],
+    "correct": [
+      "Injection"
+    ],
+    "id": 449
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Path Disclosure",
+      "Vulnerable and Outdated Components",
+      "Timing Attack",
+      "Cryptographic Failures",
+      "Security Misconfiguration"
+    ],
+    "correct": [
+      "Vulnerable and Outdated Components",
+      "Security Misconfiguration"
+    ],
+    "id": 450
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Private",
+      "Public",
+      "Edge",
+      "Community"
+    ],
+    "correct": [
+      "Public"
+    ],
+    "id": 451
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Shared Technology Issues",
+      "Abuse of Cloud Services",
+      "Data Breaches",
+      "Insecure APIs"
+    ],
+    "correct": [
+      "Data Breaches"
+    ],
+    "id": 452
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Watering Hole",
+      "Account Hijacking",
+      "Denial of Service",
+      "Shared Technology Issues",
+      "Abuse of Cloud Services"
+    ],
+    "correct": [
+      "Account Hijacking",
+      "Shared Technology Issues"
+    ],
+    "id": 453
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Public",
+      "Hybrid",
+      "Private",
+      "Community"
+    ],
+    "correct": [
+      "Public"
+    ],
+    "id": 454
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Abuse of Cloud Services",
+      "Insufficient Due Diligence",
+      "Shared Technology Issues",
+      "SQL Injection"
+    ],
+    "correct": [
+      "Insufficient Due Diligence"
+    ],
+    "id": 455
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Private",
+      "Public",
+      "Community",
+      "Edge"
+    ],
+    "correct": [
+      "Public"
+    ],
+    "id": 456
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "Zone transfer",
+      "IaaS",
+      "PaaS",
+      "SaaS"
+    ],
+    "correct": [
+      "IaaS"
+    ],
+    "id": 457
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Public",
+      "Hybrid",
+      "Community",
+      "Edge"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 458
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Windows scan",
+      "FIN scan",
+      "UDP scan",
+      "SYN scan",
+      "Null scan"
+    ],
+    "correct": [
+      "Windows scan",
+      "SYN scan"
+    ],
+    "id": 459
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Denial of Service",
+      "Insufficient Due Diligence",
+      "SQL Injection",
+      "Account Hijacking"
+    ],
+    "correct": [
+      "Account Hijacking"
+    ],
+    "id": 460
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Private",
+      "Fog",
+      "Public",
+      "Hybrid",
+      "IaaS"
+    ],
+    "correct": [
+      "Hybrid",
+      "Public"
+    ],
+    "id": 461
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "No Repudio",
+      "Integridad",
+      "Disponibilidad",
+      "Autenticidad",
+      "Confidencialidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 462
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Fog",
+      "Private",
+      "PaaS",
+      "SaaS",
+      "Edge"
+    ],
+    "correct": [
+      "PaaS",
+      "SaaS"
+    ],
+    "id": 463
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Denial of Service",
+      "Identification and Authentication Failures",
+      "Software and Data Integrity Failures",
+      "Broken Access Control"
+    ],
+    "correct": [
+      "Software and Data Integrity Failures"
+    ],
+    "id": 464
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Data Tampering",
+      "Cryptographic Failures",
+      "Software and Data Integrity Failures",
+      "Identification and Authentication Failures"
+    ],
+    "correct": [
+      "Identification and Authentication Failures"
+    ],
+    "id": 465
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "Data Tampering",
+      "PaaS",
+      "SaaS",
+      "IaaS"
+    ],
+    "correct": [
+      "PaaS"
+    ],
+    "id": 466
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "ACK scan",
+      "Traceroute",
+      "Ping sweep",
+      "XMAS tree scan",
+      "SYN scan"
+    ],
+    "correct": [
+      "SYN scan",
+      "ACK scan"
+    ],
+    "id": 467
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Data Breaches",
+      "Shared Technology Issues",
+      "Watering Hole",
+      "Insider Threats",
+      "Abuse of Cloud Services"
+    ],
+    "correct": [
+      "Data Breaches",
+      "Abuse of Cloud Services"
+    ],
+    "id": 468
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Community",
+      "Fog",
+      "SaaS",
+      "Private",
+      "Hybrid"
+    ],
+    "correct": [
+      "Hybrid",
+      "SaaS"
+    ],
+    "id": 469
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Broken Access Control",
+      "Timing Attack",
+      "Security Logging and Monitoring Failures",
+      "Phishing"
+    ],
+    "correct": [
+      "Broken Access Control"
+    ],
+    "id": 470
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "Windows scan",
+      "FIN scan",
+      "Idle scan",
+      "Zone transfer"
+    ],
+    "correct": [
+      "Windows scan"
+    ],
+    "id": 471
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Disponibilidad",
+      "No Repudio",
+      "Autenticidad",
+      "Integridad",
+      "Confidencialidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 472
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Public",
+      "Hybrid",
+      "IaaS",
+      "SaaS",
+      "Fog"
+    ],
+    "correct": [
+      "Hybrid",
+      "IaaS"
+    ],
+    "id": 473
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Insufficient Due Diligence",
+      "Data Breaches",
+      "Abuse of Cloud Services",
+      "Data Loss"
+    ],
+    "correct": [
+      "Data Breaches"
+    ],
+    "id": 474
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Confidencialidad",
+      "Autenticidad",
+      "No Repudio",
+      "Disponibilidad",
+      "Integridad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 475
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Community",
+      "Hybrid",
+      "Public",
+      "Private"
+    ],
+    "correct": [
+      "Hybrid"
+    ],
+    "id": 476
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Directory Traversal",
+      "Privilege Escalation",
+      "Vulnerable and Outdated Components",
+      "Injection"
+    ],
+    "correct": [
+      "Injection"
+    ],
+    "id": 477
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Directory Traversal",
+      "Denial of Service",
+      "Identification and Authentication Failures",
+      "Path Disclosure"
+    ],
+    "correct": [
+      "Identification and Authentication Failures"
+    ],
+    "id": 478
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Windows scan",
+      "Idle scan",
+      "TCP connect scan",
+      "WHOIS lookup",
+      "SNMP walk"
+    ],
+    "correct": [
+      "TCP connect scan",
+      "Windows scan"
+    ],
+    "id": 479
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Timing Attack",
+      "Phishing",
+      "Vulnerable and Outdated Components",
+      "Identification and Authentication Failures"
+    ],
+    "correct": [
+      "Vulnerable and Outdated Components"
+    ],
+    "id": 480
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Directory Traversal",
+      "Server-Side Request Forgery (SSRF)",
+      "Security Logging and Monitoring Failures",
+      "Buffer Overflow",
+      "Timing Attack"
+    ],
+    "correct": [
+      "Server-Side Request Forgery (SSRF)",
+      "Security Logging and Monitoring Failures"
+    ],
+    "id": 481
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Broken Access Control",
+      "Phishing",
+      "Security Misconfiguration",
+      "Cryptographic Failures",
+      "Timing Attack"
+    ],
+    "correct": [
+      "Cryptographic Failures",
+      "Broken Access Control"
+    ],
+    "id": 482
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Hybrid",
+      "Private",
+      "SaaS",
+      "Edge",
+      "PaaS"
+    ],
+    "correct": [
+      "Private",
+      "PaaS"
+    ],
+    "id": 483
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Account Hijacking",
+      "Insufficient Due Diligence",
+      "Insider Threats",
+      "Data Loss",
+      "Abuse of Cloud Services"
+    ],
+    "correct": [
+      "Insider Threats",
+      "Abuse of Cloud Services"
+    ],
+    "id": 484
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "Integridad",
+      "Autenticidad",
+      "Confidencialidad",
+      "Disponibilidad",
+      "No Repudio"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 485
+  },
+  {
+    "question": "¿Cuál de los siguientes aparece en la lista 'Notorious Nine' de amenazas en la computación en la nube?",
+    "options": [
+      "Data Loss",
+      "Denial of Service",
+      "Data Breaches",
+      "Shared Technology Issues"
+    ],
+    "correct": [
+      "Data Breaches"
+    ],
+    "id": 486
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Hybrid",
+      "Private",
+      "Public",
+      "Community"
+    ],
+    "correct": [
+      "Community"
+    ],
+    "id": 487
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Private",
+      "Hybrid",
+      "Community",
+      "Edge"
+    ],
+    "correct": [
+      "Community"
+    ],
+    "id": 488
+  },
+  {
+    "question": "¿Cuál de las siguientes vulnerabilidades forma parte del OWASP Top 10 2021?",
+    "options": [
+      "Injection",
+      "Security Logging and Monitoring Failures",
+      "Server-Side Request Forgery (SSRF)",
+      "Cryptographic Failures"
+    ],
+    "correct": [
+      "Security Logging and Monitoring Failures"
+    ],
+    "id": 489
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "Idle scan",
+      "Traceroute",
+      "SNMP walk",
+      "Ping sweep",
+      "ACK scan"
+    ],
+    "correct": [
+      "Idle scan",
+      "ACK scan"
+    ],
+    "id": 490
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Insider Threats",
+      "Abuse of Cloud Services",
+      "Data Breaches",
+      "Watering Hole",
+      "Insecure APIs"
+    ],
+    "correct": [
+      "Abuse of Cloud Services",
+      "Data Breaches"
+    ],
+    "id": 491
+  },
+  {
+    "question": "En el modelo NIST, ¿qué tipo de servicio en la nube se describe? Seleccione la opción correcta.",
+    "options": [
+      "Timing Attack",
+      "IaaS",
+      "PaaS",
+      "SaaS"
+    ],
+    "correct": [
+      "SaaS"
+    ],
+    "id": 492
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "IaaS",
+      "SaaS",
+      "Community",
+      "Hybrid",
+      "Private"
+    ],
+    "correct": [
+      "Private",
+      "Hybrid"
+    ],
+    "id": 493
+  },
+  {
+    "question": "¿Cuál de los siguientes es un modelo de implementación de nube reconocido por NIST?",
+    "options": [
+      "Community",
+      "Public",
+      "Private",
+      "Hybrid"
+    ],
+    "correct": [
+      "Public"
+    ],
+    "id": 494
+  },
+  {
+    "question": "Seleccione todas las amenazas identificadas por la Cloud Security Alliance (Notorious Nine).",
+    "options": [
+      "Pharming",
+      "Account Hijacking",
+      "Abuse of Cloud Services",
+      "Insider Threats",
+      "Denial of Service"
+    ],
+    "correct": [
+      "Insider Threats",
+      "Account Hijacking"
+    ],
+    "id": 495
+  },
+  {
+    "question": "¿Qué tipo de escaneo de Nmap emplea la bander... evitar completar el three‑way handshake?",
+    "options": [
+      "UDP scan",
+      "ACK scan",
+      "TCP connect scan",
+      "FIN scan"
+    ],
+    "correct": [
+      "ACK scan"
+    ],
+    "id": 496
+  },
+  {
+    "question": "Elija todos los tipos de escaneo válidos de Nmap de la siguiente lista.",
+    "options": [
+      "ACK scan",
+      "WHOIS lookup",
+      "Windows scan",
+      "XMAS tree scan",
+      "SYN scan"
+    ],
+    "correct": [
+      "ACK scan",
+      "XMAS tree scan"
+    ],
+    "id": 497
+  },
+  {
+    "question": "Marque todas las respuestas que correspondan a modelos de servicio o implementación Cloud según NIST.",
+    "options": [
+      "Public",
+      "Community",
+      "Edge",
+      "Private",
+      "PaaS"
+    ],
+    "correct": [
+      "Public",
+      "Community"
+    ],
+    "id": 498
+  },
+  {
+    "question": "Seleccione TODAS las vulnerabilidades que pertenecen al OWASP Top 10 2021.",
+    "options": [
+      "Security Misconfiguration",
+      "Identification and Authentication Failures",
+      "Cryptographic Failures",
+      "Injection",
+      "Buffer Overflow"
+    ],
+    "correct": [
+      "Cryptographic Failures",
+      "Security Misconfiguration"
+    ],
+    "id": 499
+  },
+  {
+    "question": "De los siguientes, ¿cuáles son requisitos fundamentales de seguridad en redes según la tríada CIA?",
+    "options": [
+      "No Repudio",
+      "Integridad",
+      "Autenticidad",
+      "Confidencialidad",
+      "Disponibilidad"
+    ],
+    "correct": [
+      "Confidencialidad",
+      "Integridad"
+    ],
+    "id": 500
+  }
+]
