@@ -21,12 +21,58 @@ export default function App() {
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    loadDefaultQuestions();
+    loadQuestions();
   }, []);
+
+  const loadQuestions = () => {
+    // Check if there's a custom quiz saved in localStorage
+    const savedCustomQuiz = localStorage.getItem("customQuizData");
+    const savedFileName = localStorage.getItem("customQuizFileName");
+
+    if (savedCustomQuiz && savedFileName) {
+      try {
+        const jsonData = JSON.parse(savedCustomQuiz);
+        // Validate structure before loading
+        const isValidStructure = jsonData.every(
+          (q) =>
+            q.question &&
+            Array.isArray(q.options) &&
+            Array.isArray(q.correct) &&
+            q.id !== undefined
+        );
+
+        if (isValidStructure) {
+          // Load saved custom questions
+          const shuffled = jsonData.sort(() => 0.5 - Math.random());
+          setQuestions(shuffled);
+          setIsCustomQuiz(true);
+          setLoadedFileName(savedFileName);
+          setLoading(false);
+          return;
+        } else {
+          // Clear invalid data from localStorage
+          localStorage.removeItem("customQuizData");
+          localStorage.removeItem("customQuizFileName");
+        }
+      } catch (err) {
+        // Clear corrupted data from localStorage
+        localStorage.removeItem("customQuizData");
+        localStorage.removeItem("customQuizFileName");
+      }
+    }
+
+    // Load default questions if no valid custom quiz found
+    loadDefaultQuestions();
+  };
 
   const loadDefaultQuestions = () => {
     setLoading(true);
     setError(null);
+
+    // Clear any saved custom quiz data when loading defaults
+    localStorage.removeItem("customQuizData");
+    localStorage.removeItem("customQuizFileName");
+
     fetch("preguntas_seguridad_v3.json")
       .then((r) => r.json())
       .then((data) => {
@@ -91,6 +137,10 @@ export default function App() {
         setIsCustomQuiz(true);
         setLoadedFileName(file.name);
         setLoading(false);
+
+        // Save original custom questions to localStorage (not shuffled)
+        localStorage.setItem("customQuizData", JSON.stringify(jsonData));
+        localStorage.setItem("customQuizFileName", file.name);
       } catch (err) {
         setError(`Error al procesar el archivo: ${err.message}`);
         setLoading(false);
@@ -114,6 +164,11 @@ export default function App() {
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
+
+    // Clear custom quiz data from localStorage
+    localStorage.removeItem("customQuizData");
+    localStorage.removeItem("customQuizFileName");
+
     loadDefaultQuestions();
   };
 
@@ -287,7 +342,7 @@ export default function App() {
       {/* Header with quiz info and controls */}
       <div className="quiz-header">
         <div className="quiz-header-top">
-          <h1 className="quiz-master-title">Quiz Master</h1>
+          <h1 className="quiz-master-title">Preguntitas</h1>
           <div className="quiz-controls">
             <button
               className="control-button info-button"
