@@ -2,7 +2,7 @@
 
 export const AI_CONFIG = {
   // Configuración del modelo OpenAI
-  model: "gpt-4-turbo-preview", // Opciones: "gpt-4-turbo-preview", "gpt-3.5-turbo", "gpt-4"
+  model: "gpt-4o-mini", // Opciones: "gpt-4-turbo-preview", "gpt-3.5-turbo", "gpt-4"
   maxTokens: 3000, // Máximo de tokens por respuesta
   temperature: 0.7, // Creatividad (0.0 = conservador, 1.0 = creativo)
 

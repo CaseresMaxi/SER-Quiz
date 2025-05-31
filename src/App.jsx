@@ -23,6 +23,8 @@ export default function App() {
   const [showPremiumSection, setShowPremiumSection] = useState(true);
   const [showPremiumModal, setShowPremiumModal] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [customApiKey, setCustomApiKey] = useState("");
+  const [showApiKeyField, setShowApiKeyField] = useState(false);
   const fileInputRef = useRef(null);
   const premiumFileInputRef = useRef(null);
 
@@ -157,9 +159,10 @@ export default function App() {
     setError(null);
 
     try {
-      // Generar preguntas usando OpenAI
+      // Generate questions using OpenAI with custom API key if provided
       const generatedQuestions = await generateQuestionsFromFiles(
-        uploadedFiles
+        uploadedFiles,
+        customApiKey || undefined
       );
 
       // Actualizar estado con las preguntas generadas
@@ -263,6 +266,39 @@ export default function App() {
               ✨ Carga tus documentos y genera preguntas personalizadas usando
               inteligencia artificial
             </p>
+
+            {/* DEV Section for manual API key */}
+            <div className="dev-section">
+              <button
+                onClick={() => setShowApiKeyField(!showApiKeyField)}
+                className="dev-toggle-btn"
+                type="button"
+              >
+                🔧 DEV: Configurar API Key manualmente
+                <span className="toggle-icon">
+                  {showApiKeyField ? "▼" : "▶"}
+                </span>
+              </button>
+
+              {showApiKeyField && (
+                <div className="dev-content">
+                  <p className="dev-description">
+                    Introduce tu API key de OpenAI para usar tu propia cuenta:
+                  </p>
+                  <input
+                    type="password"
+                    placeholder="sk-proj-..."
+                    value={customApiKey}
+                    onChange={(e) => setCustomApiKey(e.target.value)}
+                    className="api-key-input"
+                  />
+                  <p className="dev-warning">
+                    ⚠️ Esta API key se usará solo para esta sesión y no se
+                    guardará.
+                  </p>
+                </div>
+              )}
+            </div>
 
             <div className="file-upload-zone">
               <input

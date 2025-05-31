@@ -11,7 +11,7 @@ import {
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js`;
 
 // TODO: Agregar tu API key de OpenAI aquí
-const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY || "tu-api-key-aqui";
+const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY || "";
 
 // Inicializar cliente de OpenAI
 export const openai = new OpenAI({
@@ -19,10 +19,19 @@ export const openai = new OpenAI({
   dangerouslyAllowBrowser: true, // Permite usar en el navegador
 });
 
-// Función para generar preguntas con IA
-export async function generateQuestionsFromFiles(files) {
+// Function to generate questions with AI
+export async function generateQuestionsFromFiles(files, customApiKey = null) {
   try {
-    // Validar archivos antes de procesarlos
+    // Use custom API key if provided, otherwise use default
+    const apiKey = customApiKey || OPENAI_API_KEY;
+
+    // Create OpenAI client with the appropriate API key
+    const openaiClient = new OpenAI({
+      apiKey: apiKey,
+      dangerouslyAllowBrowser: true,
+    });
+
+    // Validate files before processing
     const validFiles = files.filter((file) => {
       if (file.size > AI_CONFIG.maxFileSize) {
         console.warn(
@@ -41,17 +50,17 @@ export async function generateQuestionsFromFiles(files) {
       throw new Error("No hay archivos válidos para procesar");
     }
 
-    // Procesar archivos y extraer contenido
+    // Process files and extract content
     const fileContents = await processFiles(validFiles);
 
-    // Crear prompt para generar preguntas
+    // Create prompt for question generation
     const prompt = createQuestionGenerationPrompt(fileContents);
 
-    // Obtener configuración del modelo
+    // Get model configuration
     const modelConfig = getModelConfig();
 
-    // Llamar a OpenAI
-    const response = await openai.chat.completions.create({
+    // Call OpenAI with the appropriate client
+    const response = await openaiClient.chat.completions.create({
       model: modelConfig.model,
       messages: [
         {
@@ -67,7 +76,7 @@ export async function generateQuestionsFromFiles(files) {
       temperature: modelConfig.temperature,
     });
 
-    // Procesar respuesta y convertir a formato de la app
+    // Process response and convert to app format
     const questions = parseQuestionsFromResponse(
       response.choices[0].message.content
     );
@@ -76,7 +85,7 @@ export async function generateQuestionsFromFiles(files) {
   } catch (error) {
     console.error("Error generating questions with OpenAI:", error);
 
-    // Manejo específico de errores de OpenAI
+    // Specific OpenAI error handling
     if (error.message.includes("API key")) {
       throw new Error("API key de OpenAI inválida. Verifica tu configuración.");
     } else if (error.message.includes("quota")) {
