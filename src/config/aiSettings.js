@@ -7,7 +7,7 @@ export const AI_CONFIG = {
   temperature: 0.7, // Creatividad (0.0 = conservador, 1.0 = creativo)
 
   // Configuración de preguntas
-  questionsPerGeneration: 5, // Número de preguntas a generar
+  questionsPerGeneration: 20, // Número de preguntas a generar
   optionsPerQuestion: 4, // Número de opciones por pregunta (3-4 recomendado)
 
   // Configuración de archivos
@@ -35,6 +35,10 @@ export const AI_CONFIG = {
     "Incluye una fuente para cada pregunta basada en el archivo correspondiente",
     "Si hay archivos sin contenido procesable, enfócate en los que sí tienen contenido útil",
     "Si no hay suficiente contenido, genera preguntas generales relacionadas con el tema",
+    "Genera preguntas de opción múltiple y simple en la misma proporción",
+    "las preguntas deben ser de un nivel de dificultad elevado, aptas para el estudio universitario de exelencia",
+    "JAMAS GENERES PREGUNTAS QUE SU RESPUESTA NO COINCIDA CON EL MATERIAL DADO",
+    "JAMAS GENERES PREGUNTAS QUE NO ESTEN RELACIONADAS CON EL TEMARIO DADO",
   ],
 };
 
