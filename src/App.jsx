@@ -4,6 +4,7 @@ import { Button } from "./components/ui/button";
 import { Checkbox } from "./components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "./components/ui/radio-group";
 import { cn } from "./lib/utils";
+import { generateQuestionsFromFiles } from "./config/openai";
 import "./App.css";
 
 export default function App() {
@@ -18,7 +19,14 @@ export default function App() {
     "preguntas_seguridad_v3.json"
   );
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [showPremiumSection, setShowPremiumSection] = useState(true);
+  const [showPremiumModal, setShowPremiumModal] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [customApiKey, setCustomApiKey] = useState("");
+  const [showApiKeyField, setShowApiKeyField] = useState(false);
   const fileInputRef = useRef(null);
+  const premiumFileInputRef = useRef(null);
 
   useEffect(() => {
     loadQuestions();
@@ -172,6 +180,82 @@ export default function App() {
     loadDefaultQuestions();
   };
 
+  const handlePremiumFileUpload = (event) => {
+    const files = Array.from(event.target.files);
+    const validFiles = files.filter((file) => {
+      // Allow all file types except videos
+      const isVideo = file.type.startsWith("video/");
+      return !isVideo && file.size <= 10 * 1024 * 1024; // 10MB limit
+    });
+
+    setUploadedFiles((prev) => [...prev, ...validFiles]);
+  };
+
+  const removeFile = (indexToRemove) => {
+    setUploadedFiles((prev) =>
+      prev.filter((_, index) => index !== indexToRemove)
+    );
+  };
+
+  const clearAllFiles = () => {
+    setUploadedFiles([]);
+    if (premiumFileInputRef.current) {
+      premiumFileInputRef.current.value = "";
+    }
+  };
+
+  const handleGenerateQuestions = async () => {
+    if (uploadedFiles.length === 0) {
+      setError("Por favor carga al menos un archivo para generar preguntas");
+      return;
+    }
+
+    setIsGenerating(true);
+    setError(null);
+
+    try {
+      // Generate questions using OpenAI with custom API key if provided
+      const generatedQuestions = await generateQuestionsFromFiles(
+        uploadedFiles,
+        customApiKey || undefined
+      );
+
+      // Update state with generated questions
+      setQuestions(generatedQuestions);
+      setCurrentIdx(0);
+      setSelected({});
+      setShowResult(false);
+      setIsCustomQuiz(true);
+      const fileName = `Preguntas generadas por IA (${
+        uploadedFiles.length
+      } archivo${uploadedFiles.length > 1 ? "s" : ""})`;
+      setLoadedFileName(fileName);
+
+      // Save AI-generated questions to localStorage (same as file upload)
+      localStorage.setItem(
+        "customQuizData",
+        JSON.stringify(generatedQuestions)
+      );
+      localStorage.setItem("customQuizFileName", fileName);
+
+      // Close modal and clear files
+      setShowPremiumModal(false);
+      setUploadedFiles([]);
+      if (premiumFileInputRef.current) {
+        premiumFileInputRef.current.value = "";
+      }
+    } catch (err) {
+      console.error("Error generating questions:", err);
+      setError(`Error al generar preguntas: ${err.message}`);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const togglePremiumSection = () => {
+    setShowPremiumSection(!showPremiumSection);
+  };
+
   const InfoModal = () => {
     if (!showInfoModal) return null;
 
@@ -211,6 +295,141 @@ export default function App() {
                 📥 Descargar archivo de ejemplo
               </a>
             </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const PremiumModal = () => {
+    if (!showPremiumModal) return null;
+
+    return (
+      <div className="modal-overlay" onClick={() => setShowPremiumModal(false)}>
+        <div
+          className="modal-content premium-modal"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="modal-header">
+            <div className="premium-modal-title">
+              <span className="premium-badge">PREMIUM</span>
+              <h3 className="modal-title">🤖 Generador de Preguntas con IA</h3>
+            </div>
+            <button
+              className="modal-close"
+              onClick={() => setShowPremiumModal(false)}
+            >
+              ✕
+            </button>
+          </div>
+          <div className="modal-body">
+            <p className="premium-description">
+              ✨ Carga tus documentos y genera preguntas personalizadas usando
+              inteligencia artificial
+            </p>
+
+            {/* DEV Section for manual API key */}
+            <div className="dev-section">
+              <button
+                onClick={() => setShowApiKeyField(!showApiKeyField)}
+                className="dev-toggle-btn"
+                type="button"
+              >
+                🔧 DEV: Configurar API Key manualmente
+                <span className="toggle-icon">
+                  {showApiKeyField ? "▼" : "▶"}
+                </span>
+              </button>
+
+              {showApiKeyField && (
+                <div className="dev-content">
+                  <p className="dev-description">
+                    Introduce tu API key de OpenAI para usar tu propia cuenta:
+                  </p>
+                  <input
+                    type="password"
+                    placeholder="sk-proj-..."
+                    value={customApiKey}
+                    onChange={(e) => setCustomApiKey(e.target.value)}
+                    className="api-key-input"
+                  />
+                  <p className="dev-warning">
+                    ⚠️ Esta API key se usará solo para esta sesión y no se
+                    guardará.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <div className="file-upload-zone">
+              <input
+                ref={premiumFileInputRef}
+                type="file"
+                multiple
+                accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.xlsx,.pptx"
+                onChange={handlePremiumFileUpload}
+                className="file-input"
+                id="premium-file-upload-modal"
+              />
+              <label
+                htmlFor="premium-file-upload-modal"
+                className="upload-zone"
+              >
+                <div className="upload-icon">📎</div>
+                <div className="upload-text">
+                  <span className="upload-title">
+                    Arrastra archivos aquí o haz clic
+                  </span>
+                  <span className="upload-subtitle">
+                    PDF, DOC, TXT, imágenes, Excel, PowerPoint
+                  </span>
+                </div>
+              </label>
+            </div>
+
+            {uploadedFiles.length > 0 && (
+              <div className="uploaded-files">
+                <div className="files-header">
+                  <span className="files-count">
+                    📁 {uploadedFiles.length} archivo(s) cargado(s)
+                  </span>
+                  <button onClick={clearAllFiles} className="clear-files-btn">
+                    🗑️
+                  </button>
+                </div>
+                <div className="files-list">
+                  {uploadedFiles.map((file, index) => (
+                    <div key={index} className="file-item">
+                      <span className="file-name">{file.name}</span>
+                      <span className="file-size">
+                        {(file.size / 1024).toFixed(1)}KB
+                      </span>
+                      <button
+                        onClick={() => removeFile(index)}
+                        className="remove-file-btn"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <button
+              onClick={handleGenerateQuestions}
+              disabled={uploadedFiles.length === 0 || isGenerating}
+              className="generate-questions-btn"
+            >
+              {isGenerating ? (
+                <>
+                  <span className="spinner">⟳</span>
+                  Generando preguntas...
+                </>
+              ) : (
+                <>🧠 Generar Preguntitas con IA</>
+              )}
+            </button>
           </div>
         </div>
       </div>
@@ -338,10 +557,19 @@ export default function App() {
   return (
     <div className="quiz-container">
       <InfoModal />
+      <PremiumModal />
 
       {/* Header with quiz info and controls */}
       <div className="quiz-header">
         <div className="quiz-header-top">
+          <button
+            className="premium-btn"
+            onClick={() => setShowPremiumModal(true)}
+            title="Generar preguntas con IA"
+          >
+            <span className="premium-icon">🧠</span>
+            <span className="premium-text">AI</span>
+          </button>
           <h1 className="quiz-master-title">Preguntitas</h1>
           <div className="quiz-controls">
             <button
