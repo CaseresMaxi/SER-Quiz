@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "setup": "node setup-env.js",
+    "setup:env": "node setup-env.js",
+    "validate:env": "node validate-env.js"
   },
   "dependencies": {
     "openai": "^4.103.0",

@@ -4,7 +4,12 @@ import { Button } from "./components/ui/button";
 import { Checkbox } from "./components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "./components/ui/radio-group";
 import { cn } from "./lib/utils";
-import { generateQuestionsFromFiles } from "./config/openai";
+import {
+  generateQuestionsFromFiles,
+  evaluateAnswerWithAI,
+} from "./config/openai";
+import { AI_CONFIG } from "./config/aiSettings";
+import { isAppReady, getConfigStatus } from "./utils/envValidator";
 import "./App.css";
 
 export default function App() {
@@ -25,17 +30,76 @@ export default function App() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [customApiKey, setCustomApiKey] = useState("");
   const [showApiKeyField, setShowApiKeyField] = useState(false);
+  const [questionType, setQuestionType] = useState("choice"); // "choice" or "development"
+  const [developmentAnswers, setDevelopmentAnswers] = useState({});
+  const [isEvaluating, setIsEvaluating] = useState(false); // Separate state for AI evaluation
+  const [evaluatorPersonality, setEvaluatorPersonality] = useState("normal");
+  const [difficultyLevel, setDifficultyLevel] = useState("normal");
   const fileInputRef = useRef(null);
   const premiumFileInputRef = useRef(null);
 
   useEffect(() => {
-    loadQuestions();
+    // Debug: Show what's in localStorage
+    console.log("🔍 VERIFICACIÓN DE PERSISTENCIA AL INICIAR:");
+    const choiceQuiz = localStorage.getItem("customQuizData_choice");
+    const devQuiz = localStorage.getItem("customQuizData_development");
+    const savedType = localStorage.getItem("questionType");
+
+    console.log(
+      "📝 Preguntas choice guardadas:",
+      choiceQuiz ? `${JSON.parse(choiceQuiz).length} preguntas` : "❌ Ninguna"
+    );
+    console.log(
+      "🧠 Preguntas desarrollo guardadas:",
+      devQuiz ? `${JSON.parse(devQuiz).length} preguntas` : "❌ Ninguna"
+    );
+    console.log("🎯 Tipo guardado:", savedType || "❌ Ninguno");
+
+    // Load saved question type from localStorage
+    const savedQuestionType = localStorage.getItem("questionType");
+    if (
+      savedQuestionType &&
+      (savedQuestionType === "choice" || savedQuestionType === "development")
+    ) {
+      setQuestionType(savedQuestionType);
+
+      // Check if there are saved questions for this type
+      const { customQuizKey } = getLocalStorageKeys(savedQuestionType);
+      const savedQuestions = localStorage.getItem(customQuizKey);
+
+      if (savedQuestions && savedQuestionType === "development") {
+        console.log("🧠 Cargando preguntas de desarrollo guardadas...");
+      }
+
+      loadQuestions(savedQuestionType);
+    } else {
+      loadQuestions();
+    }
   }, []);
 
-  const loadQuestions = () => {
-    // Check if there's a custom quiz saved in localStorage
-    const savedCustomQuiz = localStorage.getItem("customQuizData");
-    const savedFileName = localStorage.getItem("customQuizFileName");
+  const getLocalStorageKeys = (type = questionType) => {
+    const customQuizKey =
+      type === "development"
+        ? "customQuizData_development"
+        : "customQuizData_choice";
+    const customFileNameKey =
+      type === "development"
+        ? "customQuizFileName_development"
+        : "customQuizFileName_choice";
+
+    return { customQuizKey, customFileNameKey };
+  };
+
+  const loadQuestions = (forceType = null) => {
+    const currentType = forceType || questionType;
+
+    // Use different localStorage keys for different question types
+    const { customQuizKey, customFileNameKey } =
+      getLocalStorageKeys(currentType);
+
+    // Check if there's a custom quiz saved in localStorage for this type
+    const savedCustomQuiz = localStorage.getItem(customQuizKey);
+    const savedFileName = localStorage.getItem(customFileNameKey);
 
     if (savedCustomQuiz && savedFileName) {
       try {
@@ -59,13 +123,13 @@ export default function App() {
           return;
         } else {
           // Clear invalid data from localStorage
-          localStorage.removeItem("customQuizData");
-          localStorage.removeItem("customQuizFileName");
+          localStorage.removeItem(customQuizKey);
+          localStorage.removeItem(customFileNameKey);
         }
       } catch (err) {
         // Clear corrupted data from localStorage
-        localStorage.removeItem("customQuizData");
-        localStorage.removeItem("customQuizFileName");
+        localStorage.removeItem(customQuizKey);
+        localStorage.removeItem(customFileNameKey);
       }
     }
 
@@ -77,9 +141,11 @@ export default function App() {
     setLoading(true);
     setError(null);
 
-    // Clear any saved custom quiz data when loading defaults
-    localStorage.removeItem("customQuizData");
-    localStorage.removeItem("customQuizFileName");
+    // Clear any saved custom quiz data for the current type when loading defaults
+    const { customQuizKey, customFileNameKey } = getLocalStorageKeys();
+
+    localStorage.removeItem(customQuizKey);
+    localStorage.removeItem(customFileNameKey);
 
     fetch("preguntas_seguridad_v3.json")
       .then((r) => r.json())
@@ -147,8 +213,32 @@ export default function App() {
         setLoading(false);
 
         // Save original custom questions to localStorage (not shuffled)
-        localStorage.setItem("customQuizData", JSON.stringify(jsonData));
-        localStorage.setItem("customQuizFileName", file.name);
+        const { customQuizKey, customFileNameKey } = getLocalStorageKeys();
+
+        localStorage.setItem(customQuizKey, JSON.stringify(jsonData));
+        localStorage.setItem(customFileNameKey, file.name);
+
+        // Verification logging
+        console.log(`💾 Preguntas JSON ${questionType} guardadas:`, {
+          type: questionType,
+          count: jsonData.length,
+          key: customQuizKey,
+          filename: file.name,
+        });
+
+        // Double-check the save worked
+        const verification = localStorage.getItem(customQuizKey);
+        if (verification) {
+          console.log(
+            `✅ Verificación JSON exitosa: ${
+              JSON.parse(verification).length
+            } preguntas en localStorage`
+          );
+        } else {
+          console.error(
+            `❌ FALLO CRÍTICO JSON: No se pudieron guardar las preguntas ${questionType}`
+          );
+        }
       } catch (err) {
         setError(`Error al procesar el archivo: ${err.message}`);
         setLoading(false);
@@ -166,6 +256,7 @@ export default function App() {
   const resetToDefault = () => {
     setCurrentIdx(0);
     setSelected({});
+    setDevelopmentAnswers({});
     setShowResult(false);
     setError(null);
     setShowInfoModal(false);
@@ -173,10 +264,13 @@ export default function App() {
       fileInputRef.current.value = "";
     }
 
-    // Clear custom quiz data from localStorage
-    localStorage.removeItem("customQuizData");
-    localStorage.removeItem("customQuizFileName");
+    // Clear custom quiz data from localStorage for current type only
+    const { customQuizKey, customFileNameKey } = getLocalStorageKeys();
 
+    localStorage.removeItem(customQuizKey);
+    localStorage.removeItem(customFileNameKey);
+
+    // Note: Don't remove questionType from localStorage - keep user preference
     loadDefaultQuestions();
   };
 
@@ -217,7 +311,9 @@ export default function App() {
       // Generate questions using OpenAI with custom API key if provided
       const generatedQuestions = await generateQuestionsFromFiles(
         uploadedFiles,
-        customApiKey || undefined
+        customApiKey || undefined,
+        questionType,
+        { evaluatorPersonality, difficultyLevel }
       );
 
       // Update state with generated questions
@@ -226,17 +322,43 @@ export default function App() {
       setSelected({});
       setShowResult(false);
       setIsCustomQuiz(true);
-      const fileName = `Preguntas generadas por IA (${
-        uploadedFiles.length
-      } archivo${uploadedFiles.length > 1 ? "s" : ""})`;
+      const fileName =
+        questionType === "development"
+          ? `🧠 Preguntas de desarrollo IA (${uploadedFiles.length} archivo${
+              uploadedFiles.length > 1 ? "s" : ""
+            }) - ${new Date().toLocaleDateString()}`
+          : `📝 Preguntas opción múltiple IA (${uploadedFiles.length} archivo${
+              uploadedFiles.length > 1 ? "s" : ""
+            }) - ${new Date().toLocaleDateString()}`;
       setLoadedFileName(fileName);
 
-      // Save AI-generated questions to localStorage (same as file upload)
-      localStorage.setItem(
-        "customQuizData",
-        JSON.stringify(generatedQuestions)
-      );
-      localStorage.setItem("customQuizFileName", fileName);
+      // CRITICAL: Save immediately to localStorage
+      const { customQuizKey, customFileNameKey } = getLocalStorageKeys();
+
+      localStorage.setItem(customQuizKey, JSON.stringify(generatedQuestions));
+      localStorage.setItem(customFileNameKey, fileName);
+
+      // Verification logging
+      console.log(`💾 Preguntas ${questionType} guardadas INMEDIATAMENTE:`, {
+        type: questionType,
+        count: generatedQuestions.length,
+        key: customQuizKey,
+        filename: fileName,
+      });
+
+      // Double-check the save worked
+      const verification = localStorage.getItem(customQuizKey);
+      if (verification) {
+        console.log(
+          `✅ Verificación exitosa: ${
+            JSON.parse(verification).length
+          } preguntas en localStorage`
+        );
+      } else {
+        console.error(
+          `❌ FALLO CRÍTICO: No se pudieron guardar las preguntas ${questionType}`
+        );
+      }
 
       // Close modal and clear files
       setShowPremiumModal(false);
@@ -246,7 +368,14 @@ export default function App() {
       }
     } catch (err) {
       console.error("Error generating questions:", err);
-      setError(`Error al generar preguntas: ${err.message}`);
+
+      // Show user-friendly error message (already formatted by validation)
+      if (err.message.includes("🚫 No se puede generar el cuestionario")) {
+        setError(err.message);
+      } else {
+        // For other API errors, show standard message
+        setError(`Error al generar preguntas: ${err.message}`);
+      }
     } finally {
       setIsGenerating(false);
     }
@@ -254,6 +383,86 @@ export default function App() {
 
   const togglePremiumSection = () => {
     setShowPremiumSection(!showPremiumSection);
+  };
+
+  const handleDevelopmentAnswerChange = (questionId, answer) => {
+    setDevelopmentAnswers((prev) => ({
+      ...prev,
+      [questionId]: answer,
+    }));
+  };
+
+  const handleQuestionTypeChange = (type) => {
+    if (type === "development") {
+      console.log(
+        "Modo preguntas a desarrollar activado. Carga de JSON deshabilitada."
+      );
+    }
+
+    setQuestionType(type);
+    // Clear UI state when switching types
+    setSelected({});
+    setDevelopmentAnswers({});
+    setShowResult(false);
+    setCurrentIdx(0);
+
+    // Simply READ questions for the new type from localStorage
+    const { customQuizKey, customFileNameKey } = getLocalStorageKeys(type);
+    const savedCustomQuiz = localStorage.getItem(customQuizKey);
+    const savedFileName = localStorage.getItem(customFileNameKey);
+
+    if (savedCustomQuiz && savedFileName) {
+      try {
+        const jsonData = JSON.parse(savedCustomQuiz);
+        // Validate structure before loading
+        const isValidStructure = jsonData.every(
+          (q) =>
+            q.question &&
+            Array.isArray(q.options) &&
+            Array.isArray(q.correct) &&
+            q.id !== undefined
+        );
+
+        if (isValidStructure) {
+          // Load saved custom questions for this type
+          console.log(
+            `📚 Cargando preguntas ${type} guardadas (${jsonData.length} preguntas)`
+          );
+          const shuffled = jsonData.sort(() => 0.5 - Math.random());
+          setQuestions(shuffled);
+          setIsCustomQuiz(true);
+          setLoadedFileName(savedFileName);
+          return; // Exit here - questions found and loaded
+        } else {
+          console.warn(`⚠️ Datos corruptos para ${type}, limpiando...`);
+          localStorage.removeItem(customQuizKey);
+          localStorage.removeItem(customFileNameKey);
+        }
+      } catch (err) {
+        console.error(`❌ Error parseando preguntas ${type}:`, err);
+        localStorage.removeItem(customQuizKey);
+        localStorage.removeItem(customFileNameKey);
+      }
+    }
+
+    // No saved questions for this type - load default questions WITHOUT modifying localStorage
+    console.log(
+      `📖 No hay preguntas guardadas para ${type}, cargando por defecto`
+    );
+    fetch("preguntas_seguridad_v3.json")
+      .then((r) => r.json())
+      .then((data) => {
+        // shuffle and keep first 20 for the session
+        const shuffled = data.sort(() => 0.5 - Math.random()).slice(0, 20);
+        setQuestions(shuffled);
+        setIsCustomQuiz(false);
+        setLoadedFileName("preguntas_seguridad_v3.json");
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError("Error al cargar las preguntas por defecto");
+        setLoading(false);
+      });
   };
 
   const InfoModal = () => {
@@ -328,34 +537,89 @@ export default function App() {
               inteligencia artificial
             </p>
 
+            {/* Configuración de Personalidad del Evaluador */}
+            {questionType === "development" && (
+              <div className="ai-config-section">
+                <h4 className="config-section-title">
+                  🎭 Personalidad del Evaluador
+                </h4>
+                <select
+                  value={evaluatorPersonality}
+                  onChange={(e) => setEvaluatorPersonality(e.target.value)}
+                  className="personality-selector"
+                >
+                  {Object.entries(AI_CONFIG.evaluatorPersonalities).map(
+                    ([key, personality]) => (
+                      <option key={key} value={key}>
+                        {personality.name} - {personality.description}
+                      </option>
+                    )
+                  )}
+                </select>
+              </div>
+            )}
+
+            {/* Configuración de Dificultad */}
+            {questionType === "development" && (
+              <div className="ai-config-section">
+                <h4 className="config-section-title">📊 Nivel de Exigencia</h4>
+                <select
+                  value={difficultyLevel}
+                  onChange={(e) => setDifficultyLevel(e.target.value)}
+                  className="difficulty-selector"
+                >
+                  {Object.entries(AI_CONFIG.difficultyLevels).map(
+                    ([key, level]) => (
+                      <option key={key} value={key}>
+                        {level.name} - {level.description}
+                      </option>
+                    )
+                  )}
+                </select>
+              </div>
+            )}
+
+            {/* Warning especial para modo hater */}
+            {evaluatorPersonality === "hater" && (
+              <div className="hater-warning">
+                <div className="warning-content">
+                  <span className="warning-icon">⚠️</span>
+                  <div className="warning-text">
+                    <strong>MODO HATER ACTIVADO</strong>
+                    <p>
+                      Este evaluador será extremadamente cruel y despiadado.
+                      Solo la excelencia absoluta lo satisface. ¿Estás seguro?
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* DEV Section for manual API key */}
             <div className="dev-section">
-              <button
+              <div
+                className="dev-header"
                 onClick={() => setShowApiKeyField(!showApiKeyField)}
-                className="dev-toggle-btn"
-                type="button"
               >
-                🔧 DEV: Configurar API Key manualmente
+                <span className="dev-label">🔧 Configuración Avanzada</span>
                 <span className="toggle-icon">
                   {showApiKeyField ? "▼" : "▶"}
                 </span>
-              </button>
-
+              </div>
               {showApiKeyField && (
-                <div className="dev-content">
-                  <p className="dev-description">
-                    Introduce tu API key de OpenAI para usar tu propia cuenta:
-                  </p>
+                <div className="api-key-field">
+                  <label className="api-key-label">
+                    OpenAI API Key (opcional):
+                  </label>
                   <input
                     type="password"
-                    placeholder="sk-proj-..."
                     value={customApiKey}
                     onChange={(e) => setCustomApiKey(e.target.value)}
+                    placeholder="sk-proj-..."
                     className="api-key-input"
                   />
-                  <p className="dev-warning">
-                    ⚠️ Esta API key se usará solo para esta sesión y no se
-                    guardará.
+                  <p className="api-key-hint">
+                    💡 Si no tienes una, se usará la configurada por defecto
                   </p>
                 </div>
               )}
@@ -463,7 +727,57 @@ export default function App() {
   }
 
   function handleSubmit() {
-    setShowResult(true);
+    if (questionType === "development") {
+      // For development questions, evaluate with AI
+      handleDevelopmentEvaluation();
+    } else {
+      // For choice questions, show result immediately
+      setShowResult(true);
+    }
+  }
+
+  async function handleDevelopmentEvaluation() {
+    if (!current) return;
+
+    const userAnswer = developmentAnswers[current.id] || "";
+    if (userAnswer.trim() === "") {
+      setError("Por favor escribe una respuesta antes de enviar");
+      return;
+    }
+
+    setIsEvaluating(true);
+    setError(null);
+
+    // Debug logging para confirmar configuraciones antes de enviar
+    console.log("📤 Enviando configuraciones a evaluateAnswerWithAI:", {
+      evaluatorPersonality,
+      difficultyLevel,
+      questionId: current.id,
+    });
+
+    try {
+      // Evaluate the user's answer with AI
+      const evaluation = await evaluateAnswerWithAI(
+        current,
+        userAnswer,
+        questions,
+        customApiKey || undefined,
+        { evaluatorPersonality, difficultyLevel }
+      );
+
+      // Store the evaluation result
+      setDevelopmentAnswers((prev) => ({
+        ...prev,
+        [`${current.id}_evaluation`]: evaluation,
+      }));
+
+      setShowResult(true);
+    } catch (err) {
+      console.error("Error evaluating answer:", err);
+      setError(`Error al evaluar la respuesta: ${err.message}`);
+    } finally {
+      setIsEvaluating(false);
+    }
   }
 
   function handleNext() {
@@ -573,9 +887,16 @@ export default function App() {
           <h1 className="quiz-master-title">Preguntitas</h1>
           <div className="quiz-controls">
             <button
-              className="control-button info-button"
+              className={`control-button info-button ${
+                questionType === "development" ? "disabled" : ""
+              }`}
               onClick={() => setShowInfoModal(true)}
-              title="Información sobre formato JSON"
+              title={
+                questionType === "development"
+                  ? "Información no disponible para preguntas a desarrollar"
+                  : "Información sobre formato JSON"
+              }
+              disabled={questionType === "development"}
             >
               ℹ️
             </button>
@@ -586,15 +907,22 @@ export default function App() {
               onChange={handleFileUpload}
               className="file-input"
               id="json-upload-header"
+              disabled={questionType === "development"}
             />
             <label
               htmlFor="json-upload-header"
-              className="control-button upload-button"
-              title="Cargar archivo JSON"
+              className={`control-button upload-button ${
+                questionType === "development" ? "disabled" : ""
+              }`}
+              title={
+                questionType === "development"
+                  ? "Carga de JSON deshabilitada en modo preguntas a desarrollar"
+                  : "Cargar archivo JSON"
+              }
             >
               📁
             </label>
-            {isCustomQuiz && (
+            {/* {isCustomQuiz && (
               <button
                 onClick={resetToDefault}
                 className="control-button reset-button"
@@ -602,75 +930,273 @@ export default function App() {
               >
                 🔄
               </button>
-            )}
+            )} */}
           </div>
         </div>
         <div className="quiz-info-footer">
-          <span className="loaded-file">📄 {loadedFileName}</span>
-          <span className="question-counter">
-            Pregunta {currentIdx + 1} de {questions.length}
+          <span className="loaded-file">
+            {questionType === "development"
+              ? "🧠 DESARROLLO"
+              : "📝 OPCIÓN MÚLTIPLE"}
+            {" • "}
+            📄 {loadedFileName}
           </span>
+          <div className="question-type-selector">
+            <select
+              value={questionType}
+              onChange={(e) => handleQuestionTypeChange(e.target.value)}
+              className="type-selector"
+              title="Seleccionar tipo de pregunta"
+            >
+              <option value="choice">📝 Opción múltiple</option>
+              <option value="development">✍️ A desarrollar (Premium)</option>
+            </select>
+            {/* {questionType === "development" && (
+              <span
+                className="development-mode-indicator"
+                title="Carga de JSON deshabilitada en este modo"
+              >
+                🚫
+              </span>
+            )} */}
+          </div>
         </div>
       </div>
 
       <Card className="quiz-card">
         <CardContent className="quiz-content">
-          <h2 className="question-title">
-            {currentIdx + 1}. {current.question}
-          </h2>
+          <div className="question-header">
+            <h2 className="question-title">
+              {currentIdx + 1}. {current.question}
+              {questionType === "development" && (
+                <span className="premium-indicator">
+                  <span className="premium-badge-small">PREMIUM</span>
+                </span>
+              )}
+            </h2>
+            <span className="question-counter-badge">
+              {currentIdx + 1}/{questions.length}
+            </span>
+          </div>
 
-          {isMultiple ? (
-            <div className="options-container">
-              {current.options.map((opt) => (
-                <label key={opt} className="option-label">
-                  <Checkbox
-                    checked={(selected[current.id] || []).includes(opt)}
-                    onCheckedChange={() => toggleOption(opt)}
-                  />
-                  <span>{opt}</span>
-                </label>
-              ))}
-            </div>
+          {questionType === "choice" ? (
+            // Choice questions (existing functionality)
+            <>
+              {isMultiple ? (
+                <div className="options-container">
+                  {current.options.map((opt) => (
+                    <label key={opt} className="option-label">
+                      <Checkbox
+                        checked={(selected[current.id] || []).includes(opt)}
+                        onCheckedChange={() => toggleOption(opt)}
+                      />
+                      <span>{opt}</span>
+                    </label>
+                  ))}
+                </div>
+              ) : (
+                <RadioGroup
+                  value={(selected[current.id] || [])[0] || ""}
+                  onValueChange={(val) => toggleOption(val)}
+                  className="options-container"
+                >
+                  {current.options.map((opt) => (
+                    <label key={opt} className="option-label">
+                      <RadioGroupItem
+                        value={opt}
+                        name={`question-${current.id}`}
+                      />
+                      <span>{opt}</span>
+                    </label>
+                  ))}
+                </RadioGroup>
+              )}
+            </>
           ) : (
-            <RadioGroup
-              value={(selected[current.id] || [])[0] || ""}
-              onValueChange={(val) => toggleOption(val)}
-              className="options-container"
-            >
-              {current.options.map((opt) => (
-                <label key={opt} className="option-label">
-                  <RadioGroupItem value={opt} name={`question-${current.id}`} />
-                  <span>{opt}</span>
-                </label>
-              ))}
-            </RadioGroup>
+            // Development questions
+            <div className="development-container">
+              {/* <div className="premium-notice">
+                <span className="premium-icon">✨</span>
+                <span>
+                  Esta es una pregunta premium para desarrollar tu respuesta
+                </span>
+              </div> */}
+              <textarea
+                className="development-textarea"
+                placeholder="Escribe tu respuesta aquí..."
+                value={developmentAnswers[current.id] || ""}
+                onChange={(e) =>
+                  handleDevelopmentAnswerChange(current.id, e.target.value)
+                }
+                rows={6}
+              />
+              <div className="development-help">
+                <span className="help-text">
+                  💡 Desarrolla tu respuesta con detalle y ejemplos
+                </span>
+              </div>
+            </div>
           )}
 
-          {!showResult && <Button onClick={handleSubmit}>Enviar</Button>}
+          {!showResult && (
+            <>
+              <Button
+                onClick={handleSubmit}
+                disabled={isEvaluating}
+                className={isEvaluating ? "loading-button" : ""}
+              >
+                {isEvaluating && questionType === "development" ? (
+                  <>
+                    <span className="spinner">⟳</span>
+                    Evaluando con IA...
+                  </>
+                ) : (
+                  "Enviar"
+                )}
+              </Button>
+              {isEvaluating && questionType === "development" && (
+                <div className="evaluation-progress">
+                  <div className="progress-indicator">
+                    <span className="progress-spinner">🤖</span>
+                    <span className="progress-text">
+                      La IA está analizando tu respuesta...
+                    </span>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
 
           {showResult && (
             <div className="result-container">
-              <p
-                className={cn("result-text", correct ? "correct" : "incorrect")}
-              >
-                {correct ? "¡Correcto!" : "Respuesta incorrecta."}
-              </p>
-              <div className="correct-answers">
-                <span className="correct-label">Respuesta(s) correcta(s):</span>
-                <div className="correct-options">
-                  {current.correct.map((c) => (
-                    <span key={c} className="correct-option">
-                      {c}
+              {questionType === "choice" ? (
+                <>
+                  <p
+                    className={cn(
+                      "result-text",
+                      correct ? "correct" : "incorrect"
+                    )}
+                  >
+                    {correct ? "¡Correcto!" : "Respuesta incorrecta."}
+                  </p>
+                  <div className="correct-answers">
+                    <span className="correct-label">
+                      Respuesta(s) correcta(s):
                     </span>
-                  ))}
-                </div>
-                {current.source && (
-                  <div className="source-info">
-                    <span className="source-label">Fuente:</span>
-                    <span className="source-text">{current.source}</span>
+                    <div className="correct-options">
+                      {current.correct.map((c) => (
+                        <span key={c} className="correct-option">
+                          {c}
+                        </span>
+                      ))}
+                    </div>
+                    {current.source && (
+                      <div className="source-info">
+                        <span className="source-label">Fuente:</span>
+                        <span className="source-text">{current.source}</span>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
+                </>
+              ) : (
+                <div className="development-result">
+                  <div className="ai-evaluation">
+                    {developmentAnswers[`${current.id}_evaluation`] ? (
+                      <>
+                        <div className="evaluation-header">
+                          <h3 className="evaluation-title">
+                            🤖 Evaluación con IA
+                          </h3>
+                          <span
+                            className={`evaluation-score ${
+                              developmentAnswers[`${current.id}_evaluation`]
+                                .isCorrect
+                                ? "correct"
+                                : developmentAnswers[
+                                    `${current.id}_evaluation`
+                                  ].score.includes("Parcialmente")
+                                ? "partial"
+                                : "incorrect"
+                            }`}
+                          >
+                            {
+                              developmentAnswers[`${current.id}_evaluation`]
+                                .score
+                            }
+                          </span>
+                        </div>
+
+                        <div className="evaluation-content">
+                          <div className="evaluation-section">
+                            <h4>📝 Tu respuesta:</h4>
+                            <div className="user-answer-box">
+                              {developmentAnswers[current.id] ||
+                                "No respondiste"}
+                            </div>
+                          </div>
+
+                          <div className="evaluation-section">
+                            <h4>🔍 Análisis:</h4>
+                            <div className="analysis-text">
+                              {
+                                developmentAnswers[`${current.id}_evaluation`]
+                                  .analysis
+                              }
+                            </div>
+                          </div>
+
+                          <div className="evaluation-section">
+                            <h4>💭 Feedback:</h4>
+                            <div className="feedback-text">
+                              {
+                                developmentAnswers[`${current.id}_evaluation`]
+                                  .feedback
+                              }
+                            </div>
+                          </div>
+
+                          {developmentAnswers[`${current.id}_evaluation`]
+                            .improvements && (
+                            <div className="evaluation-section">
+                              <h4>💡 Sugerencias de mejora:</h4>
+                              <div className="improvements-text">
+                                {
+                                  developmentAnswers[`${current.id}_evaluation`]
+                                    .improvements
+                                }
+                              </div>
+                            </div>
+                          )}
+
+                          <div className="evaluation-section">
+                            <h4>✅ Respuesta ejemplar:</h4>
+                            <div className="correct-answer-text">
+                              {
+                                developmentAnswers[`${current.id}_evaluation`]
+                                  .correctAnswer
+                              }
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="evaluation-loading">
+                        <p className="result-text development-submitted">
+                          ✅ Respuesta enviada
+                        </p>
+                        <p>🤖 Evaluando respuesta con IA...</p>
+                      </div>
+                    )}
+                  </div>
+
+                  {current.source && (
+                    <div className="source-info">
+                      <span className="source-label">Fuente:</span>
+                      <span className="source-text">{current.source}</span>
+                    </div>
+                  )}
+                </div>
+              )}
               {currentIdx < questions.length - 1 ? (
                 <Button onClick={handleNext}>Siguiente pregunta</Button>
               ) : (
