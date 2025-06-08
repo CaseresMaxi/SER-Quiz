@@ -53,12 +53,39 @@ const createOpenAIClient = (apiKey = null) => {
 // Cliente OpenAI por defecto (si hay API key configurada)
 export const openai = DEFAULT_API_KEY ? createOpenAIClient() : null;
 
+// Function to generate questions with automatic PDF Assistant detection
+export async function generateQuestionsWithSmartDetection(
+  files,
+  customApiKey = null,
+  questionType = "choice",
+  aiConfig = null
+) {
+  // Auto-detect if we should use Assistants for PDFs
+  const hasPdfFiles = files.some(
+    (file) =>
+      file.type === "application/pdf" ||
+      file.name.toLowerCase().endsWith(".pdf")
+  );
+
+  // Use Assistants API for PDFs by default for better quality and native PDF support
+  const useAssistants = hasPdfFiles;
+
+  return await generateQuestionsFromFiles(
+    files,
+    customApiKey,
+    questionType,
+    aiConfig,
+    useAssistants
+  );
+}
+
 // Function to generate questions with AI
 export async function generateQuestionsFromFiles(
   files,
   customApiKey = null,
   questionType = "choice",
-  aiConfig = null // Nuevo parámetro para configuraciones de IA
+  aiConfig = null, // Nuevo parámetro para configuraciones de IA
+  useAssistants = false // Nuevo parámetro para usar Assistants API
 ) {
   try {
     // Use custom API key if provided, otherwise use default
@@ -67,17 +94,36 @@ export async function generateQuestionsFromFiles(
     apiLog(
       `🚀 Generando preguntas con ${
         questionType === "development" ? "desarrollo" : "opción múltiple"
-      }`
+      } ${useAssistants ? "(usando Assistants API)" : "(método tradicional)"}`
     );
     debugLog("Configuración AI:", {
       effectiveApiKey: effectiveApiKey?.substring(0, 8) + "...",
       questionType,
       aiConfig,
+      useAssistants,
     });
 
     // Create OpenAI client with the appropriate API key
     const openaiClient = createOpenAIClient(effectiveApiKey);
 
+    // Check if we should use Assistants API for PDFs
+    const hasPdfFiles = files.some(
+      (file) =>
+        file.type === "application/pdf" ||
+        file.name.toLowerCase().endsWith(".pdf")
+    );
+
+    if (useAssistants && hasPdfFiles) {
+      // Use new Assistants API flow for PDFs
+      return await generateQuestionsWithAssistants(
+        files,
+        openaiClient,
+        questionType,
+        aiConfig
+      );
+    }
+
+    // Original flow for other files or when Assistants is disabled
     // Validate files before processing
     const validFiles = files.filter((file) => {
       if (file.size > AI_CONFIG.maxFileSize) {
@@ -161,6 +207,344 @@ export async function generateQuestionsFromFiles(
     }
 
     throw new Error(`Error al generar preguntas: ${error.message}`);
+  }
+}
+
+// Function to generate questions using OpenAI Assistants API
+async function generateQuestionsWithAssistants(
+  files,
+  openaiClient,
+  questionType,
+  aiConfig
+) {
+  try {
+    apiLog("📤 Subiendo archivos a OpenAI...");
+
+    // Step 1: Upload files to OpenAI
+    const uploadedFiles = [];
+    for (const file of files) {
+      if (
+        file.type === "application/pdf" ||
+        file.name.toLowerCase().endsWith(".pdf")
+      ) {
+        debugLog(`🔄 Subiendo PDF: ${file.name}`);
+        const uploadedFile = await uploadFileToOpenAI(openaiClient, file);
+        uploadedFiles.push(uploadedFile);
+      } else {
+        debugLog(`⏭️  Saltando archivo no-PDF: ${file.name}`);
+        // For non-PDF files, we could still process them traditionally
+        // or convert them to text and upload as text files
+      }
+    }
+
+    if (uploadedFiles.length === 0) {
+      throw new Error("No se pudieron subir archivos PDF para procesamiento");
+    }
+
+    apiLog(`✅ ${uploadedFiles.length} archivo(s) subido(s) exitosamente`);
+
+    // Step 2: Create or get Assistant
+    const assistantId = await createQuestionGeneratorAssistant(
+      openaiClient,
+      questionType,
+      aiConfig
+    );
+
+    // Step 3: Create thread and process with Assistant
+    const questions = await processFilesWithAssistant(
+      openaiClient,
+      assistantId,
+      uploadedFiles,
+      questionType,
+      aiConfig
+    );
+
+    // Step 4: Clean up uploaded files (optional but recommended)
+    await cleanupUploadedFiles(openaiClient, uploadedFiles);
+
+    return questions;
+  } catch (error) {
+    errorLog("❌ Error en generación con Assistants:", error);
+    throw new Error(`Error usando Assistants API: ${error.message}`);
+  }
+}
+
+// Function to upload a file to OpenAI
+async function uploadFileToOpenAI(openaiClient, file) {
+  try {
+    debugLog(
+      `📤 Subiendo archivo: ${file.name} (${(file.size / 1024 / 1024).toFixed(
+        2
+      )}MB)`
+    );
+
+    // Check file size limits (512MB max for Assistants)
+    const maxSize = 512 * 1024 * 1024; // 512MB
+    if (file.size > maxSize) {
+      throw new Error(
+        `Archivo ${file.name} es demasiado grande (${(
+          file.size /
+          1024 /
+          1024
+        ).toFixed(2)}MB). Máximo permitido: 512MB`
+      );
+    }
+
+    // Convert File to the format expected by OpenAI
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("purpose", "assistants");
+
+    // Use fetch directly for file upload (OpenAI client doesn't handle FormData well)
+    const response = await fetch("https://api.openai.com/v1/files", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${openaiClient.apiKey}`,
+      },
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        `Error subiendo archivo: ${response.status} - ${
+          errorData.error?.message || "Error desconocido"
+        }`
+      );
+    }
+
+    const uploadResult = await response.json();
+    debugLog(`✅ Archivo subido: ${uploadResult.id}`);
+
+    return {
+      id: uploadResult.id,
+      filename: uploadResult.filename,
+      originalFile: file,
+    };
+  } catch (error) {
+    errorLog(`❌ Error subiendo archivo ${file.name}:`, error);
+    throw error;
+  }
+}
+
+// Function to create or get a question generator assistant
+async function createQuestionGeneratorAssistant(
+  openaiClient,
+  questionType,
+  aiConfig
+) {
+  try {
+    apiLog("🤖 Creando Assistant para generación de preguntas...");
+
+    const modelConfig = getModelConfig();
+    const systemPrompt = getSystemPrompt(questionType);
+
+    const assistant = await openaiClient.beta.assistants.create({
+      name: `Generador de Preguntas ${
+        questionType === "development" ? "Desarrollo" : "Opción Múltiple"
+      }`,
+      instructions: `${systemPrompt}
+
+CONTEXTO ADICIONAL:
+Eres un asistente especializado en generar preguntas educativas de alta calidad basándote en documentos PDF proporcionados por el usuario. Tu objetivo es crear preguntas que evalúen la comprensión profunda del material.
+
+REGLAS ESPECÍFICAS:
+1. Analiza completamente los documentos PDF proporcionados
+2. Basa todas las preguntas ÚNICAMENTE en el contenido de los documentos
+3. NO agregues información externa o conocimiento general
+4. Mantén el nivel académico apropiado (universitario)
+5. Asegúrate de que las preguntas sean claras y precisas
+6. Incluye contexto suficiente en cada pregunta para que sea autocontenida
+
+IMPORTANTE: Siempre responde con formato JSON válido sin texto adicional antes o después.`,
+      model: modelConfig.model,
+      tools: [
+        { type: "file_search" }, // Enable file search for PDFs
+      ],
+    });
+
+    debugLog(`✅ Assistant creado: ${assistant.id}`);
+    return assistant.id;
+  } catch (error) {
+    errorLog("❌ Error creando Assistant:", error);
+    throw new Error(`Error creando Assistant: ${error.message}`);
+  }
+}
+
+// Function to process files with the Assistant
+async function processFilesWithAssistant(
+  openaiClient,
+  assistantId,
+  uploadedFiles,
+  questionType,
+  aiConfig
+) {
+  try {
+    apiLog("🧵 Creando thread y procesando con Assistant...");
+
+    // Step 1: Create a thread
+    const thread = await openaiClient.beta.threads.create();
+    debugLog(`✅ Thread creado: ${thread.id}`);
+
+    // Step 2: Create the prompt for question generation
+    const fileIds = uploadedFiles.map((f) => f.id);
+    const questionsToGenerate = getQuestionsCount(questionType);
+
+    const promptMessage = createAssistantPrompt(
+      questionType,
+      questionsToGenerate,
+      aiConfig
+    );
+
+    // Step 3: Add message to thread with file attachments
+    await openaiClient.beta.threads.messages.create(thread.id, {
+      role: "user",
+      content: promptMessage,
+      attachments: fileIds.map((fileId) => ({
+        file_id: fileId,
+        tools: [{ type: "file_search" }],
+      })),
+    });
+
+    debugLog("📨 Mensaje enviado al Assistant con archivos adjuntos");
+
+    // Step 4: Run the assistant
+    const run = await openaiClient.beta.threads.runs.create(thread.id, {
+      assistant_id: assistantId,
+    });
+
+    debugLog(`🏃 Run iniciado: ${run.id}`);
+
+    // Step 5: Wait for completion
+    let runStatus = run;
+    let attempts = 0;
+    const maxAttempts = 60; // 5 minutes max
+
+    while (runStatus.status !== "completed" && attempts < maxAttempts) {
+      await new Promise((resolve) => setTimeout(resolve, 5000)); // Wait 5 seconds
+      runStatus = await openaiClient.beta.threads.runs.retrieve(
+        thread.id,
+        run.id
+      );
+      attempts++;
+
+      debugLog(
+        `🔄 Status del run: ${runStatus.status} (${attempts}/${maxAttempts})`
+      );
+
+      if (runStatus.status === "failed") {
+        throw new Error(
+          `Assistant run falló: ${
+            runStatus.last_error?.message || "Error desconocido"
+          }`
+        );
+      }
+
+      if (runStatus.status === "requires_action") {
+        // Handle any required actions if needed
+        debugLog(
+          "⚠️  Run requiere acción - esto no debería ocurrir en este flujo"
+        );
+      }
+    }
+
+    if (runStatus.status !== "completed") {
+      throw new Error("Timeout: El Assistant tardó demasiado en responder");
+    }
+
+    // Step 6: Get the response
+    const messages = await openaiClient.beta.threads.messages.list(thread.id);
+    const assistantMessage = messages.data.find(
+      (msg) => msg.role === "assistant"
+    );
+
+    if (!assistantMessage || !assistantMessage.content[0]) {
+      throw new Error("No se recibió respuesta del Assistant");
+    }
+
+    const responseContent = assistantMessage.content[0].text.value;
+    debugLog("✅ Respuesta recibida del Assistant");
+
+    // Step 7: Parse and return questions
+    const questions = parseQuestionsFromResponse(responseContent, questionType);
+
+    // Step 8: Clean up thread
+    try {
+      await openaiClient.beta.threads.del(thread.id);
+      debugLog("🧹 Thread eliminado");
+    } catch (cleanupError) {
+      debugLog("⚠️  No se pudo eliminar el thread:", cleanupError.message);
+    }
+
+    return questions;
+  } catch (error) {
+    errorLog("❌ Error procesando con Assistant:", error);
+    throw error;
+  }
+}
+
+// Function to create prompt for Assistant
+function createAssistantPrompt(questionType, questionsToGenerate, aiConfig) {
+  const basePrompt = `Analiza los documentos PDF adjuntos y genera exactamente ${questionsToGenerate} preguntas de ${
+    questionType === "development" ? "desarrollo" : "opción múltiple"
+  } en español.
+
+INSTRUCCIONES CRÍTICAS:
+1. Basa las preguntas ÚNICAMENTE en el contenido de los PDFs adjuntos
+2. NO uses conocimiento externo - solo lo que aparece en los documentos
+3. Las preguntas deben ser autocontenidas con contexto suficiente
+4. Nivel universitario pero basado estrictamente en el material proporcionado
+5. Responde ÚNICAMENTE con JSON válido sin texto adicional
+
+${
+  questionType === "development"
+    ? `FORMATO PARA PREGUNTAS DE DESARROLLO:
+[
+  {
+    "question": "Considerando que [contexto del documento], desarrolla y analiza [qué se espera]...",
+    "options": ["Puntos clave del PDF", "Aspectos del material", "Criterios del documento"],
+    "correct": ["Respuestas esperadas del contenido", "Puntos del PDF"],
+    "suggestedAnswer": "Respuesta detallada de 200-400 palabras basada exclusivamente en el contenido del PDF",
+    "source": "Generado de: nombre_archivo.pdf"
+  }
+]`
+    : `FORMATO PARA PREGUNTAS DE OPCIÓN MÚLTIPLE:
+[
+  {
+    "question": "En el contexto de [tema del PDF], ¿cuál/cómo/qué [pregunta específica]?",
+    "options": ["Opción A", "Opción B", "Opción C", "Opción D"],
+    "correct": ["Opción A", "Opción C"],
+    "suggestedAnswer": "Explicación de por qué estas opciones son correctas según el PDF",
+    "source": "Generado de: nombre_archivo.pdf"
+  }
+]`
+}
+
+Genera exactamente ${questionsToGenerate} preguntas basándote exclusivamente en los PDFs adjuntos.`;
+
+  return basePrompt;
+}
+
+// Function to clean up uploaded files
+async function cleanupUploadedFiles(openaiClient, uploadedFiles) {
+  try {
+    apiLog("🧹 Limpiando archivos subidos...");
+
+    for (const file of uploadedFiles) {
+      try {
+        await openaiClient.files.del(file.id);
+        debugLog(`🗑️  Archivo eliminado: ${file.filename}`);
+      } catch (error) {
+        debugLog(
+          `⚠️  No se pudo eliminar archivo ${file.filename}:`,
+          error.message
+        );
+      }
+    }
+
+    debugLog("✅ Limpieza de archivos completada");
+  } catch (error) {
+    debugLog("⚠️  Error en limpieza de archivos:", error.message);
   }
 }
 

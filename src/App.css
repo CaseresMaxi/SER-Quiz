@@ -2270,3 +2270,135 @@
   color: #718096;
   font-style: italic;
 }
+
+/* PDF Processing Method Configuration */
+.pdf-method-config {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.pdf-method-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.pdf-method-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  transition: all 0.2s ease-in-out;
+}
+
+.radio-option:hover {
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.radio-option input[type="radio"] {
+  margin: 0;
+  cursor: pointer;
+}
+
+.radio-option input[type="radio"]:checked + .radio-label {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.radio-label {
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+  flex: 1;
+}
+
+.pdf-method-info {
+  background-color: #f8fafc;
+  border-radius: 6px;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.method-description {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.method-description strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.method-description ul {
+  margin: 0;
+  padding-left: 16px;
+  list-style: none;
+}
+
+.method-description li {
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.method-description.assistants {
+  border-left: 3px solid #667eea;
+  padding-left: 12px;
+}
+
+.method-description.traditional {
+  border-left: 3px solid #f59e0b;
+  padding-left: 12px;
+}
+
+/* Responsive adjustments for PDF config */
+@media (min-width: 640px) {
+  .pdf-method-options {
+    flex-direction: row;
+    gap: 12px;
+  }
+  
+  .radio-option {
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 639px) {
+  .pdf-method-config {
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+  
+  .radio-option {
+    padding: 6px 10px;
+  }
+  
+  .radio-label {
+    font-size: 13px;
+  }
+  
+  .method-description {
+    font-size: 12px;
+  }
+  
+  .pdf-method-info {
+    padding: 10px;
+  }
+}

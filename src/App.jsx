@@ -6,6 +6,7 @@ import { RadioGroup, RadioGroupItem } from "./components/ui/radio-group";
 import { cn } from "./lib/utils";
 import {
   generateQuestionsFromFiles,
+  generateQuestionsWithSmartDetection,
   evaluateAnswerWithAI,
 } from "./config/openai";
 import { AI_CONFIG } from "./config/aiSettings";
@@ -35,6 +36,7 @@ export default function App() {
   const [isEvaluating, setIsEvaluating] = useState(false); // Separate state for AI evaluation
   const [evaluatorPersonality, setEvaluatorPersonality] = useState("normal");
   const [difficultyLevel, setDifficultyLevel] = useState("normal");
+  const [usePdfAssistants, setUsePdfAssistants] = useState(true); // Auto-detect by default
   const fileInputRef = useRef(null);
   const premiumFileInputRef = useRef(null);
 
@@ -308,13 +310,32 @@ export default function App() {
     setError(null);
 
     try {
-      // Generate questions using OpenAI with custom API key if provided
-      const generatedQuestions = await generateQuestionsFromFiles(
-        uploadedFiles,
-        customApiKey || undefined,
-        questionType,
-        { evaluatorPersonality, difficultyLevel }
+      // Check if user wants to use Assistants API for PDFs
+      const hasPdfFiles = uploadedFiles.some(
+        (file) =>
+          file.type === "application/pdf" ||
+          file.name.toLowerCase().endsWith(".pdf")
       );
+
+      let generatedQuestions;
+      if (usePdfAssistants && hasPdfFiles) {
+        // Use Assistants API for PDFs
+        generatedQuestions = await generateQuestionsFromFiles(
+          uploadedFiles,
+          customApiKey || undefined,
+          questionType,
+          { evaluatorPersonality, difficultyLevel },
+          true // useAssistants = true
+        );
+      } else {
+        // Use traditional method or smart detection
+        generatedQuestions = await generateQuestionsWithSmartDetection(
+          uploadedFiles,
+          customApiKey || undefined,
+          questionType,
+          { evaluatorPersonality, difficultyLevel }
+        );
+      }
 
       // Update state with generated questions
       setQuestions(generatedQuestions);
@@ -621,6 +642,61 @@ export default function App() {
                   <p className="api-key-hint">
                     💡 Si no tienes una, se usará la configurada por defecto
                   </p>
+
+                  {/* PDF Processing Method Selection */}
+                  <div className="pdf-method-config">
+                    <label className="pdf-method-label">
+                      📄 Método de procesamiento de PDFs:
+                    </label>
+                    <div className="pdf-method-options">
+                      <label className="radio-option">
+                        <input
+                          type="radio"
+                          name="pdfMethod"
+                          checked={usePdfAssistants === true}
+                          onChange={() => setUsePdfAssistants(true)}
+                        />
+                        <span className="radio-label">
+                          🤖 Assistants API (Recomendado para PDFs)
+                        </span>
+                      </label>
+                      <label className="radio-option">
+                        <input
+                          type="radio"
+                          name="pdfMethod"
+                          checked={usePdfAssistants === false}
+                          onChange={() => setUsePdfAssistants(false)}
+                        />
+                        <span className="radio-label">
+                          🔧 Método tradicional (Más rápido)
+                        </span>
+                      </label>
+                    </div>
+                    <div className="pdf-method-info">
+                      {usePdfAssistants ? (
+                        <div className="method-description assistants">
+                          <strong>🤖 Assistants API:</strong>
+                          <ul>
+                            <li>✅ Mejor calidad de extracción de texto</li>
+                            <li>✅ Soporte nativo para PDFs complejos</li>
+                            <li>✅ Maneja PDFs escaneados mejor</li>
+                            <li>⚠️ Límite: 512MB por archivo</li>
+                            <li>💰 Costo adicional por procesamiento</li>
+                          </ul>
+                        </div>
+                      ) : (
+                        <div className="method-description traditional">
+                          <strong>🔧 Método tradicional:</strong>
+                          <ul>
+                            <li>⚡ Procesamiento local más rápido</li>
+                            <li>💰 Solo costo de generación de preguntas</li>
+                            <li>⚠️ Calidad variable según PDF</li>
+                            <li>❌ Limitado con PDFs escaneados</li>
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
