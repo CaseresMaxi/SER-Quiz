@@ -11,9 +11,13 @@ import {
 } from "./config/openai";
 import { AI_CONFIG } from "./config/aiSettings";
 import { isAppReady, getConfigStatus } from "./utils/envValidator";
+import { useAuth } from "./hooks/useAuth";
+import { AuthModal } from "./components/AuthModal";
 import "./App.css";
 
 export default function App() {
+  const { user, loading: authLoading, logout } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [selected, setSelected] = useState({});
@@ -421,6 +425,8 @@ export default function App() {
     }
 
     setQuestionType(type);
+    // Save question type preference
+    localStorage.setItem("questionType", type);
     // Clear UI state when switching types
     setSelected({});
     setDevelopmentAnswers({});
@@ -861,6 +867,94 @@ export default function App() {
     setCurrentIdx((idx) => idx + 1);
   }
 
+  // Show loading while checking auth
+  if (authLoading) return <p className="loading">Cargando…</p>;
+
+  // Show auth modal if not authenticated
+  if (!user) {
+    return (
+      <div className="auth-container">
+        <div className="auth-landing">
+          <div className="auth-background">
+            <div className="floating-shapes">
+              <div className="shape shape-1"></div>
+              <div className="shape shape-2"></div>
+              <div className="shape shape-3"></div>
+              <div className="shape shape-4"></div>
+            </div>
+          </div>
+
+          <div className="auth-landing-content">
+            <div className="auth-hero">
+              <div className="auth-logo">
+                <div className="logo-icon">🧠</div>
+              </div>
+              <h1 className="auth-landing-title">Preguntitas</h1>
+              <p className="auth-landing-subtitle">Quiz inteligente</p>
+              <p className="auth-landing-description">
+                Pon a prueba tus conocimientos con cuestionarios personalizados
+                y generados por inteligencia artificial
+              </p>
+            </div>
+
+            <div className="auth-features-grid">
+              <div className="feature-card">
+                <div className="feature-icon-wrapper">
+                  <span className="feature-icon">📝</span>
+                </div>
+                <h3 className="feature-title">Opción múltiple</h3>
+                <p className="feature-description">
+                  Preguntas interactivas con validación instantánea
+                </p>
+              </div>
+
+              <div className="feature-card">
+                <div className="feature-icon-wrapper">
+                  <span className="feature-icon">🤖</span>
+                </div>
+                <h3 className="feature-title">Generación IA</h3>
+                <p className="feature-description">
+                  Crea cuestionarios desde tus documentos automáticamente
+                </p>
+              </div>
+
+              <div className="feature-card">
+                <div className="feature-icon-wrapper">
+                  <span className="feature-icon">📊</span>
+                </div>
+                <h3 className="feature-title">Análisis detallado</h3>
+                <p className="feature-description">
+                  Seguimiento de progreso y estadísticas personales
+                </p>
+              </div>
+            </div>
+
+            <div className="auth-actions">
+              <button
+                className="auth-landing-btn primary"
+                onClick={() => setShowAuthModal(true)}
+              >
+                <span className="btn-icon">🚀</span>
+                <span className="btn-text">Comenzar ahora</span>
+                <div className="btn-shine"></div>
+              </button>
+
+              <div className="auth-info">
+                <span className="info-text">
+                  Gratis • Sin límites • Datos seguros
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <AuthModal
+          isOpen={showAuthModal}
+          onClose={() => setShowAuthModal(false)}
+        />
+      </div>
+    );
+  }
+
   if (loading) return <p className="loading">Cargando preguntas…</p>;
 
   if (error) {
@@ -962,6 +1056,16 @@ export default function App() {
           </button>
           <h1 className="quiz-master-title">Preguntitas</h1>
           <div className="quiz-controls">
+            <div className="user-menu">
+              <span className="user-email">{user?.email}</span>
+              <button
+                className="logout-btn"
+                onClick={logout}
+                title="Cerrar sesión"
+              >
+                🚪
+              </button>
+            </div>
             <button
               className={`control-button info-button ${
                 questionType === "development" ? "disabled" : ""

@@ -13,6 +13,7 @@
     "validate:env": "node validate-env.js"
   },
   "dependencies": {
+    "firebase": "^11.9.0",
     "openai": "^4.103.0",
     "pdfjs-dist": "^4.8.69",
     "react": "^19.1.0",
