@@ -12,12 +12,24 @@ import {
 import { AI_CONFIG } from "./config/aiSettings";
 import { isAppReady, getConfigStatus } from "./utils/envValidator";
 import { useAuth } from "./hooks/useAuth";
+import { useSubscription } from "./hooks/useSubscription";
 import { AuthModal } from "./components/AuthModal";
+import PricingSection from "./components/PricingSection";
+import SubscriptionDashboard from "./components/SubscriptionDashboard";
 import "./App.css";
 
 export default function App() {
   const { user, loading: authLoading, logout } = useAuth();
+  const {
+    subscription,
+    hasActiveSubscription,
+    getDaysRemaining,
+    getSubscriptionStatus,
+    isExpiringSoon,
+  } = useSubscription();
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showSubscriptionDashboard, setShowSubscriptionDashboard] =
+    useState(false);
   const [questions, setQuestions] = useState([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [selected, setSelected] = useState({});
@@ -41,6 +53,7 @@ export default function App() {
   const [evaluatorPersonality, setEvaluatorPersonality] = useState("normal");
   const [difficultyLevel, setDifficultyLevel] = useState("normal");
   const [usePdfAssistants, setUsePdfAssistants] = useState(true); // Auto-detect by default
+  const [showPricingSection, setShowPricingSection] = useState(false);
   const fileInputRef = useRef(null);
   const premiumFileInputRef = useRef(null);
 
@@ -1054,6 +1067,40 @@ export default function App() {
             <span className="premium-icon">🧠</span>
             <span className="premium-text">AI</span>
           </button>
+          <button
+            className={`pricing-btn ${
+              hasActiveSubscription() ? "active-subscription" : ""
+            }`}
+            onClick={() =>
+              hasActiveSubscription()
+                ? setShowSubscriptionDashboard(true)
+                : setShowPricingSection(true)
+            }
+            title={
+              hasActiveSubscription()
+                ? "Mi Suscripción"
+                : "Ver planes y precios"
+            }
+          >
+            <span className="pricing-icon">
+              {hasActiveSubscription() ? "👑" : "💰"}
+            </span>
+            <span className="pricing-text">
+              {hasActiveSubscription()
+                ? isExpiringSoon()
+                  ? `${getDaysRemaining()}d`
+                  : subscription?.planName?.replace("Plan ", "")
+                : "Premium"}
+            </span>
+            {isExpiringSoon() && (
+              <span
+                className="expiring-indicator"
+                title="Suscripción por vencer"
+              >
+                ⚠️
+              </span>
+            )}
+          </button>
           <h1 className="quiz-master-title">Preguntitas</h1>
           <div className="quiz-controls">
             <div className="user-menu">
@@ -1388,6 +1435,51 @@ export default function App() {
           )}
         </CardContent>
       </Card>
+
+      {/* Pricing Section Modal */}
+      {showPricingSection && (
+        <div
+          className="modal-overlay pricing-modal-overlay"
+          onClick={() => setShowPricingSection(false)}
+        >
+          <div
+            className="modal-content pricing-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="modal-close pricing-modal-close"
+              onClick={() => setShowPricingSection(false)}
+            >
+              ✕
+            </button>
+            <PricingSection
+              userEmail={user?.email}
+              onClose={() => setShowPricingSection(false)}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Subscription Dashboard Modal */}
+      {showSubscriptionDashboard && (
+        <div
+          className="modal-overlay subscription-modal-overlay"
+          onClick={() => setShowSubscriptionDashboard(false)}
+        >
+          <div
+            className="modal-content subscription-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="modal-close subscription-modal-close"
+              onClick={() => setShowSubscriptionDashboard(false)}
+            >
+              ✕
+            </button>
+            <SubscriptionDashboard />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

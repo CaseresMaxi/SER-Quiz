@@ -21,6 +21,9 @@ Este asistente te ayudará a configurar las variables de entorno
 necesarias para que la aplicación funcione correctamente.
 
 📝 Se creará un archivo .env con tu configuración.
+
+⚡ NUEVO: Ahora incluye configuración de MercadoPago para pagos!
+💰 Podrás monetizar tu aplicación de quizzes.
 `);
 
 async function askQuestion(question) {
@@ -79,17 +82,33 @@ async function setupEnvironment() {
         "7. ¿Máximo páginas de PDF a procesar? (default: 10): "
       )) || "10";
 
+    console.log("\n💰 CONFIGURACIÓN DE MERCADOPAGO");
+    console.log("================================");
+
+    const mpPublicKey = await askQuestion(
+      "8. Ingresa tu Public Key de MercadoPago (opcional, obtén una en https://www.mercadopago.com.ar/developers/panel): "
+    );
+
+    const mpAccessToken = await askQuestion(
+      "9. Ingresa tu Access Token de MercadoPago (opcional, MANTENER SECRETO): "
+    );
+
+    const mpEnvironment =
+      (await askQuestion(
+        "10. ¿Entorno de MercadoPago? [sandbox/production] (default: sandbox): "
+      )) || "sandbox";
+
     console.log("\n🔍 CONFIGURACIÓN DE DEBUG");
     console.log("==========================");
 
     const debugMode =
       (await askQuestion(
-        "8. ¿Activar modo debug? [true/false] (default: true): "
+        "11. ¿Activar modo debug? [true/false] (default: true): "
       )) || "true";
 
     const debugApi =
       (await askQuestion(
-        "9. ¿Mostrar logs de API? [true/false] (default: false): "
+        "12. ¿Mostrar logs de API? [true/false] (default: false): "
       )) || "false";
 
     // Crear contenido del archivo .env
@@ -125,6 +144,18 @@ VITE_DEBUG_API=${debugApi}
 VITE_BASE_URL=http://localhost:3000
 VITE_ENABLE_ANALYTICS=false
 
+# 💰 MercadoPago Configuration
+# Obtén tu access token desde: https://www.mercadopago.com.ar/developers/panel
+# Public Key (para el frontend)
+VITE_MERCADOPAGO_PUBLIC_KEY=${mpPublicKey || "tu-public-key-de-mercadopago"}
+
+# Access Token (para el backend - MANTENER SECRETO)
+MERCADOPAGO_ACCESS_TOKEN=${mpAccessToken || "tu-access-token-de-mercadopago"}
+
+# Configuración de pagos
+VITE_MERCADOPAGO_ENVIRONMENT=${mpEnvironment}
+# Valores posibles: "sandbox" (pruebas) o "production" (producción)
+
 # ==================================================
 # ✅ Configuración completada en: ${new Date().toISOString()}
 # ==================================================
@@ -144,12 +175,23 @@ VITE_ENABLE_ANALYTICS=false
 2. Ve a http://localhost:3000
 3. ¡Comienza a crear cuestionarios!
 
+💰 MERCADOPAGO (OPCIONAL):
+${mpPublicKey ? "✅ Public Key configurado" : "⚠️  Public Key no configurado"}
+${
+  mpAccessToken
+    ? "✅ Access Token configurado"
+    : "⚠️  Access Token no configurado"
+}
+- Para activar pagos, configura tus credenciales de MercadoPago
+- Consulta MERCADOPAGO_SETUP.md para más información
+
 ⚠️  IMPORTANTE:
 - El archivo .env NO se subirá a GitHub (está en .gitignore)
 - Si necesitas cambiar algo, edita el archivo .env directamente
-- Para recrear la configuración, ejecuta: node setup-env.js
+- Para recrear la configuración, ejecuta: npm run setup
+- NUNCA compartas tu Access Token de MercadoPago
 
-🎉 ¡Disfruta usando Preguntitas!
+🎉 ¡Disfruta usando Preguntitas y empieza a generar ingresos!
 `);
   } catch (error) {
     console.error("❌ Error durante la configuración:", error.message);
@@ -165,17 +207,28 @@ if (fs.existsSync(".env")) {
 ==========================
 
 Ya tienes un archivo .env configurado.
+
+🆕 NOVEDAD: Este script ahora incluye configuración de MercadoPago!
+   Si quieres agregar pagos a tu app, considera sobrescribir.
 `);
 
-  rl.question("¿Quieres sobrescribirlo? [y/N]: ", (answer) => {
-    if (answer.toLowerCase() === "y" || answer.toLowerCase() === "yes") {
-      setupEnvironment();
-    } else {
-      console.log("\n✅ Manteniendo configuración actual.");
-      console.log("💡 Si necesitas ayuda, consulta el archivo env.example\n");
-      rl.close();
+  rl.question(
+    "¿Quieres sobrescribirlo para incluir MercadoPago? [y/N]: ",
+    (answer) => {
+      if (answer.toLowerCase() === "y" || answer.toLowerCase() === "yes") {
+        setupEnvironment();
+      } else {
+        console.log("\n✅ Manteniendo configuración actual.");
+        console.log("💡 Para configurar MercadoPago manualmente:");
+        console.log("   1. Consulta el archivo env.example");
+        console.log("   2. Lee MERCADOPAGO_SETUP.md");
+        console.log(
+          "   3. Agrega las variables VITE_MERCADOPAGO_* a tu .env\n"
+        );
+        rl.close();
+      }
     }
-  });
+  );
 } else {
   setupEnvironment();
 }

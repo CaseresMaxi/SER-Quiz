@@ -13,6 +13,8 @@
     "validate:env": "node validate-env.js"
   },
   "dependencies": {
+    "@mercadopago/sdk-js": "^0.0.3",
+    "@mercadopago/sdk-react": "^1.0.3",
     "firebase": "^11.9.0",
     "openai": "^4.103.0",
     "pdfjs-dist": "^4.8.69",
