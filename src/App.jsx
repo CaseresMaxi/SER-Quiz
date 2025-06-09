@@ -16,6 +16,7 @@ import { useSubscription } from "./hooks/useSubscription";
 import { AuthModal } from "./components/AuthModal";
 import PricingSection from "./components/PricingSection";
 import SubscriptionDashboard from "./components/SubscriptionDashboard";
+import UserMenu from "./components/UserMenu";
 import "./App.css";
 
 export default function App() {
@@ -1059,60 +1060,21 @@ export default function App() {
       {/* Header with quiz info and controls */}
       <div className="quiz-header">
         <div className="quiz-header-top">
-          <button
-            className="premium-btn"
-            onClick={() => setShowPremiumModal(true)}
-            title="Generar preguntas con IA"
-          >
-            <span className="premium-icon">🧠</span>
-            <span className="premium-text">AI</span>
-          </button>
-          <button
-            className={`pricing-btn ${
-              hasActiveSubscription() ? "active-subscription" : ""
-            }`}
-            onClick={() =>
-              hasActiveSubscription()
-                ? setShowSubscriptionDashboard(true)
-                : setShowPricingSection(true)
+          <UserMenu
+            user={user}
+            subscription={subscription}
+            hasActiveSubscription={hasActiveSubscription}
+            getDaysRemaining={getDaysRemaining}
+            isExpiringSoon={isExpiringSoon}
+            logout={logout}
+            onOpenSubscriptionDashboard={() =>
+              setShowSubscriptionDashboard(true)
             }
-            title={
-              hasActiveSubscription()
-                ? "Mi Suscripción"
-                : "Ver planes y precios"
-            }
-          >
-            <span className="pricing-icon">
-              {hasActiveSubscription() ? "👑" : "💰"}
-            </span>
-            <span className="pricing-text">
-              {hasActiveSubscription()
-                ? isExpiringSoon()
-                  ? `${getDaysRemaining()}d`
-                  : subscription?.planName?.replace("Plan ", "")
-                : "Premium"}
-            </span>
-            {isExpiringSoon() && (
-              <span
-                className="expiring-indicator"
-                title="Suscripción por vencer"
-              >
-                ⚠️
-              </span>
-            )}
-          </button>
+            onOpenPremiumModal={() => setShowPremiumModal(true)}
+            onOpenPricingSection={() => setShowPricingSection(true)}
+          />
           <h1 className="quiz-master-title">Preguntitas</h1>
           <div className="quiz-controls">
-            <div className="user-menu">
-              <span className="user-email">{user?.email}</span>
-              <button
-                className="logout-btn"
-                onClick={logout}
-                title="Cerrar sesión"
-              >
-                🚪
-              </button>
-            </div>
             <button
               className={`control-button info-button ${
                 questionType === "development" ? "disabled" : ""
@@ -1149,15 +1111,6 @@ export default function App() {
             >
               📁
             </label>
-            {/* {isCustomQuiz && (
-              <button
-                onClick={resetToDefault}
-                className="control-button reset-button"
-                title="Volver a preguntas por defecto"
-              >
-                🔄
-              </button>
-            )} */}
           </div>
         </div>
         <div className="quiz-info-footer">

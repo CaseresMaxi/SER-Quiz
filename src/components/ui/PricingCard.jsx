@@ -52,7 +52,6 @@ const PricingCard = ({
         <ul>
           {features.map((feature, index) => (
             <li key={index} className="feature-item">
-              <span className="feature-icon">✓</span>
               {feature}
             </li>
           ))}

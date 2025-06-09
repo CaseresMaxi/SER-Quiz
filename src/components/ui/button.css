@@ -1,57 +1,109 @@
-/* Mobile First - Button styles */
+/* Modern iOS Style Button */
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  transition: all 0.2s ease-in-out;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
   border: none;
-  padding: 14px 20px;
-  background-color: #1f2937;
+  padding: 18px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   width: 100%;
-  min-height: 48px;
+  min-height: 56px;
   touch-action: manipulation;
+  position: relative;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 
+    0 8px 25px rgba(102, 126, 234, 0.3),
+    0 1px 0px rgba(255, 255, 255, 0.2) inset,
+    0 -1px 0px rgba(0, 0, 0, 0.1) inset;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #ff6b6b, #ffa726);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
 }
 
 .button:hover {
-  background-color: #374151;
-  transform: translateY(-1px);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 
+    0 15px 40px rgba(102, 126, 234, 0.4),
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    0 1px 0px rgba(255, 255, 255, 0.2) inset,
+    0 -1px 0px rgba(0, 0, 0, 0.1) inset;
+}
+
+.button:hover::before {
+  opacity: 0.1;
 }
 
 .button:active {
-  background-color: #111827;
-  transform: translateY(0);
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 
+    0 8px 25px rgba(102, 126, 234, 0.3),
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    0 1px 0px rgba(255, 255, 255, 0.2) inset,
+    0 -1px 0px rgba(0, 0, 0, 0.1) inset;
 }
 
 .button:focus {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
+  outline: none;
+  box-shadow: 
+    0 8px 25px rgba(102, 126, 234, 0.3),
+    0 0 0 4px rgba(102, 126, 234, 0.2),
+    0 1px 0px rgba(255, 255, 255, 0.2) inset,
+    0 -1px 0px rgba(0, 0, 0, 0.1) inset;
 }
 
 .button:disabled {
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: 
+    0 4px 15px rgba(102, 126, 234, 0.15),
+    0 1px 0px rgba(255, 255, 255, 0.2) inset,
+    0 -1px 0px rgba(0, 0, 0, 0.1) inset;
 }
 
 /* Tablet styles - min-width: 640px */
 @media (min-width: 640px) {
   .button {
-    font-size: 15px;
-    padding: 12px 18px;
-    min-height: 44px;
+    font-size: 17px;
+    padding: 16px 28px;
+    min-height: 52px;
   }
 }
 
 /* Desktop styles - min-width: 1024px */
 @media (min-width: 1024px) {
   .button {
-    font-size: 14px;
-    padding: 10px 16px;
-    min-height: 40px;
+    font-size: 16px;
+    padding: 14px 24px;
+    min-height: 48px;
+    border-radius: 20px;
+  }
+  
+  .button:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+  
+  .button:active {
+    transform: translateY(-2px) scale(1.005);
   }
 } 
