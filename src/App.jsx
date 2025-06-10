@@ -13,6 +13,7 @@ import { AI_CONFIG } from "./config/aiSettings";
 import { isAppReady, getConfigStatus } from "./utils/envValidator";
 import { useAuth } from "./hooks/useAuth";
 import { useSubscription } from "./hooks/useSubscription";
+import { useFirebaseStorage } from "./hooks/useFirebaseStorage";
 import { AuthModal } from "./components/AuthModal";
 import PricingSection from "./components/PricingSection";
 import SubscriptionDashboard from "./components/SubscriptionDashboard";
@@ -28,6 +29,11 @@ export default function App() {
     getSubscriptionStatus,
     isExpiringSoon,
   } = useSubscription();
+  const {
+    storage,
+    isReady: storageReady,
+    isLoading: storageLoading,
+  } = useFirebaseStorage();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showSubscriptionDashboard, setShowSubscriptionDashboard] =
     useState(false);
@@ -59,11 +65,14 @@ export default function App() {
   const premiumFileInputRef = useRef(null);
 
   useEffect(() => {
-    // Debug: Show what's in localStorage
+    // Wait for storage to be ready before loading
+    if (!storageReady) return;
+
+    // Debug: Show what's in Firebase storage
     console.log("🔍 VERIFICACIÓN DE PERSISTENCIA AL INICIAR:");
-    const choiceQuiz = localStorage.getItem("customQuizData_choice");
-    const devQuiz = localStorage.getItem("customQuizData_development");
-    const savedType = localStorage.getItem("questionType");
+    const choiceQuiz = storage.getItem("customQuizData_choice");
+    const devQuiz = storage.getItem("customQuizData_development");
+    const savedType = storage.getItem("questionType");
 
     console.log(
       "📝 Preguntas choice guardadas:",
@@ -75,8 +84,8 @@ export default function App() {
     );
     console.log("🎯 Tipo guardado:", savedType || "❌ Ninguno");
 
-    // Load saved question type from localStorage
-    const savedQuestionType = localStorage.getItem("questionType");
+    // Load saved question type from Firebase storage
+    const savedQuestionType = storage.getItem("questionType");
     if (
       savedQuestionType &&
       (savedQuestionType === "choice" || savedQuestionType === "development")
@@ -85,7 +94,7 @@ export default function App() {
 
       // Check if there are saved questions for this type
       const { customQuizKey } = getLocalStorageKeys(savedQuestionType);
-      const savedQuestions = localStorage.getItem(customQuizKey);
+      const savedQuestions = storage.getItem(customQuizKey);
 
       if (savedQuestions && savedQuestionType === "development") {
         console.log("🧠 Cargando preguntas de desarrollo guardadas...");
@@ -95,7 +104,20 @@ export default function App() {
     } else {
       loadQuestions();
     }
-  }, []);
+  }, [storageReady]);
+
+  // Effect to check if user lost premium access while in development mode
+  useEffect(() => {
+    if (questionType === "development" && !hasActiveSubscription()) {
+      console.log(
+        "🔄 Usuario perdió acceso premium, cambiando a modo opción múltiple"
+      );
+      setQuestionType("choice");
+      storage.setItem("questionType", "choice");
+      // Reload questions for choice mode
+      loadQuestions("choice");
+    }
+  }, [hasActiveSubscription, questionType]);
 
   const getLocalStorageKeys = (type = questionType) => {
     const customQuizKey =
@@ -117,9 +139,9 @@ export default function App() {
     const { customQuizKey, customFileNameKey } =
       getLocalStorageKeys(currentType);
 
-    // Check if there's a custom quiz saved in localStorage for this type
-    const savedCustomQuiz = localStorage.getItem(customQuizKey);
-    const savedFileName = localStorage.getItem(customFileNameKey);
+    // Check if there's a custom quiz saved in Firebase storage for this type
+    const savedCustomQuiz = storage.getItem(customQuizKey);
+    const savedFileName = storage.getItem(customFileNameKey);
 
     if (savedCustomQuiz && savedFileName) {
       try {
@@ -142,14 +164,14 @@ export default function App() {
           setLoading(false);
           return;
         } else {
-          // Clear invalid data from localStorage
-          localStorage.removeItem(customQuizKey);
-          localStorage.removeItem(customFileNameKey);
+          // Clear invalid data from Firebase storage
+          storage.removeItem(customQuizKey);
+          storage.removeItem(customFileNameKey);
         }
       } catch (err) {
-        // Clear corrupted data from localStorage
-        localStorage.removeItem(customQuizKey);
-        localStorage.removeItem(customFileNameKey);
+        // Clear corrupted data from Firebase storage
+        storage.removeItem(customQuizKey);
+        storage.removeItem(customFileNameKey);
       }
     }
 
@@ -164,8 +186,8 @@ export default function App() {
     // Clear any saved custom quiz data for the current type when loading defaults
     const { customQuizKey, customFileNameKey } = getLocalStorageKeys();
 
-    localStorage.removeItem(customQuizKey);
-    localStorage.removeItem(customFileNameKey);
+    storage.removeItem(customQuizKey);
+    storage.removeItem(customFileNameKey);
 
     fetch("preguntas_seguridad_v3.json")
       .then((r) => r.json())
@@ -232,11 +254,11 @@ export default function App() {
         setLoadedFileName(file.name);
         setLoading(false);
 
-        // Save original custom questions to localStorage (not shuffled)
+        // Save original custom questions to Firebase storage (not shuffled)
         const { customQuizKey, customFileNameKey } = getLocalStorageKeys();
 
-        localStorage.setItem(customQuizKey, JSON.stringify(jsonData));
-        localStorage.setItem(customFileNameKey, file.name);
+        storage.setItem(customQuizKey, JSON.stringify(jsonData));
+        storage.setItem(customFileNameKey, file.name);
 
         // Verification logging
         console.log(`💾 Preguntas JSON ${questionType} guardadas:`, {
@@ -247,12 +269,12 @@ export default function App() {
         });
 
         // Double-check the save worked
-        const verification = localStorage.getItem(customQuizKey);
+        const verification = storage.getItem(customQuizKey);
         if (verification) {
           console.log(
             `✅ Verificación JSON exitosa: ${
               JSON.parse(verification).length
-            } preguntas en localStorage`
+            } preguntas en Firebase storage`
           );
         } else {
           console.error(
@@ -284,13 +306,13 @@ export default function App() {
       fileInputRef.current.value = "";
     }
 
-    // Clear custom quiz data from localStorage for current type only
+    // Clear custom quiz data from Firebase storage for current type only
     const { customQuizKey, customFileNameKey } = getLocalStorageKeys();
 
-    localStorage.removeItem(customQuizKey);
-    localStorage.removeItem(customFileNameKey);
+    storage.removeItem(customQuizKey);
+    storage.removeItem(customFileNameKey);
 
-    // Note: Don't remove questionType from localStorage - keep user preference
+    // Note: Don't remove questionType from Firebase storage - keep user preference
     loadDefaultQuestions();
   };
 
@@ -371,11 +393,11 @@ export default function App() {
             }) - ${new Date().toLocaleDateString()}`;
       setLoadedFileName(fileName);
 
-      // CRITICAL: Save immediately to localStorage
+      // CRITICAL: Save immediately to Firebase storage
       const { customQuizKey, customFileNameKey } = getLocalStorageKeys();
 
-      localStorage.setItem(customQuizKey, JSON.stringify(generatedQuestions));
-      localStorage.setItem(customFileNameKey, fileName);
+      storage.setItem(customQuizKey, JSON.stringify(generatedQuestions));
+      storage.setItem(customFileNameKey, fileName);
 
       // Verification logging
       console.log(`💾 Preguntas ${questionType} guardadas INMEDIATAMENTE:`, {
@@ -386,12 +408,12 @@ export default function App() {
       });
 
       // Double-check the save worked
-      const verification = localStorage.getItem(customQuizKey);
+      const verification = storage.getItem(customQuizKey);
       if (verification) {
         console.log(
           `✅ Verificación exitosa: ${
             JSON.parse(verification).length
-          } preguntas en localStorage`
+          } preguntas en Firebase storage`
         );
       } else {
         console.error(
@@ -432,6 +454,14 @@ export default function App() {
   };
 
   const handleQuestionTypeChange = (type) => {
+    // Check if user is trying to access development mode without premium
+    if (type === "development" && !hasActiveSubscription()) {
+      console.log(
+        "Acceso denegado: Modo desarrollo requiere suscripción premium"
+      );
+      return; // Don't allow the change
+    }
+
     if (type === "development") {
       console.log(
         "Modo preguntas a desarrollar activado. Carga de JSON deshabilitada."
@@ -440,17 +470,17 @@ export default function App() {
 
     setQuestionType(type);
     // Save question type preference
-    localStorage.setItem("questionType", type);
+    storage.setItem("questionType", type);
     // Clear UI state when switching types
     setSelected({});
     setDevelopmentAnswers({});
     setShowResult(false);
     setCurrentIdx(0);
 
-    // Simply READ questions for the new type from localStorage
+    // Simply READ questions for the new type from Firebase storage
     const { customQuizKey, customFileNameKey } = getLocalStorageKeys(type);
-    const savedCustomQuiz = localStorage.getItem(customQuizKey);
-    const savedFileName = localStorage.getItem(customFileNameKey);
+    const savedCustomQuiz = storage.getItem(customQuizKey);
+    const savedFileName = storage.getItem(customFileNameKey);
 
     if (savedCustomQuiz && savedFileName) {
       try {
@@ -476,17 +506,17 @@ export default function App() {
           return; // Exit here - questions found and loaded
         } else {
           console.warn(`⚠️ Datos corruptos para ${type}, limpiando...`);
-          localStorage.removeItem(customQuizKey);
-          localStorage.removeItem(customFileNameKey);
+          storage.removeItem(customQuizKey);
+          storage.removeItem(customFileNameKey);
         }
       } catch (err) {
         console.error(`❌ Error parseando preguntas ${type}:`, err);
-        localStorage.removeItem(customQuizKey);
-        localStorage.removeItem(customFileNameKey);
+        storage.removeItem(customQuizKey);
+        storage.removeItem(customFileNameKey);
       }
     }
 
-    // No saved questions for this type - load default questions WITHOUT modifying localStorage
+    // No saved questions for this type - load default questions WITHOUT modifying Firebase storage
     console.log(
       `📖 No hay preguntas guardadas para ${type}, cargando por defecto`
     );
@@ -881,8 +911,10 @@ export default function App() {
     setCurrentIdx((idx) => idx + 1);
   }
 
-  // Show loading while checking auth
+  // Show loading while checking auth or Firebase storage
   if (authLoading) return <p className="loading">Cargando…</p>;
+  if (user && !storageReady)
+    return <p className="loading">Sincronizando datos con Firebase…</p>;
 
   // Show auth modal if not authenticated
   if (!user) {
@@ -1129,7 +1161,9 @@ export default function App() {
               title="Seleccionar tipo de pregunta"
             >
               <option value="choice">📝 Opción múltiple</option>
-              <option value="development">✍️ A desarrollar (Premium)</option>
+              <option value="development" disabled={!hasActiveSubscription()}>
+                ✍️ A desarrollar (Premium)
+              </option>
             </select>
             {/* {questionType === "development" && (
               <span

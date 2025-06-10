@@ -118,7 +118,11 @@ const UserMenuDropdown = ({
           <button
             className="menu-item"
             onClick={() => {
-              onOpenPremiumModal();
+              if (hasActiveSubscription()) {
+                onOpenPremiumModal();
+              } else {
+                onOpenPricingSection();
+              }
               onClose();
             }}
           >
@@ -126,7 +130,9 @@ const UserMenuDropdown = ({
             <div className="menu-text">
               <span className="menu-label">Generar con IA</span>
               <span className="menu-description">
-                Crear preguntas inteligentes
+                {hasActiveSubscription()
+                  ? "Crear preguntas inteligentes"
+                  : "Requiere plan Premium"}
               </span>
             </div>
             <span className="menu-arrow">›</span>

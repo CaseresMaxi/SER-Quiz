@@ -44,6 +44,7 @@ export const useAuth = () => {
   const logout = async () => {
     try {
       await signOut(auth);
+      console.log("🔓 Usuario desconectado - datos sincronizados con Firebase");
       return { success: true };
     } catch (error) {
       return { success: false, error: error.message };

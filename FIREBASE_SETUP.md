@@ -52,6 +52,11 @@ Configura las siguientes reglas de seguridad en Firestore:
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Users collection - Users can only read/write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
     // Subscriptions - Users can only read/write their own subscription
     match /subscriptions/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
