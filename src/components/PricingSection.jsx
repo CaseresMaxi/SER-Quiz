@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import PricingCard from "./ui/PricingCard";
 import { useSubscription, SUBSCRIPTION_PLANS } from "../hooks/useSubscription";
+import { useAuth } from "../hooks/useAuth";
 import "./PricingSection.css";
 
 const PricingSection = ({ userEmail, onClose }) => {
   const [paymentStatus, setPaymentStatus] = useState(null);
   const [paymentMessage, setPaymentMessage] = useState("");
+  const { user } = useAuth();
   const {
     subscription,
     createSubscription,
@@ -50,59 +52,47 @@ const PricingSection = ({ userEmail, onClose }) => {
       });
 
       if (result.success) {
-        console.log("Subscription created successfully:", result.subscription);
-        setPaymentMessage(
-          "¡Pago procesado exitosamente! Tu plan premium ha sido activado."
-        );
-      } else {
-        console.error("Error creating subscription:", result.error);
-        setPaymentMessage(
-          "Pago exitoso, pero hubo un error activando tu plan. Contacta soporte."
-        );
+        console.log("Subscription created successfully");
       }
     } catch (error) {
-      console.error("Error processing subscription:", error);
-      setPaymentMessage(
-        "Pago exitoso, pero hubo un error activando tu plan. Contacta soporte."
-      );
+      console.error("Error creating subscription:", error);
+      setPaymentStatus("error");
+      setPaymentMessage("Error al activar la suscripción: " + error.message);
     }
-
-    setTimeout(() => {
-      onClose?.();
-    }, 3000);
   };
 
   const handlePaymentError = (error) => {
     console.error("Payment error:", error);
     setPaymentStatus("error");
-    setPaymentMessage(
-      "Hubo un error al procesar el pago. Por favor, intenta nuevamente."
-    );
+    setPaymentMessage(error || "Error al procesar el pago");
   };
 
-  if (paymentStatus === "success") {
-    return (
-      <div className="pricing-section">
-        <div className="payment-success-container">
-          <div className="success-icon">🎉</div>
-          <h2>¡Pago Exitoso!</h2>
-          <p>{paymentMessage}</p>
-          <div className="success-animation">
-            <div className="checkmark">✓</div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // Debug: Log user information
+  console.log("PricingSection - User:", user);
+  console.log("PricingSection - UserEmail:", userEmail);
 
   return (
     <div className="pricing-section">
       <div className="pricing-header">
-        <h2 className="pricing-main-title">Elige tu Plan Premium</h2>
-        <p className="pricing-subtitle">
-          Desbloquea todo el potencial de nuestros quizzes con IA
-        </p>
+        <button className="close-button" onClick={onClose}>
+          ×
+        </button>
+        <h2>Elige tu plan</h2>
+        <p>Accede a contenido premium y mejora tus habilidades</p>
       </div>
+
+      {paymentStatus === "success" && (
+        <div className="payment-success-banner">
+          <span className="success-icon">✅</span>
+          {paymentMessage}
+          <button
+            className="success-close-btn"
+            onClick={() => setPaymentStatus(null)}
+          >
+            ×
+          </button>
+        </div>
+      )}
 
       {paymentStatus === "error" && (
         <div className="payment-error-banner">
@@ -127,7 +117,8 @@ const PricingSection = ({ userEmail, onClose }) => {
             description={plan.description}
             features={plan.features}
             isPopular={plan.isPopular}
-            userEmail={userEmail}
+            user={user}
+            userEmail={userEmail || user?.email}
             onPaymentSuccess={handlePaymentSuccess}
             onPaymentError={handlePaymentError}
             currentSubscription={subscription}

@@ -7,13 +7,42 @@ const PaymentButton = ({
   onPaymentSuccess,
   onPaymentError,
   className = "",
+  user,
 }) => {
   const [isCreatingPreference, setIsCreatingPreference] = useState(false);
 
   const handlePayment = async () => {
     setIsCreatingPreference(true);
+
     try {
-      // Llama a tu backend para crear la preferencia de pago
+      // Validate required data
+      if (!user?.uid) {
+        throw new Error("Usuario no autenticado. Por favor, inicia sesión.");
+      }
+
+      if (!item?.id) {
+        throw new Error("Plan no seleccionado correctamente.");
+      }
+
+      const finalUserEmail = userEmail || user?.email;
+      if (!finalUserEmail) {
+        throw new Error("Email del usuario no disponible.");
+      }
+
+      // Prepare payment data
+      const paymentData = {
+        title: item.title || "Plan Premium",
+        price: item.price,
+        quantity: item.quantity || 1,
+        user_id: user.uid,
+        plan_id: item.id,
+        user_email: finalUserEmail,
+      };
+
+      // Debug: Log payment data being sent
+      console.log("PaymentButton - Sending payment data:", paymentData);
+
+      // Call backend to create payment preference
       const response = await fetch(
         "https://ser-back-production.up.railway.app/api/create-payment",
         {
@@ -21,17 +50,22 @@ const PaymentButton = ({
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            title: item.title || "Producto SER Quiz",
-            price: item.price,
-            quantity: item.quantity || 1,
-          }),
+          body: JSON.stringify(paymentData),
         }
       );
-      if (!response.ok)
-        throw new Error("Error al crear la preferencia de pago");
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.error || "Error al crear la preferencia de pago"
+        );
+      }
+
       const data = await response.json();
+      console.log("Payment preference response:", data);
+
       if (data.init_point) {
+        // Redirect to MercadoPago
         window.location.href = data.init_point;
       } else {
         throw new Error("No se recibió la URL de pago");
@@ -48,7 +82,7 @@ const PaymentButton = ({
     <div className={`payment-button-container ${className}`}>
       <button
         onClick={handlePayment}
-        disabled={isCreatingPreference}
+        disabled={isCreatingPreference || !user?.uid}
         className="payment-init-button"
       >
         {isCreatingPreference ? (
@@ -56,10 +90,20 @@ const PaymentButton = ({
             <span className="loading-spinner"></span>
             Procesando pago...
           </>
+        ) : !user?.uid ? (
+          <>🔒 Inicia sesión para pagar</>
         ) : (
           <>💳 Pagar ${item.price}</>
         )}
       </button>
+
+      {/* Debug info in development */}
+      {process.env.NODE_ENV === "development" && (
+        <div style={{ fontSize: "10px", color: "#666", marginTop: "5px" }}>
+          Debug: user_id={user?.uid}, plan_id={item?.id}, email=
+          {userEmail || user?.email}
+        </div>
+      )}
     </div>
   );
 };

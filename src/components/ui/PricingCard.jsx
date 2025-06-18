@@ -9,6 +9,7 @@ const PricingCard = ({
   description,
   features,
   isPopular = false,
+  user,
   userEmail,
   onPaymentSuccess,
   onPaymentError,
@@ -33,6 +34,9 @@ const PricingCard = ({
     ((currentSubscription.planId === "professional" &&
       planId !== "professional") ||
       (currentSubscription.planId === "premium" && planId === "basic"));
+
+  // Debug: Log props
+  console.log("PricingCard - Props:", { planId, user, userEmail });
 
   return (
     <div className={`pricing-card ${isPopular ? "popular" : ""}`}>
@@ -59,13 +63,18 @@ const PricingCard = ({
       </div>
 
       <div className="pricing-action">
-        <PaymentButton
-          item={paymentItem}
-          userEmail={userEmail}
-          onPaymentSuccess={onPaymentSuccess}
-          onPaymentError={onPaymentError}
-          className="pricing-payment-button"
-        />
+        {isCurrentPlan && hasActiveSubscription ? (
+          <div className="current-plan-badge">✅ Plan Actual</div>
+        ) : (
+          <PaymentButton
+            item={paymentItem}
+            user={user}
+            userEmail={userEmail}
+            onPaymentSuccess={onPaymentSuccess}
+            onPaymentError={onPaymentError}
+            className="pricing-payment-button"
+          />
+        )}
       </div>
     </div>
   );
