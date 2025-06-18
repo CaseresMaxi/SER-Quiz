@@ -21,7 +21,7 @@ export const SUBSCRIPTION_PLANS = {
   basic: {
     id: "basic",
     name: "Plan Básico",
-    price: 100,
+    price: 2999,
     duration: 30, // days
     features: [
       "Acceso a 100 preguntas premium",

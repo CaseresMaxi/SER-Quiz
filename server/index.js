@@ -133,7 +133,7 @@ async function savePaymentToFirebase(paymentData, source = "webhook") {
     const planInfo = {
       basic: {
         name: "Plan Básico",
-        price: 100,
+        price: 2999,
         duration: 30, // days
         features: [
           "Acceso a 100 preguntas premium",
