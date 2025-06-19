@@ -14,6 +14,7 @@ const UserMenuDropdown = ({
   onOpenSubscriptionDashboard,
   onOpenPremiumModal,
   onOpenPricingSection,
+  setShowInfoModal,
   triggerRef,
 }) => {
   const [position, setPosition] = useState({ top: 0, left: 0, right: "auto" });
@@ -189,6 +190,7 @@ const UserMenuDropdown = ({
           <button
             className="menu-item"
             onClick={() => {
+              setShowInfoModal(true);
               onClose();
             }}
           >
@@ -230,6 +232,7 @@ const UserMenu = ({
   hasActiveSubscription,
   getDaysRemaining,
   isExpiringSoon,
+  setShowInfoModal,
   logout,
   onOpenSubscriptionDashboard,
   onOpenPremiumModal,
@@ -337,6 +340,7 @@ const UserMenu = ({
         isOpen={isOpen}
         onClose={handleClose}
         user={user}
+        setShowInfoModal={setShowInfoModal}
         subscription={subscription}
         hasActiveSubscription={hasActiveSubscription}
         getDaysRemaining={getDaysRemaining}
