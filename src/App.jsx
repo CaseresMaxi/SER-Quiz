@@ -920,6 +920,21 @@ export default function App() {
   if (!user) {
     return (
       <div className="auth-container">
+        <div className="auth-top-header">
+          <div className="auth-header-logo">
+            <span className="logo-icon">🧠</span>
+            <span className="logo-text">Preguntitas</span>
+          </div>
+          <div className="auth-header-actions">
+            <button
+              className="auth-landing-btn primary"
+              onClick={() => setShowAuthModal(true)}
+            >
+              <span className="btn-icon">🎭</span>
+              <span className="btn-text">Identificate</span>
+            </button>
+          </div>
+        </div>
         <div className="auth-landing">
           <div className="auth-background">
             <div className="floating-shapes">
