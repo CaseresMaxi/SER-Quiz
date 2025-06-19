@@ -7,6 +7,9 @@ import "./PricingSection.css";
 const PricingSection = ({ userEmail, onClose }) => {
   const [paymentStatus, setPaymentStatus] = useState(null);
   const [paymentMessage, setPaymentMessage] = useState("");
+  const [promoCode, setPromoCode] = useState("");
+  const [isPromoValid, setIsPromoValid] = useState(false);
+  const [promoMessage, setPromoMessage] = useState("");
   const { user } = useAuth();
   const {
     subscription,
@@ -32,6 +35,49 @@ const PricingSection = ({ userEmail, onClose }) => {
     isPopular: plan.id === "premium",
     duration: plan.duration,
   }));
+
+  // Add special promo plan when valid code is entered
+  const specialPromoPlans = isPromoValid
+    ? [
+        {
+          id: "promo-special",
+          title: "🎉 Plan Especial Promocional",
+          price: "1",
+          description: "¡Oferta especial limitada! Acceso completo por solo $1",
+          features: [
+            "✅ Generación ilimitada de preguntas con IA",
+            "✅ Preguntas a desarrollar (modo premium)",
+            "✅ Evaluación inteligente de respuestas",
+            "✅ Personalización del evaluador",
+            "✅ Múltiples niveles de dificultad",
+            "✅ Soporte para todos los formatos de archivo",
+            "✅ Acceso completo durante 30 días",
+          ],
+          isPopular: true,
+          duration: 30,
+        },
+      ]
+    : [];
+
+  const allPlans = [...specialPromoPlans, ...pricingPlans];
+
+  const handlePromoCodeChange = (e) => {
+    const code = e.target.value;
+    setPromoCode(code);
+
+    if (code.toLowerCase() === "promo-cange") {
+      setIsPromoValid(true);
+      setPromoMessage(
+        "🎉 ¡Código promocional válido! Se ha desbloqueado el plan especial de $1"
+      );
+    } else if (code === "") {
+      setIsPromoValid(false);
+      setPromoMessage("");
+    } else {
+      setIsPromoValid(false);
+      setPromoMessage("❌ Código promocional inválido");
+    }
+  };
 
   const handlePaymentSuccess = async (paymentData) => {
     console.log("Payment successful:", paymentData);
@@ -74,11 +120,37 @@ const PricingSection = ({ userEmail, onClose }) => {
   return (
     <div className="pricing-section">
       <div className="pricing-header">
-        <button className="close-button" onClick={onClose}>
-          ×
-        </button>
         <h2>Elige tu plan</h2>
         <p>Accede a contenido premium y mejora tus habilidades</p>
+      </div>
+
+      {/* Promo Code Section */}
+      <div className="promo-code-section">
+        <div className="promo-code-container">
+          <label htmlFor="promo-code" className="promo-code-label">
+            🎫 ¿Tienes un código de descuento?
+          </label>
+          <div className="promo-code-input-group">
+            <input
+              id="promo-code"
+              type="text"
+              value={promoCode}
+              onChange={handlePromoCodeChange}
+              placeholder="Ingresa tu código aquí..."
+              className="promo-code-input"
+            />
+            <div className="promo-code-icon">
+              {isPromoValid ? "✅" : promoCode && !isPromoValid ? "❌" : "🎫"}
+            </div>
+          </div>
+          {promoMessage && (
+            <div
+              className={`promo-message ${isPromoValid ? "valid" : "invalid"}`}
+            >
+              {promoMessage}
+            </div>
+          )}
+        </div>
       </div>
 
       {paymentStatus === "success" && (
@@ -108,7 +180,7 @@ const PricingSection = ({ userEmail, onClose }) => {
       )}
 
       <div className="pricing-grid">
-        {pricingPlans.map((plan, index) => (
+        {allPlans.map((plan, index) => (
           <PricingCard
             key={index}
             planId={plan.id}

@@ -537,13 +537,18 @@ export default function App() {
   };
 
   const InfoModal = () => {
+    const [activeTab, setActiveTab] = useState("general");
+
     if (!showInfoModal) return null;
 
     return (
       <div className="modal-overlay" onClick={() => setShowInfoModal(false)}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="modal-content documentation-modal"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="modal-header">
-            <h3 className="modal-title">Formato de Archivo JSON</h3>
+            <h3 className="modal-title">📚 Documentación - Preguntitas</h3>
             <button
               className="modal-close"
               onClick={() => setShowInfoModal(false)}
@@ -551,30 +556,278 @@ export default function App() {
               ✕
             </button>
           </div>
-          <div className="modal-body">
-            <p className="modal-description">
-              El archivo JSON debe tener la siguiente estructura:
-            </p>
-            <pre className="modal-code-example">
-              {`[
+
+          <div className="modal-tabs">
+            <button
+              className={`tab-button ${
+                activeTab === "general" ? "active" : ""
+              }`}
+              onClick={() => setActiveTab("general")}
+            >
+              🏠 General
+            </button>
+            <button
+              className={`tab-button ${activeTab === "basic" ? "active" : ""}`}
+              onClick={() => setActiveTab("basic")}
+            >
+              📝 Básico
+            </button>
+            <button
+              className={`tab-button ${
+                activeTab === "premium" ? "active" : ""
+              }`}
+              onClick={() => setActiveTab("premium")}
+            >
+              ✨ Premium
+            </button>
+            <button
+              className={`tab-button ${activeTab === "json" ? "active" : ""}`}
+              onClick={() => setActiveTab("json")}
+            >
+              📄 JSON
+            </button>
+          </div>
+
+          <div className="modal-body documentation-body">
+            {activeTab === "general" && (
+              <div className="doc-section">
+                <h4>🧠 ¿Qué es Preguntitas?</h4>
+                <p>
+                  Preguntitas es una aplicación de cuestionarios inteligente que
+                  te permite:
+                </p>
+                <ul>
+                  <li>🎯 Realizar cuestionarios de opción múltiple</li>
+                  <li>✍️ Responder preguntas de desarrollo (Premium)</li>
+                  <li>📁 Cargar tus propios cuestionarios en formato JSON</li>
+                  <li>
+                    🤖 Generar preguntas automáticamente desde documentos usando
+                    IA
+                  </li>
+                  <li>
+                    📊 Obtener evaluaciones detalladas con inteligencia
+                    artificial
+                  </li>
+                </ul>
+
+                <h4>🚀 Primeros pasos</h4>
+                <ol>
+                  <li>
+                    <strong>Regístrate:</strong> Crea tu cuenta gratuita
+                  </li>
+                  <li>
+                    <strong>Elige el modo:</strong> Opción múltiple (gratis) o
+                    Desarrollo (premium)
+                  </li>
+                  <li>
+                    <strong>Comienza:</strong> Usa las preguntas predeterminadas
+                    o carga las tuyas
+                  </li>
+                  <li>
+                    <strong>Evalúa:</strong> Recibe retroalimentación
+                    instantánea
+                  </li>
+                </ol>
+
+                <h4>🔐 Cuenta y Suscripciones</h4>
+                <p>
+                  <strong>Cuenta gratuita:</strong> Acceso completo a
+                  cuestionarios de opción múltiple
+                </p>
+                <p>
+                  <strong>Premium:</strong> Incluye preguntas de desarrollo,
+                  generación con IA, y evaluación inteligente
+                </p>
+              </div>
+            )}
+
+            {activeTab === "basic" && (
+              <div className="doc-section">
+                <h4>📝 Modo Opción Múltiple (Gratis)</h4>
+
+                <div className="feature-explanation">
+                  <h5>🎯 Características:</h5>
+                  <ul>
+                    <li>Preguntas con múltiples opciones de respuesta</li>
+                    <li>Validación automática e instantánea</li>
+                    <li>Soporte para respuestas únicas y múltiples</li>
+                    <li>Carga de cuestionarios personalizados (JSON)</li>
+                  </ul>
+                </div>
+
+                <div className="feature-explanation">
+                  <h5>🎮 Cómo usar:</h5>
+                  <ol>
+                    <li>
+                      <strong>Selecciona "📝 Opción múltiple"</strong> en el
+                      selector de tipo
+                    </li>
+                    <li>
+                      <strong>Elige una opción:</strong>
+                      <ul>
+                        <li>Usar preguntas predeterminadas</li>
+                        <li>Cargar tu archivo JSON personalizado</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <strong>Responde:</strong> Selecciona la(s) opción(es)
+                      correcta(s)
+                    </li>
+                    <li>
+                      <strong>Envía:</strong> Haz clic en "Enviar" para ver el
+                      resultado
+                    </li>
+                    <li>
+                      <strong>Continúa:</strong> Pasa a la siguiente pregunta
+                    </li>
+                  </ol>
+                </div>
+
+                <div className="tip-box">
+                  <strong>💡 Tip:</strong> Las preguntas con múltiples
+                  respuestas correctas aparecen con casillas de verificación
+                  (☑️), las de respuesta única con botones de radio (◉).
+                </div>
+              </div>
+            )}
+
+            {activeTab === "premium" && (
+              <div className="doc-section">
+                <h4>✨ Funciones Premium</h4>
+
+                <div className="feature-explanation">
+                  <h5>✍️ Preguntas de Desarrollo:</h5>
+                  <ul>
+                    <li>Preguntas abiertas para respuestas detalladas</li>
+                    <li>Evaluación inteligente con IA</li>
+                    <li>Feedback personalizado y constructivo</li>
+                    <li>Análisis de calidad de respuesta</li>
+                    <li>Sugerencias de mejora específicas</li>
+                  </ul>
+                </div>
+
+                <div className="feature-explanation">
+                  <h5>🤖 Generación de Preguntas con IA:</h5>
+                  <ul>
+                    <li>
+                      Carga múltiples documentos (PDF, DOC, TXT, imágenes, etc.)
+                    </li>
+                    <li>Generación automática de preguntas relevantes</li>
+                    <li>Configuración de personalidad del evaluador</li>
+                    <li>Niveles de dificultad ajustables</li>
+                    <li>Soporte para PDFs complejos con Assistants API</li>
+                  </ul>
+                </div>
+
+                <div className="feature-explanation">
+                  <h5>🎭 Personalidades de Evaluador:</h5>
+                  <ul>
+                    <li>
+                      <strong>Normal:</strong> Evaluación equilibrada y
+                      constructiva
+                    </li>
+                    <li>
+                      <strong>Motivador:</strong> Enfoque positivo y alentador
+                    </li>
+                    <li>
+                      <strong>Estricto:</strong> Evaluación rigurosa y detallada
+                    </li>
+                    <li>
+                      <strong>Hater:</strong> Extremadamente exigente
+                      (¡cuidado!)
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="warning-box">
+                  <strong>⚠️ Nota:</strong> Las funciones premium requieren
+                  suscripción activa. En modo desarrollo, la carga de JSON está
+                  deshabilitada.
+                </div>
+              </div>
+            )}
+
+            {activeTab === "json" && (
+              <div className="doc-section">
+                <h4>📄 Formato de Archivo JSON</h4>
+                <p className="modal-description">
+                  Para cargar tus propias preguntas, el archivo JSON debe seguir
+                  esta estructura:
+                </p>
+
+                <pre className="modal-code-example">
+                  {`[
   {
     "id": 1,
-    "question": "¿Cuál es la respuesta?",
-    "options": ["Opción A", "Opción B", "Opción C"],
-    "correct": ["Opción A"],
-    "source": "Fuente opcional"
+    "question": "¿Cuál es la capital de España?",
+    "options": ["Madrid", "Barcelona", "Valencia", "Sevilla"],
+    "correct": ["Madrid"],
+    "source": "Geografía básica"
+  },
+  {
+    "id": 2,
+    "question": "¿Cuáles son lenguajes de programación?",
+    "options": ["JavaScript", "Python", "HTML", "CSS"],
+    "correct": ["JavaScript", "Python"],
+    "source": "Programación"
   }
 ]`}
-            </pre>
-            <div className="modal-download">
-              <a
-                href="/ejemplo_preguntas.json"
-                download="ejemplo_preguntas.json"
-                className="modal-download-link"
-              >
-                📥 Descargar archivo de ejemplo
-              </a>
-            </div>
+                </pre>
+
+                <div className="json-fields">
+                  <h5>📋 Campos obligatorios:</h5>
+                  <ul>
+                    <li>
+                      <strong>id:</strong> Identificador único (número)
+                    </li>
+                    <li>
+                      <strong>question:</strong> Texto de la pregunta
+                    </li>
+                    <li>
+                      <strong>options:</strong> Array con las opciones de
+                      respuesta
+                    </li>
+                    <li>
+                      <strong>correct:</strong> Array con las respuestas
+                      correctas
+                    </li>
+                  </ul>
+
+                  <h5>📝 Campos opcionales:</h5>
+                  <ul>
+                    <li>
+                      <strong>source:</strong> Fuente o referencia de la
+                      pregunta
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="modal-download">
+                  <a
+                    href="/ejemplo_preguntas.json"
+                    download="ejemplo_preguntas.json"
+                    className="modal-download-link"
+                  >
+                    📥 Descargar archivo de ejemplo
+                  </a>
+                </div>
+
+                <div className="tip-box">
+                  <strong>💡 Consejos:</strong>
+                  <ul>
+                    <li>
+                      Para respuesta única: usa un solo elemento en "correct"
+                    </li>
+                    <li>
+                      Para respuestas múltiples: incluye varios elementos en
+                      "correct"
+                    </li>
+                    <li>Asegúrate de que el JSON sea válido antes de cargar</li>
+                    <li>El archivo se guarda automáticamente en tu sesión</li>
+                  </ul>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -1114,6 +1367,8 @@ export default function App() {
             getDaysRemaining={getDaysRemaining}
             isExpiringSoon={isExpiringSoon}
             logout={logout}
+            setShowInfoModal={setShowInfoModal}
+            onOpenInfoModal={() => setShowInfoModal(true)}
             onOpenSubscriptionDashboard={() =>
               setShowSubscriptionDashboard(true)
             }
@@ -1122,7 +1377,7 @@ export default function App() {
           />
           <h1 className="quiz-master-title">Preguntitas</h1>
           <div className="quiz-controls">
-            <button
+            {/* <button
               className={`control-button info-button ${
                 questionType === "development" ? "disabled" : ""
               }`}
@@ -1135,7 +1390,7 @@ export default function App() {
               disabled={questionType === "development"}
             >
               ℹ️
-            </button>
+            </button> */}
             <input
               ref={fileInputRef}
               type="file"

@@ -8,6 +8,7 @@
 
 .pricing-header {
   text-align: center;
+  color: #1a1a1a;
   margin-bottom: 3rem;
 }
 
@@ -36,6 +37,123 @@
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   margin-bottom: 3rem;
+}
+
+/* Promo Code Section */
+.promo-code-section {
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.promo-code-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e8e8e8;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-code-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.promo-code-container:hover::before {
+  left: 100%;
+}
+
+.promo-code-label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.promo-code-input-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.promo-code-input {
+  width: 100%;
+  padding: 0.75rem 3rem 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: #fafafa;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.promo-code-input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.promo-code-input::placeholder {
+  color: #999;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.promo-code-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.promo-message {
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  animation: slideIn 0.3s ease;
+}
+
+.promo-message.valid {
+  background: #e8f5e8;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.promo-message.invalid {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .pricing-footer {
@@ -226,6 +344,31 @@
     padding: 0.6rem 1.2rem;
     font-size: 0.8rem;
   }
+
+  /* Promo Code Responsive */
+  .promo-code-container {
+    padding: 1.5rem 1rem;
+    margin: 0 1rem;
+  }
+
+  .promo-code-label {
+    font-size: 1rem;
+  }
+
+  .promo-code-input {
+    padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .promo-code-icon {
+    right: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .promo-message {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
   
   .payment-success-container {
     padding: 2rem 1rem;
@@ -265,5 +408,30 @@
   .security-badge {
     padding: 0.5rem 1rem;
     font-size: 0.75rem;
+  }
+
+  /* Promo Code Mobile */
+  .promo-code-container {
+    padding: 1rem;
+    margin: 0 0.5rem;
+  }
+
+  .promo-code-label {
+    font-size: 0.9rem;
+  }
+
+  .promo-code-input {
+    padding: 0.6rem 2rem 0.6rem 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .promo-code-icon {
+    right: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .promo-message {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
   }
 } 
