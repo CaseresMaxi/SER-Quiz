@@ -508,13 +508,22 @@ ${
     "source": "Generado de: nombre_archivo.pdf"
   }
 ]`
-    : `FORMATO PARA PREGUNTAS DE OPCIÓN MÚLTIPLE:
+    : `FORMATO PARA PREGUNTAS DE OPCIÓN MÚLTIPLE EXTREMADAMENTE EXIGENTES:
+
+REQUISITOS OBLIGATORIOS PARA CADA PREGUNTA:
+- Nivel universitario avanzado que desafíe a estudiantes brillantes
+- 40% preguntas con UNA respuesta correcta, 60% preguntas con MÚLTIPLES respuestas correctas
+- Opciones incorrectas PLAUSIBLES que requieran conocimiento profundo para descartar
+- Preguntas que evalúen ANÁLISIS CRÍTICO, SÍNTESIS y APLICACIÓN de conocimientos
+- Combinación de múltiples conceptos del material en situaciones complejas
+- JAMÁS preguntas triviales o de memorización simple
+
 [
   {
-    "question": "En el contexto de [tema del PDF], ¿cuál/cómo/qué [pregunta específica]?",
-    "options": ["Opción A", "Opción B", "Opción C", "Opción D"],
-    "correct": ["Opción A", "Opción C"],
-    "suggestedAnswer": "Explicación de por qué estas opciones son correctas según el PDF",
+    "question": "En el contexto de [tema complejo del PDF con múltiples conceptos], considerando [situación desafiante], ¿cuál/cuáles [pregunta que requiera análisis profundo y síntesis]?",
+    "options": ["Opción A - Distractor plausible", "Opción B - Correcta con análisis", "Opción C - Correcta con síntesis", "Opción D - Distractor convincente"],
+    "correct": ["Opción B - Correcta con análisis", "Opción C - Correcta con síntesis"],
+    "suggestedAnswer": "Explicación detallada del análisis crítico requerido para identificar por qué estas opciones son correctas, demostrando comprensión profunda del material del PDF",
     "source": "Generado de: nombre_archivo.pdf"
   }
 ]`
@@ -1169,20 +1178,32 @@ IMPORTANTE:
 CONTENIDO DE ARCHIVOS:
 ${filesInfo}
 
-REGLAS ESPECÍFICAS PARA PREGUNTAS AUTOCONTENIDAS:
+REGLAS ESPECÍFICAS PARA PREGUNTAS EXTREMADAMENTE EXIGENTES:
 1. Las preguntas deben ser AUTOCONTENIDAS con CONTEXTO SUFICIENTE para entenderlas
 2. NO hagas referencia a "secciones", "tablas" o "figuras" específicas del documento
 3. INCLUYE en la pregunta el CONTEXTO necesario del tema
-4. Las preguntas deben ser CONCRETAS sobre información específica del material
+4. Las preguntas deben ser CONCRETAS sobre información específica del material pero INTELECTUALMENTE DESAFIANTES
 5. EVITA preguntas vagas o que requieran consultar el documento para entender el contexto
-6. Lo que se pregunta debe estar CLARAMENTE explicado
+6. Lo que se pregunta debe estar CLARAMENTE explicado pero requerir ANÁLISIS PROFUNDO
+7. OBLIGATORIO: Genera 40% preguntas de respuesta única y 60% preguntas de respuestas múltiples
+8. Las opciones incorrectas deben ser PLAUSIBLES y requerir conocimiento profundo para descartar
+9. Las preguntas deben evaluar COMPRENSIÓN PROFUNDA, ANÁLISIS CRÍTICO y SÍNTESIS de conceptos
+10. Incluye preguntas que requieran COMPARAR, CONTRASTAR, EVALUAR y APLICAR conocimientos
+11. Las preguntas deben combinar múltiples conceptos del material en situaciones complejas
+12. JAMÁS generes preguntas triviales o de memorización simple
 
-EJEMPLOS DE PREGUNTAS AUTOCONTENIDAS:
-✅ BUENO: "En el contexto de un sistema de gestión que maneja tres tipos de usuarios (administradores, editores y lectores), ¿cuáles son los permisos específicos que tienen los editores?"
+EJEMPLOS DE PREGUNTAS EXIGENTES AUTOCONTENIDAS:
+
+✅ EXCELENTE (respuesta única): "En el contexto de un sistema distribuido que implementa consistencia eventual con tres estrategias de replicación (síncrona, asíncrona y híbrida), ¿cuál es la estrategia más efectiva para minimizar la latencia mientras se mantiene la integridad de datos en escenarios de alta concurrencia, considerando las limitaciones de red descritas en el material?"
+
+✅ EXCELENTE (respuestas múltiples): "Considerando el modelo de arquitectura de microservicios propuesto que incluye componentes de autenticación, autorización, logging, monitoring y service discovery, ¿cuáles de los siguientes principios son fundamentales para garantizar TANTO la escalabilidad horizontal COMO la tolerancia a fallos del sistema completo?"
+
+✅ BUENO (respuesta única): "En el contexto de un algoritmo de cifrado que utiliza tres capas de seguridad (simétrica, asimétrica y hash), ¿cuál es el factor más crítico para prevenir ataques de fuerza bruta según las mejores prácticas de seguridad descritas?"
+
+✅ BUENO (respuestas múltiples): "Dado el proceso de optimización de base de datos que involucra indexación, particionamiento y cacheo, ¿cuáles de las siguientes técnicas son esenciales para mejorar simultáneamente el rendimiento de consultas Y la integridad referencial?"
+
 ❌ MALO: "¿Cuáles son los permisos mencionados en la tabla 3?"
-
-✅ BUENO: "Considerando el proceso de autenticación que involucra verificación biométrica y contraseña, ¿cuál es el orden correcto de los pasos?"
-❌ MALO: "¿Cuál es el proceso descrito en la sección 2?"
+❌ MALO: "¿Qué es una base de datos?" (demasiado general y trivial)
 
 INSTRUCCIONES ORIGINALES:
 ${instructions}
@@ -1200,17 +1221,22 @@ Responde ÚNICAMENTE con un array JSON válido en este formato exacto:
   }
 ]
 
-IMPORTANTE: 
+IMPORTANTE - REQUISITOS CRÍTICOS: 
 - Responde SOLO con el JSON, sin texto adicional
 - Asegúrate de que el JSON sea válido
 - Usa comillas dobles para todas las cadenas
 - Las respuestas correctas deben estar exactamente como aparecen en las opciones
-- En "suggestedAnswer": proporciona explicación clara de por qué las opciones marcadas son correctas
+- En "suggestedAnswer": proporciona explicación detallada de por qué las opciones son correctas basándose en análisis profundo
 - Genera exactamente ${questionsToGenerate} preguntas (mínimo 10)
-- Cada pregunta debe tener entre 3-${AI_CONFIG.optionsPerQuestion} opciones
+- Cada pregunta debe tener exactamente ${AI_CONFIG.optionsPerQuestion} opciones
+- OBLIGATORIO: 40% preguntas con UNA respuesta correcta, 60% preguntas con MÚLTIPLES respuestas correctas
 - TODA pregunta debe incluir el CONTEXTO NECESARIO para entenderla sin consultar el documento
+- Las preguntas deben ser EXTREMADAMENTE EXIGENTES y requerir PENSAMIENTO CRÍTICO AVANZADO
 - Las preguntas deben ser AUTOCONTENIDAS y CLARAS sobre el tema específico
-- NO generes preguntas que requieran consultar referencias del documento para entender el contexto`;
+- NO generes preguntas que requieran consultar referencias del documento para entender el contexto
+- JAMÁS generes preguntas triviales - todas deben desafiar a estudiantes avanzados
+- Los distractores (opciones incorrectas) deben ser PLAUSIBLES y requerir conocimiento profundo para descartar
+- Las preguntas deben combinar múltiples conceptos y evaluar comprensión profunda, no memorización`;
   }
 }
 
@@ -1289,36 +1315,59 @@ function parseQuestionsFromResponse(responseContent, questionType) {
         },
       ];
     } else {
-      // Fallback original para preguntas de opción múltiple
+      // Fallback mejorado para preguntas de opción múltiple exigentes
       return [
         {
           id: Date.now(),
           question:
-            "¿Cuál de las siguientes es una buena práctica en programación?",
+            "En el contexto de una arquitectura de microservicios que implementa patrones de Circuit Breaker, Bulkhead y Timeout para garantizar la resiliencia, ¿cuál es el mecanismo más efectivo para mantener la disponibilidad del sistema cuando un servicio crítico experimenta latencia elevada intermitente?",
           options: [
-            "Escribir código sin comentarios",
-            "Usar nombres de variables descriptivos",
-            "Nunca hacer refactoring",
-            "Evitar la documentación",
+            "Implementar únicamente Circuit Breaker con umbral fijo",
+            "Configurar Circuit Breaker adaptivo con monitoreo de percentiles de latencia",
+            "Usar solo timeouts agresivos para forzar respuestas rápidas",
+            "Aplicar Bulkhead sin restricciones de recursos",
           ],
-          correct: ["Usar nombres de variables descriptivos"],
+          correct: [
+            "Configurar Circuit Breaker adaptivo con monitoreo de percentiles de latencia",
+          ],
           suggestedAnswer:
-            "Usar nombres de variables descriptivos es correcto porque mejora la legibilidad del código, facilita el mantenimiento y permite que otros desarrolladores (y uno mismo en el futuro) comprendan rápidamente el propósito de cada variable sin necesidad de comentarios adicionales.",
-          source: "Pregunta de fallback generada por IA",
+            "El Circuit Breaker adaptivo con monitoreo de percentiles de latencia es la opción correcta porque permite detectar patrones de degradación del servicio antes de que ocurran fallos completos, ajusta dinámicamente los umbrales basándose en el comportamiento histórico del servicio, y proporciona una respuesta más inteligente a las variaciones de rendimiento intermitentes que los enfoques estáticos.",
+          source: "Pregunta de fallback exigente generada por IA",
         },
         {
           id: Date.now() + 1,
-          question: "¿Qué es importante al subir archivos a un sistema?",
+          question:
+            "Considerando un sistema distribuido que maneja transacciones financieras con requisitos ACID, ¿cuáles de los siguientes enfoques son fundamentales para garantizar TANTO la consistencia de datos COMO el rendimiento óptimo en escenarios de alta concurrencia?",
           options: [
-            "Validar el tipo de archivo",
-            "No verificar el tamaño",
-            "Permitir cualquier extensión",
-            "Guardar sin procesamiento",
+            "Implementar locks optimistas con validación de versión",
+            "Usar locks pesimistas en todas las operaciones",
+            "Aplicar técnicas de particionamiento horizontal inteligente",
+            "Mantener réplicas síncronas en múltiples zonas geográficas",
           ],
-          correct: ["Validar el tipo de archivo"],
+          correct: [
+            "Implementar locks optimistas con validación de versión",
+            "Aplicar técnicas de particionamiento horizontal inteligente",
+          ],
           suggestedAnswer:
-            "Validar el tipo de archivo es fundamental para la seguridad del sistema, ya que previene la subida de archivos maliciosos, asegura que solo se procesen los formatos esperados y protege contra vulnerabilidades de seguridad relacionadas con la ejecución de código no autorizado.",
-          source: "Pregunta de fallback generada por IA",
+            "Los locks optimistas con validación de versión y el particionamiento horizontal inteligente son correctos porque: 1) Los locks optimistas minimizan el bloqueo de recursos permitiendo mayor concurrencia mientras detectan conflictos mediante versionado, mejorando el rendimiento general. 2) El particionamiento horizontal inteligente distribuye la carga de transacciones reduciendo contención y permitiendo procesamiento paralelo eficiente. Estas técnicas combinadas mantienen la consistencia ACID mientras optimizan el rendimiento en alta concurrencia.",
+          source: "Pregunta de fallback exigente generada por IA",
+        },
+        {
+          id: Date.now() + 2,
+          question:
+            "En el contexto de un algoritmo de machine learning que utiliza ensemble methods con Random Forest, Gradient Boosting y Voting Classifier para predecir riesgo crediticio, ¿cuál es la estrategia más efectiva para prevenir overfitting mientras se maximiza la capacidad predictiva del modelo?",
+          options: [
+            "Usar únicamente validación cruzada k-fold",
+            "Implementar regularización L1/L2 en todos los modelos base",
+            "Aplicar early stopping solo en Gradient Boosting",
+            "Combinar diversidad de modelos con validación temporal estratificada",
+          ],
+          correct: [
+            "Combinar diversidad de modelos con validación temporal estratificada",
+          ],
+          suggestedAnswer:
+            "Combinar diversidad de modelos con validación temporal estratificada es la estrategia más efectiva porque aprovecha las fortalezas complementarias de diferentes algoritmos (Random Forest maneja no-linealidades, Gradient Boosting captura patrones secuenciales), mientras que la validación temporal estratificada simula condiciones reales de predicción financiera respetando la naturaleza temporal de los datos crediticios, previniendo data leakage y proporcionando estimaciones más realistas del rendimiento del modelo.",
+          source: "Pregunta de fallback exigente generada por IA",
         },
       ];
     }
