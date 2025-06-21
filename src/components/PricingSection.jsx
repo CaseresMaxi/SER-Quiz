@@ -2,9 +2,17 @@ import React, { useState } from "react";
 import PricingCard from "./ui/PricingCard";
 import { useSubscription, SUBSCRIPTION_PLANS } from "../hooks/useSubscription";
 import { useAuth } from "../hooks/useAuth";
+import {
+  isMaintenanceModeActive,
+  getMaintenanceSettings,
+} from "../config/maintenance";
 import "./PricingSection.css";
 
 const PricingSection = ({ userEmail, onClose }) => {
+  // Get maintenance mode status from config
+  const isMaintenanceMode = isMaintenanceModeActive();
+  const maintenanceSettings = getMaintenanceSettings();
+
   const [paymentStatus, setPaymentStatus] = useState(null);
   const [paymentMessage, setPaymentMessage] = useState("");
   const [promoCode, setPromoCode] = useState("");
@@ -133,6 +141,56 @@ const PricingSection = ({ userEmail, onClose }) => {
   console.log("PricingSection - User:", user);
   console.log("PricingSection - UserEmail:", userEmail);
 
+  // Maintenance Mode Component
+  const MaintenanceBanner = () => (
+    <div className="maintenance-container">
+      <div className="maintenance-banner">
+        <div className="maintenance-icon">
+          <div className="maintenance-gear">⚙️</div>
+          <div className="maintenance-sparkles">✨</div>
+        </div>
+
+        <div className="maintenance-content">
+          <h3 className="maintenance-title">{maintenanceSettings.title}</h3>
+          <p className="maintenance-description">
+            {maintenanceSettings.description}
+            <br />
+            Mientras tanto, puedes seguir disfrutando del contenido gratuito.
+          </p>
+
+          <div className="maintenance-features">
+            {maintenanceSettings.features.map((feature, index) => (
+              <div key={index} className="maintenance-feature">
+                <span className="feature-icon">{feature.icon}</span>
+                <span>{feature.text}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="maintenance-status">
+            <div className="status-indicator">
+              <div className="status-dot pulsing"></div>
+              <span>Trabajando en mejoras...</span>
+            </div>
+          </div>
+
+          <div className="maintenance-timeline">
+            <p className="timeline-text">
+              <strong>Tiempo estimado:</strong>{" "}
+              {maintenanceSettings.estimatedTime}
+            </p>
+            <p className="contact-text">
+              ¿Tienes preguntas? Contáctanos en{" "}
+              <a href={`mailto:${maintenanceSettings.contactEmail}`}>
+                {maintenanceSettings.contactEmail}
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="pricing-section">
       <div className="pricing-header">
@@ -140,93 +198,107 @@ const PricingSection = ({ userEmail, onClose }) => {
         <p>Accede a contenido premium y mejora tus habilidades</p>
       </div>
 
-      {/* Promo Code Section */}
-      <div className="promo-code-section">
-        <div className="promo-code-container">
-          <label htmlFor="promo-code" className="promo-code-label">
-            🎫 ¿Tienes un código de descuento?
-          </label>
-          <div className="promo-code-input-group">
-            <input
-              id="promo-code"
-              type="text"
-              value={promoCode}
-              onChange={handlePromoCodeChange}
-              placeholder="Ingresa tu código aquí..."
-              className="promo-code-input"
-            />
-            <div className="promo-code-icon">
-              {isPromoValid ? "✅" : promoCode && !isPromoValid ? "❌" : "🎫"}
+      {/* Show maintenance banner if maintenance mode is enabled */}
+      {isMaintenanceMode && <MaintenanceBanner />}
+
+      {/* Hide pricing content when in maintenance mode */}
+      {!isMaintenanceMode && (
+        <>
+          {/* Promo Code Section */}
+          <div className="promo-code-section">
+            <div className="promo-code-container">
+              <label htmlFor="promo-code" className="promo-code-label">
+                🎫 ¿Tienes un código de descuento?
+              </label>
+              <div className="promo-code-input-group">
+                <input
+                  id="promo-code"
+                  type="text"
+                  value={promoCode}
+                  onChange={handlePromoCodeChange}
+                  placeholder="Ingresa tu código aquí..."
+                  className="promo-code-input"
+                />
+                <div className="promo-code-icon">
+                  {isPromoValid
+                    ? "✅"
+                    : promoCode && !isPromoValid
+                    ? "❌"
+                    : "🎫"}
+                </div>
+              </div>
+              {promoMessage && (
+                <div
+                  className={`promo-message ${
+                    isPromoValid ? "valid" : "invalid"
+                  }`}
+                >
+                  {promoMessage}
+                </div>
+              )}
             </div>
           </div>
-          {promoMessage && (
-            <div
-              className={`promo-message ${isPromoValid ? "valid" : "invalid"}`}
-            >
-              {promoMessage}
+
+          {paymentStatus === "success" && (
+            <div className="payment-success-banner">
+              <span className="success-icon">✅</span>
+              {paymentMessage}
+              <button
+                className="success-close-btn"
+                onClick={() => setPaymentStatus(null)}
+              >
+                ×
+              </button>
             </div>
           )}
-        </div>
-      </div>
 
-      {paymentStatus === "success" && (
-        <div className="payment-success-banner">
-          <span className="success-icon">✅</span>
-          {paymentMessage}
-          <button
-            className="success-close-btn"
-            onClick={() => setPaymentStatus(null)}
-          >
-            ×
-          </button>
-        </div>
+          {paymentStatus === "error" && (
+            <div className="payment-error-banner">
+              <span className="error-icon">⚠️</span>
+              {paymentMessage}
+              <button
+                className="error-close-btn"
+                onClick={() => setPaymentStatus(null)}
+              >
+                ×
+              </button>
+            </div>
+          )}
+
+          <div className="pricing-grid">
+            {allPlans.map((plan, index) => (
+              <PricingCard
+                key={index}
+                planId={plan.id}
+                title={plan.title}
+                price={plan.price}
+                originalPrice={plan.originalPrice}
+                description={plan.description}
+                features={plan.features}
+                isPopular={plan.isPopular}
+                user={user}
+                userEmail={userEmail || user?.email}
+                onPaymentSuccess={handlePaymentSuccess}
+                onPaymentError={handlePaymentError}
+                currentSubscription={subscription}
+                hasActiveSubscription={hasActiveSubscription()}
+              />
+            ))}
+          </div>
+
+          <div className="pricing-footer">
+            <div className="security-badges">
+              <div className="security-badge">🔒 Pago 100% Seguro</div>
+              <div className="security-badge">✅ Garantía de 7 días</div>
+              <div className="security-badge">💳 Todos los medios de pago</div>
+            </div>
+
+            <p className="pricing-note">
+              * Todos los precios están en pesos argentinos (ARS) e incluyen IVA
+            </p>
+          </div>
+        </>
       )}
-
-      {paymentStatus === "error" && (
-        <div className="payment-error-banner">
-          <span className="error-icon">⚠️</span>
-          {paymentMessage}
-          <button
-            className="error-close-btn"
-            onClick={() => setPaymentStatus(null)}
-          >
-            ×
-          </button>
-        </div>
-      )}
-
-      <div className="pricing-grid">
-        {allPlans.map((plan, index) => (
-          <PricingCard
-            key={index}
-            planId={plan.id}
-            title={plan.title}
-            price={plan.price}
-            originalPrice={plan.originalPrice}
-            description={plan.description}
-            features={plan.features}
-            isPopular={plan.isPopular}
-            user={user}
-            userEmail={userEmail || user?.email}
-            onPaymentSuccess={handlePaymentSuccess}
-            onPaymentError={handlePaymentError}
-            currentSubscription={subscription}
-            hasActiveSubscription={hasActiveSubscription()}
-          />
-        ))}
-      </div>
-
-      <div className="pricing-footer">
-        <div className="security-badges">
-          <div className="security-badge">🔒 Pago 100% Seguro</div>
-          <div className="security-badge">✅ Garantía de 7 días</div>
-          <div className="security-badge">💳 Todos los medios de pago</div>
-        </div>
-
-        <p className="pricing-note">
-          * Todos los precios están en pesos argentinos (ARS) e incluyen IVA
-        </p>
-      </div>
     </div>
   );
 };

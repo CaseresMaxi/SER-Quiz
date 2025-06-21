@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { isMaintenanceModeActive } from "../../config/maintenance";
 import "./PaymentButton.css";
 
 const PaymentButton = ({
@@ -10,6 +11,7 @@ const PaymentButton = ({
   user,
 }) => {
   const [isCreatingPreference, setIsCreatingPreference] = useState(false);
+  const isMaintenanceMode = isMaintenanceModeActive();
 
   const handlePayment = async () => {
     setIsCreatingPreference(true);
@@ -81,11 +83,18 @@ const PaymentButton = ({
   return (
     <div className={`payment-button-container ${className}`}>
       <button
-        onClick={handlePayment}
-        disabled={isCreatingPreference || !user?.uid}
-        className="payment-init-button"
+        onClick={isMaintenanceMode ? undefined : handlePayment}
+        disabled={isCreatingPreference || !user?.uid || isMaintenanceMode}
+        className={`payment-init-button ${
+          isMaintenanceMode ? "maintenance-disabled" : ""
+        }`}
       >
-        {isCreatingPreference ? (
+        {isMaintenanceMode ? (
+          <>
+            <span className="maintenance-icon">⚙️</span>
+            Sistema en mantenimiento
+          </>
+        ) : isCreatingPreference ? (
           <>
             <span className="loading-spinner"></span>
             Procesando pago...
@@ -97,11 +106,18 @@ const PaymentButton = ({
         )}
       </button>
 
+      {/* Maintenance tooltip */}
+      {isMaintenanceMode && (
+        <div className="maintenance-tooltip">
+          Los pagos están temporalmente deshabilitados por mantenimiento
+        </div>
+      )}
+
       {/* Debug info in development */}
       {process.env.NODE_ENV === "development" && (
         <div style={{ fontSize: "10px", color: "#666", marginTop: "5px" }}>
           Debug: user_id={user?.uid}, plan_id={item?.id}, email=
-          {userEmail || user?.email}
+          {userEmail || user?.email}, maintenance={isMaintenanceMode.toString()}
         </div>
       )}
     </div>

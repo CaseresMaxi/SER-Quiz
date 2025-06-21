@@ -25,26 +25,46 @@ const UserMenuDropdown = ({
       const updatePosition = () => {
         const rect = triggerRef.current.getBoundingClientRect();
         const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
         const isMobile = viewportWidth <= 768;
-        const dropdownWidth = isMobile ? 240 : 320; // Min width from CSS
+        const isVerySmall = viewportWidth <= 480;
+
+        // Calculate dropdown width based on viewport
+        let dropdownWidth;
+        if (isVerySmall) {
+          dropdownWidth = Math.min(200, viewportWidth - 16);
+        } else if (isMobile) {
+          dropdownWidth = Math.min(240, viewportWidth - 24);
+        } else {
+          dropdownWidth = Math.min(280, viewportWidth - 32);
+        }
 
         let left = rect.left;
         let right = "auto";
 
-        // On mobile, always position from the right to avoid hiding
-        if (isMobile) {
-          right = viewportWidth - rect.right;
+        // Always check if dropdown would overflow regardless of screen size
+        const rightEdgePosition = rect.left + dropdownWidth;
+        const leftEdgePosition = rect.right - dropdownWidth;
+
+        if (rightEdgePosition > viewportWidth - 16) {
+          // Position from the right edge of the trigger
+          right = Math.max(8, viewportWidth - rect.right);
           left = "auto";
-        } else {
-          // On desktop, check if dropdown would overflow on the right
-          if (left + dropdownWidth > viewportWidth - 20) {
-            right = viewportWidth - rect.right;
-            left = "auto";
-          }
+        } else if (leftEdgePosition < 16) {
+          // Position from the left edge of the trigger, but not too close to screen edge
+          left = Math.max(8, rect.left);
+          right = "auto";
+        }
+
+        // Ensure the dropdown doesn't go below the viewport
+        let top = rect.bottom + 8;
+        if (top + 300 > viewportHeight) {
+          // Approximate dropdown height
+          top = Math.max(8, rect.top - 308); // Position above the trigger
         }
 
         setPosition({
-          top: rect.bottom + 8,
+          top: top,
           left: left === "auto" ? "auto" : left,
           right: right === "auto" ? "auto" : right,
         });
