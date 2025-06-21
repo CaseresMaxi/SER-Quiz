@@ -1,0 +1,123 @@
+[
+  {
+    "question": "¿Cómo puedes seleccionar múltiples respuestas en esta aplicación?",
+    "options": [
+      "Haciendo clic en varias opciones",
+      "Manteniendo Ctrl y haciendo clic",
+      "Solo se puede seleccionar una respuesta",
+      "Usando checkboxes cuando hay múltiples respuestas correctas"
+    ],
+    "correct": [
+      "Haciendo clic en varias opciones",
+      "Usando checkboxes cuando hay múltiples respuestas correctas"
+    ],
+    "source": "Tutorial de la App",
+    "id": 1
+  },
+  {
+    "question": "¿Qué indica cuando una pregunta tiene múltiples respuestas correctas?",
+    "options": [
+      "Aparece el texto 'Selecciona TODAS las opciones correctas'",
+      "Los controles cambian a checkboxes",
+      "El color de fondo es diferente",
+      "No hay indicación visual"
+    ],
+    "correct": [
+      "Aparece el texto 'Selecciona TODAS las opciones correctas'",
+      "Los controles cambian a checkboxes"
+    ],
+    "source": "Guía de Usuario",
+    "id": 2
+  },
+  {
+    "question": "¿Cuándo se muestra tu puntuación final en el quiz?",
+    "options": [
+      "Después de cada pregunta",
+      "Al completar todas las preguntas",
+      "Solo si apruebas",
+      "Nunca se muestra"
+    ],
+    "correct": [
+      "Al completar todas las preguntas"
+    ],
+    "source": "Funcionalidades de la App",
+    "id": 3
+  },
+  {
+    "question": "Esta pregunta demuestra una selección única. ¿Cuál es la forma correcta de navegar al siguiente pregunta?",
+    "options": [
+      "Presionar Enter",
+      "Hacer clic en el botón 'Siguiente'",
+      "Hacer doble clic en la respuesta",
+      "La navegación es automática"
+    ],
+    "correct": [
+      "Hacer clic en el botón 'Siguiente'"
+    ],
+    "source": "Navegación de la App",
+    "id": 4
+  },
+  {
+    "question": "Selecciona TODAS las características que tiene esta aplicación de quiz:",
+    "options": [
+      "Preguntas de selección múltiple",
+      "Preguntas de una sola respuesta",
+      "Indicación de fuente de cada pregunta",
+      "Timer por pregunta",
+      "Progreso visual del quiz"
+    ],
+    "correct": [
+      "Preguntas de selección múltiple",
+      "Preguntas de una sola respuesta",
+      "Indicación de fuente de cada pregunta"
+    ],
+    "source": "Características de la App",
+    "id": 5
+  },
+  {
+    "question": "¿Qué información se muestra junto a cada pregunta?",
+    "options": [
+      "El número de pregunta",
+      "La fuente de la pregunta",
+      "El tiempo restante",
+      "La dificultad de la pregunta"
+    ],
+    "correct": [
+      "El número de pregunta",
+      "La fuente de la pregunta"
+    ],
+    "source": "Interfaz de Usuario",
+    "id": 6
+  },
+  {
+    "question": "¿Puedes cambiar tu respuesta antes de pasar a la siguiente pregunta?",
+    "options": [
+      "Sí, simplemente haciendo clic en otra opción",
+      "No, la primera selección es final",
+      "Solo en preguntas de opción múltiple",
+      "Solo si no has confirmado la respuesta"
+    ],
+    "correct": [
+      "Sí, simplemente haciendo clic en otra opción"
+    ],
+    "source": "Funcionalidad de Respuestas",
+    "id": 7
+  },
+  {
+    "question": "Esta es una pregunta de demostración con múltiples respuestas correctas. ¿Cuáles de estas son ventajas de hacer un quiz interactivo?",
+    "options": [
+      "Feedback inmediato",
+      "Aprendizaje más dinámico",
+      "Requiere menos tiempo que leer",
+      "Autoevaluación del conocimiento",
+      "Es más difícil que otros métodos"
+    ],
+    "correct": [
+      "Feedback inmediato",
+      "Aprendizaje más dinámico", 
+      "Autoevaluación del conocimiento"
+    ],
+    "source": "Beneficios del Quiz",
+    "id": 8
+  }
+]

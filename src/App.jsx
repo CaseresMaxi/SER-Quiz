@@ -45,7 +45,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [loadedFileName, setLoadedFileName] = useState(
-    "preguntas_seguridad_v3.json"
+    "preguntitas.json"
   );
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -196,14 +196,14 @@ export default function App() {
     storage.removeItem(customQuizKey);
     storage.removeItem(customFileNameKey);
 
-    fetch("preguntas_seguridad_v3.json")
+    fetch("preguntitas.json")
       .then((r) => r.json())
       .then((data) => {
         // shuffle and keep first 20 for the session
         const shuffled = data.sort(() => 0.5 - Math.random()).slice(0, 20);
         setQuestions(shuffled);
         setIsCustomQuiz(false);
-        setLoadedFileName("preguntas_seguridad_v3.json");
+        setLoadedFileName("preguntitas.json");
         setLoading(false);
       })
       .catch((err) => {
@@ -527,14 +527,14 @@ export default function App() {
     console.log(
       `📖 No hay preguntas guardadas para ${type}, cargando por defecto`
     );
-    fetch("preguntas_seguridad_v3.json")
+    fetch("preguntitas.json")
       .then((r) => r.json())
       .then((data) => {
         // shuffle and keep first 20 for the session
         const shuffled = data.sort(() => 0.5 - Math.random()).slice(0, 20);
         setQuestions(shuffled);
         setIsCustomQuiz(false);
-        setLoadedFileName("preguntas_seguridad_v3.json");
+        setLoadedFileName("preguntitas.json");
         setLoading(false);
       })
       .catch((err) => {
@@ -1134,7 +1134,7 @@ export default function App() {
 
         {selectionLoading ? (
           <div className="selection-loading">
-            <div className="loading-spinner">⟳</div>
+            <div className="loading-spinner"></div>
             <h3>Preparando tu modalidad...</h3>
             <p>Configurando el quiz para ti</p>
           </div>
@@ -1299,6 +1299,28 @@ export default function App() {
   function handleNext() {
     setShowResult(false);
     setCurrentIdx((idx) => idx + 1);
+  }
+
+  function handleSkip() {
+    // Skip current question without answering
+    if (currentIdx < questions.length - 1) {
+      setCurrentIdx((idx) => idx + 1);
+      setShowResult(false);
+      // Clear any selected answers for current question
+      setSelected((prev) => {
+        const newSelected = { ...prev };
+        delete newSelected[current.id];
+        return newSelected;
+      });
+      // Clear development answer for current question
+      if (questionType === "development") {
+        setDevelopmentAnswers((prev) => {
+          const newAnswers = { ...prev };
+          delete newAnswers[current.id];
+          return newAnswers;
+        });
+      }
+    }
   }
 
   // Show loading while checking auth or Firebase storage
@@ -1547,8 +1569,8 @@ export default function App() {
                 </pre>
                 <div className="example-download">
                   <a
-                    href="/preguntas_seguridad_v3.json"
-                    download="preguntas_seguridad_v3.json"
+                    href="/preguntitas.json"
+                    download="preguntitas.json"
                     className="download-example-link"
                   >
                     📥 Descargar archivo de ejemplo
@@ -1624,7 +1646,8 @@ export default function App() {
                   : "Cargar archivo JSON"
               }
             >
-              📁 Subir tus preguntas
+              <span className="upload-emoji">📁</span>
+              <span className="upload-text">Subir tus preguntas</span>
             </label>
           </div>
         </div>
@@ -1724,7 +1747,7 @@ export default function App() {
           )}
 
           {!showResult && (
-            <>
+            <div className="quiz-actions">
               <Button
                 onClick={handleSubmit}
                 disabled={isEvaluating}
@@ -1739,6 +1762,18 @@ export default function App() {
                   "Enviar"
                 )}
               </Button>
+
+              {currentIdx < questions.length - 1 && (
+                <Button
+                  onClick={handleSkip}
+                  disabled={isEvaluating}
+                  className="skip-button"
+                  variant="outline"
+                >
+                  ⏭️ Saltar pregunta
+                </Button>
+              )}
+
               {isEvaluating && questionType === "development" && (
                 <div className="evaluation-progress">
                   <div className="progress-indicator">
@@ -1749,7 +1784,7 @@ export default function App() {
                   </div>
                 </div>
               )}
-            </>
+            </div>
           )}
 
           {showResult && (

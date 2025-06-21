@@ -309,12 +309,13 @@
   }
 
   .user-menu-dropdown {
-    min-width: 280px;
-    max-width: 95vw;
+    min-width: 240px;
+    max-width: 85vw;
+    width: 240px;
   }
 
   .menu-header {
-    padding: 16px;
+    padding: 12px 10px;
   }
 
   .user-avatar-large {
@@ -324,15 +325,24 @@
   }
 
   .user-email {
+    font-size: 13px;
+  }
+
+  .menu-label {
     font-size: 14px;
   }
 
+  .menu-description {
+    font-size: 11px;
+  }
+
   .menu-item {
-    padding: 14px 16px;
+    padding: 12px 10px;
+    gap: 12px;
   }
 
   .menu-divider {
-    margin: 0 16px;
+    margin: 0 10px;
   }
 }
 
@@ -354,8 +364,9 @@
   }
 
   .user-menu-dropdown {
-    min-width: 260px;
-    max-width: 98vw;
+    min-width: 220px;
+    max-width: 85vw;
+    width: 220px;
   }
 }
 

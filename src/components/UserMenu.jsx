@@ -25,15 +25,22 @@ const UserMenuDropdown = ({
       const updatePosition = () => {
         const rect = triggerRef.current.getBoundingClientRect();
         const viewportWidth = window.innerWidth;
-        const dropdownWidth = 320; // Min width from CSS
+        const isMobile = viewportWidth <= 768;
+        const dropdownWidth = isMobile ? 240 : 320; // Min width from CSS
 
         let left = rect.left;
         let right = "auto";
 
-        // Check if dropdown would overflow on the right
-        if (left + dropdownWidth > viewportWidth - 20) {
+        // On mobile, always position from the right to avoid hiding
+        if (isMobile) {
           right = viewportWidth - rect.right;
           left = "auto";
+        } else {
+          // On desktop, check if dropdown would overflow on the right
+          if (left + dropdownWidth > viewportWidth - 20) {
+            right = viewportWidth - rect.right;
+            left = "auto";
+          }
         }
 
         setPosition({
