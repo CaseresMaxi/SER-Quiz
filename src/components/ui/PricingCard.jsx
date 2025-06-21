@@ -6,6 +6,7 @@ const PricingCard = ({
   planId,
   title,
   price,
+  originalPrice,
   description,
   features,
   isPopular = false,
@@ -45,9 +46,19 @@ const PricingCard = ({
       <div className="pricing-header">
         <h3 className="pricing-title">{title}</h3>
         <div className="pricing-price">
-          <span className="currency">$</span>
-          <span className="amount">{price}</span>
-          <span className="period">ARS</span>
+          {originalPrice && (
+            <div className="original-price">
+              <span className="currency">$</span>
+              <span className="amount">{originalPrice}</span>
+              <span className="period">ARS</span>
+            </div>
+          )}
+          <div className={`current-price ${originalPrice ? "discounted" : ""}`}>
+            <span className="currency">$</span>
+            <span className="amount">{price}</span>
+            <span className="period">ARS</span>
+            {originalPrice && <span className="discount-badge">50% OFF</span>}
+          </div>
         </div>
         <p className="pricing-description">{description}</p>
       </div>

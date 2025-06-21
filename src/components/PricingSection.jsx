@@ -10,6 +10,7 @@ const PricingSection = ({ userEmail, onClose }) => {
   const [promoCode, setPromoCode] = useState("");
   const [isPromoValid, setIsPromoValid] = useState(false);
   const [promoMessage, setPromoMessage] = useState("");
+  const [discountPercent, setDiscountPercent] = useState(0);
   const { user } = useAuth();
   const {
     subscription,
@@ -20,11 +21,15 @@ const PricingSection = ({ userEmail, onClose }) => {
     loading: subscriptionLoading,
   } = useSubscription();
 
-  // Convert SUBSCRIPTION_PLANS to array format for rendering
+  // Convert SUBSCRIPTION_PLANS to array format for rendering with discount applied
   const pricingPlans = Object.values(SUBSCRIPTION_PLANS).map((plan) => ({
     id: plan.id,
     title: plan.name,
-    price: plan.price.toString(),
+    price:
+      discountPercent > 0
+        ? Math.round(plan.price * (1 - discountPercent / 100)).toString()
+        : plan.price.toString(),
+    originalPrice: discountPercent > 0 ? plan.price.toString() : null,
     description:
       plan.id === "basic"
         ? "Perfecto para estudiantes que quieren mejorar sus habilidades"
@@ -36,28 +41,30 @@ const PricingSection = ({ userEmail, onClose }) => {
     duration: plan.duration,
   }));
 
-  // Add special promo plan when valid code is entered
-  const specialPromoPlans = isPromoValid
-    ? [
-        {
-          id: "promo-special",
-          title: "🎉 Plan Especial Promocional",
-          price: "1",
-          description: "¡Oferta especial limitada! Acceso completo por solo $1",
-          features: [
-            "✅ Generación ilimitada de preguntas con IA",
-            "✅ Preguntas a desarrollar (modo premium)",
-            "✅ Evaluación inteligente de respuestas",
-            "✅ Personalización del evaluador",
-            "✅ Múltiples niveles de dificultad",
-            "✅ Soporte para todos los formatos de archivo",
-            "✅ Acceso completo durante 30 días",
-          ],
-          isPopular: true,
-          duration: 30,
-        },
-      ]
-    : [];
+  // Add special promo plan when valid code is entered (only for promo-cange)
+  const specialPromoPlans =
+    isPromoValid && promoCode.toLowerCase() === "promo-cange"
+      ? [
+          {
+            id: "promo-special",
+            title: "🎉 Plan Especial Promocional",
+            price: "1",
+            description:
+              "¡Oferta especial limitada! Acceso completo por solo $1",
+            features: [
+              "✅ Generación ilimitada de preguntas con IA",
+              "✅ Preguntas a desarrollar (modo premium)",
+              "✅ Evaluación inteligente de respuestas",
+              "✅ Personalización del evaluador",
+              "✅ Múltiples niveles de dificultad",
+              "✅ Soporte para todos los formatos de archivo",
+              "✅ Acceso completo durante 30 días",
+            ],
+            isPopular: true,
+            duration: 30,
+          },
+        ]
+      : [];
 
   const allPlans = [...specialPromoPlans, ...pricingPlans];
 
@@ -67,14 +74,23 @@ const PricingSection = ({ userEmail, onClose }) => {
 
     if (code.toLowerCase() === "promo-cange") {
       setIsPromoValid(true);
+      setDiscountPercent(0);
       setPromoMessage(
         "🎉 ¡Código promocional válido! Se ha desbloqueado el plan especial de $1"
       );
+    } else if (code.toLowerCase() === "descuento50") {
+      setIsPromoValid(true);
+      setDiscountPercent(50);
+      setPromoMessage(
+        "🎉 ¡Código de descuento válido! Se ha aplicado un 50% de descuento a todos los planes"
+      );
     } else if (code === "") {
       setIsPromoValid(false);
+      setDiscountPercent(0);
       setPromoMessage("");
     } else {
       setIsPromoValid(false);
+      setDiscountPercent(0);
       setPromoMessage("❌ Código promocional inválido");
     }
   };
@@ -186,6 +202,7 @@ const PricingSection = ({ userEmail, onClose }) => {
             planId={plan.id}
             title={plan.title}
             price={plan.price}
+            originalPrice={plan.originalPrice}
             description={plan.description}
             features={plan.features}
             isPopular={plan.isPopular}

@@ -21,7 +21,7 @@ export const SUBSCRIPTION_PLANS = {
   basic: {
     id: "basic",
     name: "Plan Básico",
-    price: 2999,
+    price: 1999,
     duration: 30, // days
     features: [
       "Acceso a 100 preguntas premium",
@@ -33,7 +33,7 @@ export const SUBSCRIPTION_PLANS = {
   premium: {
     id: "premium",
     name: "Plan Premium",
-    price: 4999,
+    price: 3999,
     duration: 90, // days
     features: [
       "Acceso ilimitado a todas las preguntas",
@@ -48,7 +48,7 @@ export const SUBSCRIPTION_PLANS = {
   professional: {
     id: "professional",
     name: "Plan Profesional",
-    price: 9999,
+    price: 8999,
     duration: 365, // days
     features: [
       // "Todo lo incluido en Premium",

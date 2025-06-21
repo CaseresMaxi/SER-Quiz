@@ -64,6 +64,11 @@ export default function App() {
   const fileInputRef = useRef(null);
   const premiumFileInputRef = useRef(null);
 
+  // Add new state for initial question type selection
+  const [showQuestionTypeSelection, setShowQuestionTypeSelection] =
+    useState(false);
+  const [selectionLoading, setSelectionLoading] = useState(false);
+
   useEffect(() => {
     // Wait for storage to be ready before loading
     if (!storageReady) return;
@@ -102,7 +107,9 @@ export default function App() {
 
       loadQuestions(savedQuestionType);
     } else {
-      loadQuestions();
+      // No saved preference - show question type selection
+      setShowQuestionTypeSelection(true);
+      setLoading(false);
     }
   }, [storageReady]);
 
@@ -534,6 +541,41 @@ export default function App() {
         setError("Error al cargar las preguntas por defecto");
         setLoading(false);
       });
+  };
+
+  // New function to handle initial question type selection
+  const handleInitialQuestionTypeSelection = (type) => {
+    // Check if user is trying to access development mode without premium
+    if (type === "development" && !hasActiveSubscription()) {
+      console.log(
+        "Acceso denegado: Modo desarrollo requiere suscripción premium"
+      );
+      return; // Don't allow the change
+    }
+
+    setSelectionLoading(true);
+    setQuestionType(type);
+    storage.setItem("questionType", type);
+
+    // Small delay for UX feedback
+    setTimeout(() => {
+      setShowQuestionTypeSelection(false);
+      setSelectionLoading(false);
+      setLoading(true);
+      // Load questions for the selected type
+      loadQuestions(type);
+    }, 800);
+  };
+
+  // Function to show question type selection from menu
+  const handleChangeQuestionTypeFromMenu = () => {
+    setShowQuestionTypeSelection(true);
+    setSelectionLoading(false); // Reset loading state
+    // Reset current quiz state
+    setCurrentIdx(0);
+    setSelected({});
+    setDevelopmentAnswers({});
+    setShowResult(false);
   };
 
   const InfoModal = () => {
@@ -1079,6 +1121,101 @@ export default function App() {
     );
   };
 
+  // Question Type Selection Component
+  const QuestionTypeSelection = () => {
+    return (
+      <div className="question-type-selection">
+        <div className="selection-header">
+          <h1 className="selection-title">Elige tu modalidad de quiz</h1>
+          <p className="selection-subtitle">
+            Selecciona el tipo de preguntas que prefieres responder
+          </p>
+        </div>
+
+        {selectionLoading ? (
+          <div className="selection-loading">
+            <div className="loading-spinner">⟳</div>
+            <h3>Preparando tu modalidad...</h3>
+            <p>Configurando el quiz para ti</p>
+          </div>
+        ) : (
+          <>
+            <div className="type-options">
+              <div
+                className="type-option choice-option"
+                onClick={() => handleInitialQuestionTypeSelection("choice")}
+              >
+                <div className="option-icon">📝</div>
+                <div className="option-content">
+                  <h3 className="option-title">Opción Múltiple</h3>
+                  <p className="option-description">
+                    Responde preguntas seleccionando la opción correcta.
+                    Validación instantánea y seguimiento de progreso.
+                  </p>
+                  <div className="option-features">
+                    <span className="feature">✅ Respuestas rápidas</span>
+                    <span className="feature">✅ Validación automática</span>
+                    <span className="feature">✅ Carga archivos JSON</span>
+                  </div>
+                  <div className="option-badge free">GRATIS</div>
+                </div>
+                <div className="option-arrow">→</div>
+              </div>
+
+              <div
+                className={`type-option development-option ${
+                  !hasActiveSubscription() ? "disabled" : ""
+                }`}
+                onClick={() =>
+                  handleInitialQuestionTypeSelection("development")
+                }
+              >
+                <div className="option-icon">✍️</div>
+                <div className="option-content">
+                  <h3 className="option-title">Preguntas a Desarrollar</h3>
+                  <p className="option-description">
+                    Responde preguntas abiertas con evaluación inteligente por
+                    IA. Feedback detallado y sugerencias de mejora.
+                  </p>
+                  <div className="option-features">
+                    <span className="feature">🤖 Evaluación con IA</span>
+                    <span className="feature">📊 Análisis detallado</span>
+                    <span className="feature">💡 Sugerencias de mejora</span>
+                  </div>
+                  <div className="option-badge premium">PREMIUM</div>
+                </div>
+                <div className="option-arrow">→</div>
+                {!hasActiveSubscription() && (
+                  <div className="premium-overlay">
+                    <div className="premium-lock">🔒</div>
+                    <div className="upgrade-text">
+                      <button
+                        className="upgrade-button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setShowPricingSection(true);
+                        }}
+                      >
+                        Obtener Premium
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="selection-footer">
+              <p className="footer-text">
+                💡 Puedes cambiar de modalidad en cualquier momento desde el
+                menú superior
+              </p>
+            </div>
+          </>
+        )}
+      </div>
+    );
+  };
+
   const current = questions[currentIdx];
 
   const isMultiple = current?.correct?.length > 1;
@@ -1168,6 +1305,81 @@ export default function App() {
   if (authLoading) return <p className="loading">Cargando…</p>;
   if (user && !storageReady)
     return <p className="loading">Sincronizando datos con Firebase…</p>;
+
+  // Show question type selection screen for new users
+  if (user && showQuestionTypeSelection) {
+    return (
+      <div className="quiz-container">
+        <div className="quiz-header">
+          <div className="quiz-header-top">
+            <UserMenu
+              user={user}
+              subscription={subscription}
+              hasActiveSubscription={hasActiveSubscription}
+              getDaysRemaining={getDaysRemaining}
+              isExpiringSoon={isExpiringSoon}
+              logout={logout}
+              setShowInfoModal={setShowInfoModal}
+              onOpenInfoModal={() => setShowInfoModal(true)}
+              onOpenSubscriptionDashboard={() =>
+                setShowSubscriptionDashboard(true)
+              }
+              onOpenPremiumModal={() => setShowPremiumModal(true)}
+              onOpenPricingSection={() => setShowPricingSection(true)}
+              onChangeQuestionType={handleChangeQuestionTypeFromMenu}
+            />
+            <h1 className="quiz-master-title">Preguntitas</h1>
+          </div>
+        </div>
+        <QuestionTypeSelection />
+
+        {/* Pricing Section Modal */}
+        {showPricingSection && (
+          <div
+            className="modal-overlay pricing-modal-overlay"
+            onClick={() => setShowPricingSection(false)}
+          >
+            <div
+              className="modal-content pricing-modal-content"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="modal-close pricing-modal-close"
+                onClick={() => setShowPricingSection(false)}
+              >
+                ✕
+              </button>
+              <PricingSection
+                userEmail={user?.email}
+                onClose={() => setShowPricingSection(false)}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Subscription Dashboard Modal */}
+        {showSubscriptionDashboard && (
+          <div
+            className="modal-overlay subscription-modal-overlay"
+            onClick={() => setShowSubscriptionDashboard(false)}
+          >
+            <div
+              className="modal-content subscription-modal-content"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="modal-close subscription-modal-close"
+                onClick={() => setShowSubscriptionDashboard(false)}
+              >
+                ✕
+              </button>
+              <SubscriptionDashboard />
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
 
   // Show auth modal if not authenticated
   if (!user) {
@@ -1374,6 +1586,7 @@ export default function App() {
             }
             onOpenPremiumModal={() => setShowPremiumModal(true)}
             onOpenPricingSection={() => setShowPricingSection(true)}
+            onChangeQuestionType={handleChangeQuestionTypeFromMenu}
           />
           <h1 className="quiz-master-title">Preguntitas</h1>
           <div className="quiz-controls">
@@ -1411,7 +1624,7 @@ export default function App() {
                   : "Cargar archivo JSON"
               }
             >
-              📁
+              📁 Subir tus preguntas
             </label>
           </div>
         </div>
@@ -1424,25 +1637,13 @@ export default function App() {
             📄 {loadedFileName}
           </span>
           <div className="question-type-selector">
-            <select
-              value={questionType}
-              onChange={(e) => handleQuestionTypeChange(e.target.value)}
-              className="type-selector"
-              title="Seleccionar tipo de pregunta"
+            <button
+              className="change-mode-button"
+              onClick={handleChangeQuestionTypeFromMenu}
+              title="Cambiar modalidad de pregunta"
             >
-              <option value="choice">📝 Opción múltiple</option>
-              <option value="development" disabled={!hasActiveSubscription()}>
-                ✍️ A desarrollar (Premium)
-              </option>
-            </select>
-            {/* {questionType === "development" && (
-              <span
-                className="development-mode-indicator"
-                title="Carga de JSON deshabilitada en este modo"
-              >
-                🚫
-              </span>
-            )} */}
+              🔄 Cambiar modalidad
+            </button>
           </div>
         </div>
       </div>

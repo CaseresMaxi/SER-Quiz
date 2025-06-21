@@ -50,10 +50,80 @@
 
 .pricing-price {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
   margin-bottom: 1rem;
+}
+
+.original-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  opacity: 0.6;
+  text-decoration: line-through;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.original-price .currency {
+  font-size: 0.9rem;
+}
+
+.original-price .amount {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.original-price .period {
+  font-size: 0.8rem;
+  margin-bottom: 0;
+  align-self: center;
+}
+
+.current-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  position: relative;
+}
+
+.current-price.discounted {
+  color: #00b8d4;
+}
+
+.current-price.discounted .amount {
+  color: #00b8d4;
+}
+
+.discount-badge {
+  position: absolute;
+  top: -8px;
+  right: -20px;
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.4);
+  animation: pulse 2s infinite;
+  z-index: 1;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .currency {

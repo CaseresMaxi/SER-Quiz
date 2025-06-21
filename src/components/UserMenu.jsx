@@ -16,6 +16,7 @@ const UserMenuDropdown = ({
   onOpenPricingSection,
   setShowInfoModal,
   triggerRef,
+  onChangeQuestionType,
 }) => {
   const [position, setPosition] = useState({ top: 0, left: 0, right: "auto" });
 
@@ -201,6 +202,23 @@ const UserMenuDropdown = ({
             </div>
             <span className="menu-arrow">›</span>
           </button>
+
+          <button
+            className="menu-item"
+            onClick={() => {
+              onChangeQuestionType();
+              onClose();
+            }}
+          >
+            <span className="menu-icon">🔄</span>
+            <div className="menu-text">
+              <span className="menu-label">Cambiar modalidad</span>
+              <span className="menu-description">
+                Opción múltiple o desarrollo
+              </span>
+            </div>
+            <span className="menu-arrow">›</span>
+          </button>
         </div>
 
         <div className="menu-divider"></div>
@@ -237,6 +255,7 @@ const UserMenu = ({
   onOpenSubscriptionDashboard,
   onOpenPremiumModal,
   onOpenPricingSection,
+  onChangeQuestionType,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const triggerRef = useRef(null);
@@ -350,6 +369,7 @@ const UserMenu = ({
         onOpenPremiumModal={onOpenPremiumModal}
         onOpenPricingSection={onOpenPricingSection}
         triggerRef={triggerRef}
+        onChangeQuestionType={onChangeQuestionType}
       />
     </>
   );
