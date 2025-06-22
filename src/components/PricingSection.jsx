@@ -199,106 +199,102 @@ const PricingSection = ({ userEmail, onClose }) => {
       </div>
 
       {/* Show maintenance banner if maintenance mode is enabled */}
-      {isMaintenanceMode && <MaintenanceBanner />}
+      {/* {isMaintenanceMode && <MaintenanceBanner />} */}
 
       {/* Hide pricing content when in maintenance mode */}
-      {!isMaintenanceMode && (
-        <>
-          {/* Promo Code Section */}
-          <div className="promo-code-section">
-            <div className="promo-code-container">
-              <label htmlFor="promo-code" className="promo-code-label">
-                🎫 ¿Tienes un código de descuento?
-              </label>
-              <div className="promo-code-input-group">
-                <input
-                  id="promo-code"
-                  type="text"
-                  value={promoCode}
-                  onChange={handlePromoCodeChange}
-                  placeholder="Ingresa tu código aquí..."
-                  className="promo-code-input"
-                />
-                <div className="promo-code-icon">
-                  {isPromoValid
-                    ? "✅"
-                    : promoCode && !isPromoValid
-                    ? "❌"
-                    : "🎫"}
-                </div>
-              </div>
-              {promoMessage && (
-                <div
-                  className={`promo-message ${
-                    isPromoValid ? "valid" : "invalid"
-                  }`}
-                >
-                  {promoMessage}
-                </div>
-              )}
-            </div>
-          </div>
-
-          {paymentStatus === "success" && (
-            <div className="payment-success-banner">
-              <span className="success-icon">✅</span>
-              {paymentMessage}
-              <button
-                className="success-close-btn"
-                onClick={() => setPaymentStatus(null)}
-              >
-                ×
-              </button>
-            </div>
-          )}
-
-          {paymentStatus === "error" && (
-            <div className="payment-error-banner">
-              <span className="error-icon">⚠️</span>
-              {paymentMessage}
-              <button
-                className="error-close-btn"
-                onClick={() => setPaymentStatus(null)}
-              >
-                ×
-              </button>
-            </div>
-          )}
-
-          <div className="pricing-grid">
-            {allPlans.map((plan, index) => (
-              <PricingCard
-                key={index}
-                planId={plan.id}
-                title={plan.title}
-                price={plan.price}
-                originalPrice={plan.originalPrice}
-                description={plan.description}
-                features={plan.features}
-                isPopular={plan.isPopular}
-                user={user}
-                userEmail={userEmail || user?.email}
-                onPaymentSuccess={handlePaymentSuccess}
-                onPaymentError={handlePaymentError}
-                currentSubscription={subscription}
-                hasActiveSubscription={hasActiveSubscription()}
+      {/* {!isMaintenanceMode && ( */}
+      <>
+        {/* Promo Code Section */}
+        <div className="promo-code-section">
+          <div className="promo-code-container">
+            <label htmlFor="promo-code" className="promo-code-label">
+              🎫 ¿Tienes un código de descuento?
+            </label>
+            <div className="promo-code-input-group">
+              <input
+                id="promo-code"
+                type="text"
+                value={promoCode}
+                onChange={handlePromoCodeChange}
+                placeholder="Ingresa tu código aquí..."
+                className="promo-code-input"
               />
-            ))}
-          </div>
-
-          <div className="pricing-footer">
-            <div className="security-badges">
-              <div className="security-badge">🔒 Pago 100% Seguro</div>
-              <div className="security-badge">✅ Garantía de 7 días</div>
-              <div className="security-badge">💳 Todos los medios de pago</div>
+              <div className="promo-code-icon">
+                {isPromoValid ? "✅" : promoCode && !isPromoValid ? "❌" : "🎫"}
+              </div>
             </div>
-
-            <p className="pricing-note">
-              * Todos los precios están en pesos argentinos (ARS) e incluyen IVA
-            </p>
+            {promoMessage && (
+              <div
+                className={`promo-message ${
+                  isPromoValid ? "valid" : "invalid"
+                }`}
+              >
+                {promoMessage}
+              </div>
+            )}
           </div>
-        </>
-      )}
+        </div>
+
+        {paymentStatus === "success" && (
+          <div className="payment-success-banner">
+            <span className="success-icon">✅</span>
+            {paymentMessage}
+            <button
+              className="success-close-btn"
+              onClick={() => setPaymentStatus(null)}
+            >
+              ×
+            </button>
+          </div>
+        )}
+
+        {paymentStatus === "error" && (
+          <div className="payment-error-banner">
+            <span className="error-icon">⚠️</span>
+            {paymentMessage}
+            <button
+              className="error-close-btn"
+              onClick={() => setPaymentStatus(null)}
+            >
+              ×
+            </button>
+          </div>
+        )}
+
+        <div className="pricing-grid">
+          {allPlans.map((plan, index) => (
+            <PricingCard
+              key={index}
+              planId={plan.id}
+              title={plan.title}
+              price={plan.price}
+              originalPrice={plan.originalPrice}
+              description={plan.description}
+              features={plan.features}
+              isPopular={plan.isPopular}
+              user={user}
+              userEmail={userEmail || user?.email}
+              onPaymentSuccess={handlePaymentSuccess}
+              onPaymentError={handlePaymentError}
+              currentSubscription={subscription}
+              hasActiveSubscription={hasActiveSubscription()}
+            />
+          ))}
+        </div>
+
+        <div className="pricing-footer">
+          <div className="security-badges">
+            <div className="security-badge">🔒 Pago 100% Seguro</div>
+            <div className="security-badge">✅ Garantía de 7 días</div>
+            <div className="security-badge">💳 Todos los medios de pago</div>
+          </div>
+
+          <p className="pricing-note">
+            * Todos los precios están en pesos argentinos (ARS) e incluyen IVA
+          </p>
+        </div>
+      </>
+      {/* )} */}
     </div>
   );
 };

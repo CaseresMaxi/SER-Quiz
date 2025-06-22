@@ -11,7 +11,7 @@ const PaymentButton = ({
   user,
 }) => {
   const [isCreatingPreference, setIsCreatingPreference] = useState(false);
-  const isMaintenanceMode = isMaintenanceModeActive();
+  const isMaintenanceMode = false; // isMaintenanceModeActive();
 
   const handlePayment = async () => {
     setIsCreatingPreference(true);
@@ -89,7 +89,7 @@ const PaymentButton = ({
           isMaintenanceMode ? "maintenance-disabled" : ""
         }`}
       >
-        {isMaintenanceMode ? (
+        {isMaintenanceMode && false ? (
           <>
             <span className="maintenance-icon">⚙️</span>
             Sistema en mantenimiento
@@ -114,12 +114,12 @@ const PaymentButton = ({
       )}
 
       {/* Debug info in development */}
-      {process.env.NODE_ENV === "development" && (
+      {/* {process.env.NODE_ENV === "development" && (
         <div style={{ fontSize: "10px", color: "#666", marginTop: "5px" }}>
           Debug: user_id={user?.uid}, plan_id={item?.id}, email=
           {userEmail || user?.email}, maintenance={isMaintenanceMode.toString()}
         </div>
-      )}
+      )} */}
     </div>
   );
 };
