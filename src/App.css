@@ -1,5 +1,36 @@
 /* Mobile First Design - Base styles for mobile */
 
+/* Screen Reader Only - SEO Hidden Elements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* SEO Internal Links - Invisible styling to preserve design */
+.logo-link {
+  color: inherit;
+  text-decoration: none;
+  display: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  background: inherit;
+  -webkit-background-clip: inherit;
+  -webkit-text-fill-color: inherit;
+  background-clip: inherit;
+}
+
+.logo-link:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
 /* Auth Container - For landing page only */
 .auth-container {
   width: 100%;

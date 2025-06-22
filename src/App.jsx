@@ -44,9 +44,7 @@ export default function App() {
   const [isCustomQuiz, setIsCustomQuiz] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [loadedFileName, setLoadedFileName] = useState(
-    "preguntitas.json"
-  );
+  const [loadedFileName, setLoadedFileName] = useState("preguntitas.json");
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [showPremiumSection, setShowPremiumSection] = useState(true);
@@ -882,6 +880,7 @@ export default function App() {
     return (
       <div className="modal-overlay" onClick={() => setShowPremiumModal(false)}>
         <div
+          id="generar-preguntas"
           className="modal-content premium-modal"
           onClick={(e) => e.stopPropagation()}
         >
@@ -1126,7 +1125,7 @@ export default function App() {
     return (
       <div className="question-type-selection">
         <div className="selection-header">
-          <h1 className="selection-title">Elige tu modalidad de quiz</h1>
+          <h3 className="selection-title">Elige tu modalidad de quiz</h3>
           <p className="selection-subtitle">
             Selecciona el tipo de preguntas que prefieres responder
           </p>
@@ -1350,7 +1349,7 @@ export default function App() {
               onOpenPricingSection={() => setShowPricingSection(true)}
               onChangeQuestionType={handleChangeQuestionTypeFromMenu}
             />
-            <h1 className="quiz-master-title">Preguntitas</h1>
+            <h3 className="quiz-master-title">Preguntitas</h3>
           </div>
         </div>
         <QuestionTypeSelection />
@@ -1503,11 +1502,22 @@ export default function App() {
     );
   }
 
-  if (loading) return <p className="loading">Cargando preguntas…</p>;
+  if (loading)
+    return (
+      <div className="loading-container">
+        <h3 className="sr-only">
+          Quiz con Inteligencia Artificial - Preguntitas IA
+        </h3>
+        <p className="loading">Cargando preguntas…</p>
+      </div>
+    );
 
   if (error) {
     return (
       <div className="quiz-container">
+        <h3 className="sr-only">
+          Quiz con Inteligencia Artificial - Preguntitas IA
+        </h3>
         <Card className="quiz-card">
           <CardContent className="quiz-content">
             <div className="error-container">
@@ -1525,6 +1535,9 @@ export default function App() {
   if (!current) {
     return (
       <div className="quiz-container">
+        <h3 className="sr-only">
+          Quiz con Inteligencia Artificial - Preguntitas IA
+        </h3>
         <Card className="quiz-card">
           <CardContent className="quiz-content">
             <div className="file-upload-container">
@@ -1588,11 +1601,34 @@ export default function App() {
 
   return (
     <div className="quiz-container">
+      {/* SEO Hidden Main Title */}
+      <h3 className="sr-only">
+        Quiz con Inteligencia Artificial - Preguntitas IA
+      </h3>
+
       <InfoModal />
       <PremiumModal />
 
       {/* Header with quiz info and controls */}
-      <div className="quiz-header">
+      <header className="quiz-header">
+        {/* SEO Internal Navigation */}
+        <nav className="sr-only" aria-label="Navegación principal">
+          <ul>
+            <li>
+              <a href="#inicio">Inicio</a>
+            </li>
+            <li>
+              <a href="#quiz-activo">Quiz Activo</a>
+            </li>
+            <li>
+              <a href="#generar-preguntas">Generar Preguntas</a>
+            </li>
+            <li>
+              <a href="#configuracion">Configuración</a>
+            </li>
+          </ul>
+        </nav>
+
         <div className="quiz-header-top">
           <UserMenu
             user={user}
@@ -1610,7 +1646,11 @@ export default function App() {
             onOpenPricingSection={() => setShowPricingSection(true)}
             onChangeQuestionType={handleChangeQuestionTypeFromMenu}
           />
-          <h1 className="quiz-master-title">Preguntitas</h1>
+          <h2 className="quiz-master-title">
+            <a href="#inicio" className="logo-link">
+              Preguntitas
+            </a>
+          </h2>
           <div className="quiz-controls">
             {/* <button
               className={`control-button info-button ${
@@ -1669,310 +1709,322 @@ export default function App() {
             </button>
           </div>
         </div>
-      </div>
+      </header>
 
-      <Card className="quiz-card">
-        <CardContent className="quiz-content">
-          <div className="question-header">
-            <h2 className="question-title">
-              {currentIdx + 1}. {current.question}
-              {questionType === "development" && (
-                <span className="premium-indicator">
-                  <span className="premium-badge-small">PREMIUM</span>
+      <main id="inicio">
+        <section id="quiz-activo">
+          <Card className="quiz-card">
+            <CardContent className="quiz-content">
+              <div className="question-header">
+                <h3 className="question-title">
+                  {currentIdx + 1}. {current.question}
+                  {questionType === "development" && (
+                    <span className="premium-indicator">
+                      <span className="premium-badge-small">PREMIUM</span>
+                    </span>
+                  )}
+                </h3>
+                <span className="question-counter-badge">
+                  {currentIdx + 1}/{questions.length}
                 </span>
-              )}
-            </h2>
-            <span className="question-counter-badge">
-              {currentIdx + 1}/{questions.length}
-            </span>
-          </div>
+              </div>
 
-          {questionType === "choice" ? (
-            // Choice questions (existing functionality)
-            <>
-              {isMultiple ? (
-                <div className="options-container">
-                  {current.options.map((opt) => (
-                    <label key={opt} className="option-label">
-                      <Checkbox
-                        checked={(selected[current.id] || []).includes(opt)}
-                        onCheckedChange={() => toggleOption(opt)}
-                      />
-                      <span>{opt}</span>
-                    </label>
-                  ))}
-                </div>
+              {questionType === "choice" ? (
+                // Choice questions (existing functionality)
+                <>
+                  {isMultiple ? (
+                    <div className="options-container">
+                      {current.options.map((opt) => (
+                        <label key={opt} className="option-label">
+                          <Checkbox
+                            checked={(selected[current.id] || []).includes(opt)}
+                            onCheckedChange={() => toggleOption(opt)}
+                          />
+                          <span>{opt}</span>
+                        </label>
+                      ))}
+                    </div>
+                  ) : (
+                    <RadioGroup
+                      value={(selected[current.id] || [])[0] || ""}
+                      onValueChange={(val) => toggleOption(val)}
+                      className="options-container"
+                    >
+                      {current.options.map((opt) => (
+                        <label key={opt} className="option-label">
+                          <RadioGroupItem
+                            value={opt}
+                            name={`question-${current.id}`}
+                          />
+                          <span>{opt}</span>
+                        </label>
+                      ))}
+                    </RadioGroup>
+                  )}
+                </>
               ) : (
-                <RadioGroup
-                  value={(selected[current.id] || [])[0] || ""}
-                  onValueChange={(val) => toggleOption(val)}
-                  className="options-container"
-                >
-                  {current.options.map((opt) => (
-                    <label key={opt} className="option-label">
-                      <RadioGroupItem
-                        value={opt}
-                        name={`question-${current.id}`}
-                      />
-                      <span>{opt}</span>
-                    </label>
-                  ))}
-                </RadioGroup>
-              )}
-            </>
-          ) : (
-            // Development questions
-            <div className="development-container">
-              {/* <div className="premium-notice">
+                // Development questions
+                <div className="development-container">
+                  {/* <div className="premium-notice">
                 <span className="premium-icon">✨</span>
                 <span>
                   Esta es una pregunta premium para desarrollar tu respuesta
                 </span>
               </div> */}
-              <textarea
-                className="development-textarea"
-                placeholder="Escribe tu respuesta aquí..."
-                value={developmentAnswers[current.id] || ""}
-                onChange={(e) =>
-                  handleDevelopmentAnswerChange(current.id, e.target.value)
-                }
-                rows={6}
-              />
-              <div className="development-help">
-                <span className="help-text">
-                  💡 Desarrolla tu respuesta con detalle y ejemplos
-                </span>
-              </div>
-            </div>
-          )}
-
-          {!showResult && (
-            <div className="quiz-actions">
-              <Button
-                onClick={handleSubmit}
-                disabled={isEvaluating}
-                className={isEvaluating ? "loading-button" : ""}
-              >
-                {isEvaluating && questionType === "development" ? (
-                  <>
-                    <span className="spinner">⟳</span>
-                    Evaluando con IA...
-                  </>
-                ) : (
-                  "Enviar"
-                )}
-              </Button>
-
-              {currentIdx < questions.length - 1 && (
-                <Button
-                  onClick={handleSkip}
-                  disabled={isEvaluating}
-                  className="skip-button"
-                  variant="outline"
-                >
-                  ⏭️ Saltar pregunta
-                </Button>
-              )}
-
-              {isEvaluating && questionType === "development" && (
-                <div className="evaluation-progress">
-                  <div className="progress-indicator">
-                    <span className="progress-spinner">🤖</span>
-                    <span className="progress-text">
-                      La IA está analizando tu respuesta...
+                  <textarea
+                    className="development-textarea"
+                    placeholder="Escribe tu respuesta aquí..."
+                    value={developmentAnswers[current.id] || ""}
+                    onChange={(e) =>
+                      handleDevelopmentAnswerChange(current.id, e.target.value)
+                    }
+                    rows={6}
+                  />
+                  <div className="development-help">
+                    <span className="help-text">
+                      💡 Desarrolla tu respuesta con detalle y ejemplos
                     </span>
                   </div>
                 </div>
               )}
-            </div>
-          )}
 
-          {showResult && (
-            <div className="result-container">
-              {questionType === "choice" ? (
-                <>
-                  <p
-                    className={cn(
-                      "result-text",
-                      correct ? "correct" : "incorrect"
-                    )}
+              {!showResult && (
+                <div className="quiz-actions">
+                  <Button
+                    onClick={handleSubmit}
+                    disabled={isEvaluating}
+                    className={isEvaluating ? "loading-button" : ""}
                   >
-                    {correct ? "¡Correcto!" : "Respuesta incorrecta."}
-                  </p>
-                  <div className="correct-answers">
-                    <span className="correct-label">
-                      Respuesta(s) correcta(s):
-                    </span>
-                    <div className="correct-options">
-                      {current.correct.map((c) => (
-                        <span key={c} className="correct-option">
-                          {c}
-                        </span>
-                      ))}
-                    </div>
-                    {current.source && (
-                      <div className="source-info">
-                        <span className="source-label">Fuente:</span>
-                        <span className="source-text">{current.source}</span>
-                      </div>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <div className="development-result">
-                  <div className="ai-evaluation">
-                    {developmentAnswers[`${current.id}_evaluation`] ? (
+                    {isEvaluating && questionType === "development" ? (
                       <>
-                        <div className="evaluation-header">
-                          <h3 className="evaluation-title">
-                            🤖 Evaluación con IA
-                          </h3>
-                          <span
-                            className={`evaluation-score ${
-                              developmentAnswers[`${current.id}_evaluation`]
-                                .isCorrect
-                                ? "correct"
-                                : developmentAnswers[
-                                    `${current.id}_evaluation`
-                                  ].score.includes("Parcialmente")
-                                ? "partial"
-                                : "incorrect"
-                            }`}
-                          >
-                            {
-                              developmentAnswers[`${current.id}_evaluation`]
-                                .score
-                            }
-                          </span>
-                        </div>
-
-                        <div className="evaluation-content">
-                          <div className="evaluation-section">
-                            <h4>📝 Tu respuesta:</h4>
-                            <div className="user-answer-box">
-                              {developmentAnswers[current.id] ||
-                                "No respondiste"}
-                            </div>
-                          </div>
-
-                          <div className="evaluation-section">
-                            <h4>🔍 Análisis:</h4>
-                            <div className="analysis-text">
-                              {
-                                developmentAnswers[`${current.id}_evaluation`]
-                                  .analysis
-                              }
-                            </div>
-                          </div>
-
-                          <div className="evaluation-section">
-                            <h4>💭 Feedback:</h4>
-                            <div className="feedback-text">
-                              {
-                                developmentAnswers[`${current.id}_evaluation`]
-                                  .feedback
-                              }
-                            </div>
-                          </div>
-
-                          {developmentAnswers[`${current.id}_evaluation`]
-                            .improvements && (
-                            <div className="evaluation-section">
-                              <h4>💡 Sugerencias de mejora:</h4>
-                              <div className="improvements-text">
-                                {
-                                  developmentAnswers[`${current.id}_evaluation`]
-                                    .improvements
-                                }
-                              </div>
-                            </div>
-                          )}
-
-                          <div className="evaluation-section">
-                            <h4>✅ Respuesta ejemplar:</h4>
-                            <div className="correct-answer-text">
-                              {
-                                developmentAnswers[`${current.id}_evaluation`]
-                                  .correctAnswer
-                              }
-                            </div>
-                          </div>
-                        </div>
+                        <span className="spinner">⟳</span>
+                        Evaluando con IA...
                       </>
                     ) : (
-                      <div className="evaluation-loading">
-                        <p className="result-text development-submitted">
-                          ✅ Respuesta enviada
-                        </p>
-                        <p>🤖 Evaluando respuesta con IA...</p>
-                      </div>
+                      "Enviar"
                     )}
-                  </div>
+                  </Button>
 
-                  {current.source && (
-                    <div className="source-info">
-                      <span className="source-label">Fuente:</span>
-                      <span className="source-text">{current.source}</span>
+                  {currentIdx < questions.length - 1 && (
+                    <Button
+                      onClick={handleSkip}
+                      disabled={isEvaluating}
+                      className="skip-button"
+                      variant="outline"
+                    >
+                      ⏭️ Saltar pregunta
+                    </Button>
+                  )}
+
+                  {isEvaluating && questionType === "development" && (
+                    <div className="evaluation-progress">
+                      <div className="progress-indicator">
+                        <span className="progress-spinner">🤖</span>
+                        <span className="progress-text">
+                          La IA está analizando tu respuesta...
+                        </span>
+                      </div>
                     </div>
                   )}
                 </div>
               )}
-              {currentIdx < questions.length - 1 ? (
-                <Button onClick={handleNext}>Siguiente pregunta</Button>
-              ) : (
-                <p className="completion-message">
-                  ¡Has completado el cuestionario!
-                </p>
-              )}
-            </div>
-          )}
-        </CardContent>
-      </Card>
 
-      {/* Pricing Section Modal */}
-      {showPricingSection && (
-        <div
-          className="modal-overlay pricing-modal-overlay"
-          onClick={() => setShowPricingSection(false)}
-        >
-          <div
-            className="modal-content pricing-modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="modal-close pricing-modal-close"
+              {showResult && (
+                <div className="result-container">
+                  {questionType === "choice" ? (
+                    <>
+                      <p
+                        className={cn(
+                          "result-text",
+                          correct ? "correct" : "incorrect"
+                        )}
+                      >
+                        {correct ? "¡Correcto!" : "Respuesta incorrecta."}
+                      </p>
+                      <div className="correct-answers">
+                        <span className="correct-label">
+                          Respuesta(s) correcta(s):
+                        </span>
+                        <div className="correct-options">
+                          {current.correct.map((c) => (
+                            <span key={c} className="correct-option">
+                              {c}
+                            </span>
+                          ))}
+                        </div>
+                        {current.source && (
+                          <div className="source-info">
+                            <span className="source-label">Fuente:</span>
+                            <span className="source-text">
+                              {current.source}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <div className="development-result">
+                      <div className="ai-evaluation">
+                        {developmentAnswers[`${current.id}_evaluation`] ? (
+                          <>
+                            <div className="evaluation-header">
+                              <h3 className="evaluation-title">
+                                🤖 Evaluación con IA
+                              </h3>
+                              <span
+                                className={`evaluation-score ${
+                                  developmentAnswers[`${current.id}_evaluation`]
+                                    .isCorrect
+                                    ? "correct"
+                                    : developmentAnswers[
+                                        `${current.id}_evaluation`
+                                      ].score.includes("Parcialmente")
+                                    ? "partial"
+                                    : "incorrect"
+                                }`}
+                              >
+                                {
+                                  developmentAnswers[`${current.id}_evaluation`]
+                                    .score
+                                }
+                              </span>
+                            </div>
+
+                            <div className="evaluation-content">
+                              <div className="evaluation-section">
+                                <h4>📝 Tu respuesta:</h4>
+                                <div className="user-answer-box">
+                                  {developmentAnswers[current.id] ||
+                                    "No respondiste"}
+                                </div>
+                              </div>
+
+                              <div className="evaluation-section">
+                                <h4>🔍 Análisis:</h4>
+                                <div className="analysis-text">
+                                  {
+                                    developmentAnswers[
+                                      `${current.id}_evaluation`
+                                    ].analysis
+                                  }
+                                </div>
+                              </div>
+
+                              <div className="evaluation-section">
+                                <h4>💭 Feedback:</h4>
+                                <div className="feedback-text">
+                                  {
+                                    developmentAnswers[
+                                      `${current.id}_evaluation`
+                                    ].feedback
+                                  }
+                                </div>
+                              </div>
+
+                              {developmentAnswers[`${current.id}_evaluation`]
+                                .improvements && (
+                                <div className="evaluation-section">
+                                  <h4>💡 Sugerencias de mejora:</h4>
+                                  <div className="improvements-text">
+                                    {
+                                      developmentAnswers[
+                                        `${current.id}_evaluation`
+                                      ].improvements
+                                    }
+                                  </div>
+                                </div>
+                              )}
+
+                              <div className="evaluation-section">
+                                <h4>✅ Respuesta ejemplar:</h4>
+                                <div className="correct-answer-text">
+                                  {
+                                    developmentAnswers[
+                                      `${current.id}_evaluation`
+                                    ].correctAnswer
+                                  }
+                                </div>
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <div className="evaluation-loading">
+                            <p className="result-text development-submitted">
+                              ✅ Respuesta enviada
+                            </p>
+                            <p>🤖 Evaluando respuesta con IA...</p>
+                          </div>
+                        )}
+                      </div>
+
+                      {current.source && (
+                        <div className="source-info">
+                          <span className="source-label">Fuente:</span>
+                          <span className="source-text">{current.source}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  {currentIdx < questions.length - 1 ? (
+                    <Button onClick={handleNext}>Siguiente pregunta</Button>
+                  ) : (
+                    <p className="completion-message">
+                      ¡Has completado el cuestionario!
+                    </p>
+                  )}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </section>
+
+        <section id="configuracion">
+          {/* Pricing Section Modal */}
+          {showPricingSection && (
+            <div
+              className="modal-overlay pricing-modal-overlay"
               onClick={() => setShowPricingSection(false)}
             >
-              ✕
-            </button>
-            <PricingSection
-              userEmail={user?.email}
-              onClose={() => setShowPricingSection(false)}
-            />
-          </div>
-        </div>
-      )}
+              <div
+                className="modal-content pricing-modal-content"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  className="modal-close pricing-modal-close"
+                  onClick={() => setShowPricingSection(false)}
+                >
+                  ✕
+                </button>
+                <PricingSection
+                  userEmail={user?.email}
+                  onClose={() => setShowPricingSection(false)}
+                />
+              </div>
+            </div>
+          )}
 
-      {/* Subscription Dashboard Modal */}
-      {showSubscriptionDashboard && (
-        <div
-          className="modal-overlay subscription-modal-overlay"
-          onClick={() => setShowSubscriptionDashboard(false)}
-        >
-          <div
-            className="modal-content subscription-modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="modal-close subscription-modal-close"
+          {/* Subscription Dashboard Modal */}
+          {showSubscriptionDashboard && (
+            <div
+              className="modal-overlay subscription-modal-overlay"
               onClick={() => setShowSubscriptionDashboard(false)}
             >
-              ✕
-            </button>
-            <SubscriptionDashboard />
-          </div>
-        </div>
-      )}
+              <div
+                className="modal-content subscription-modal-content"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  className="modal-close subscription-modal-close"
+                  onClick={() => setShowSubscriptionDashboard(false)}
+                >
+                  ✕
+                </button>
+                <SubscriptionDashboard />
+              </div>
+            </div>
+          )}
+        </section>
+      </main>
     </div>
   );
 }
