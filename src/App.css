@@ -4697,3 +4697,95 @@
     padding: 0.4rem 0.8rem;
   }
 }
+
+/* Enhanced Hater Mode Response Styles */
+.evaluation-content .evaluation-section {
+  position: relative;
+}
+
+.evaluation-content .evaluation-section[data-hater-style] {
+  border-left: 4px solid #e53e3e;
+  padding-left: 16px;
+  margin-left: 8px;
+}
+
+.evaluation-content .evaluation-section[data-hater-style="🔥 FURIOSO"] {
+  border-left-color: #e53e3e;
+  background: linear-gradient(90deg, rgba(229, 62, 62, 0.05) 0%, transparent 100%);
+}
+
+.evaluation-content .evaluation-section[data-hater-style="😩 DESESPERADO"] {
+  border-left-color: #3182ce;
+  background: linear-gradient(90deg, rgba(49, 130, 206, 0.05) 0%, transparent 100%);
+}
+
+.evaluation-content .evaluation-section[data-hater-style="😏 SARCÁSTICO"] {
+  border-left-color: #d69e2e;
+  background: linear-gradient(90deg, rgba(214, 158, 46, 0.05) 0%, transparent 100%);
+}
+
+.evaluation-content .evaluation-section[data-hater-style="😱 HORRORIZADO"] {
+  border-left-color: #805ad5;
+  background: linear-gradient(90deg, rgba(128, 90, 213, 0.05) 0%, transparent 100%);
+}
+
+.evaluation-content .evaluation-section[data-hater-style="🤬 AGRESIVO"] {
+  border-left-color: #c53030;
+  background: linear-gradient(90deg, rgba(197, 48, 48, 0.05) 0%, transparent 100%);
+}
+
+.evaluation-content .evaluation-section[data-hater-style="😤 EXASPERADO"] {
+  border-left-color: #718096;
+  background: linear-gradient(90deg, rgba(113, 128, 150, 0.05) 0%, transparent 100%);
+}
+
+.evaluation-content .evaluation-section[data-hater-style="😈 MALVADO"] {
+  border-left-color: #2d3748;
+  background: linear-gradient(90deg, rgba(45, 55, 72, 0.05) 0%, transparent 100%);
+}
+
+.evaluation-content .evaluation-section[data-hater-style="💀 MORTAL"] {
+  border-left-color: #4a5568;
+  background: linear-gradient(90deg, rgba(74, 85, 104, 0.05) 0%, transparent 100%);
+}
+
+.evaluation-content .evaluation-section[data-hater-style="🎭 DRAMÁTICO"] {
+  border-left-color: #d53f8c;
+  background: linear-gradient(90deg, rgba(213, 63, 140, 0.05) 0%, transparent 100%);
+}
+
+.evaluation-content .evaluation-section[data-hater-style="🤡 PAYASO"] {
+  border-left-color: #dd6b20;
+  background: linear-gradient(90deg, rgba(221, 107, 32, 0.05) 0%, transparent 100%);
+}
+
+/* Hater Mode Text Enhancements */
+.evaluation-content .evaluation-section[data-hater-style] .analysis-text,
+.evaluation-content .evaluation-section[data-hater-style] .feedback-text,
+.evaluation-content .evaluation-section[data-hater-style] .improvements-text,
+.evaluation-content .evaluation-section[data-hater-style] .correct-answer-text {
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* Hater Mode Emoji Animation */
+.evaluation-content .evaluation-section[data-hater-style] emoji {
+  display: inline-block;
+  animation: hater-emoji-bounce 0.6s ease-in-out;
+}
+
+@keyframes hater-emoji-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes pulse-warning {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}

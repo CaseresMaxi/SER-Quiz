@@ -773,8 +773,8 @@ export default function App() {
                       <strong>Estricto:</strong> Evaluación rigurosa y detallada
                     </li>
                     <li>
-                      <strong>Hater:</strong> Extremadamente exigente
-                      (¡cuidado!)
+                      <strong>Hater:</strong> Críticas variadas y creativas
+                      (¡cada evaluación es única!)
                     </li>
                   </ul>
                 </div>
@@ -952,8 +952,10 @@ export default function App() {
                   <div className="warning-text">
                     <strong>MODO HATER ACTIVADO</strong>
                     <p>
-                      Este evaluador será extremadamente cruel y despiadado.
-                      Solo la excelencia absoluta lo satisface. ¿Estás seguro?
+                      Este evaluador será extremadamente crítico con respuestas
+                      variadas y creativas. Cada evaluación tendrá un estilo
+                      único: desde furioso hasta sarcástico. Solo la excelencia
+                      absoluta lo satisface. ¿Estás listo?
                     </p>
                   </div>
                 </div>

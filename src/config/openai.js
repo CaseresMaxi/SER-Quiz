@@ -1493,6 +1493,16 @@ IMPORTANTE:
     // Get model configuration
     const modelConfig = getModelConfig();
 
+    // Adjust temperature based on personality for more varied responses
+    let temperature = 0.3; // Default temperature for consistent evaluation
+    if (evaluatorPersonality === "hater") {
+      temperature = 0.8; // Higher temperature for more varied and creative hater responses
+    } else if (evaluatorPersonality === "funny") {
+      temperature = 0.6; // Medium-high temperature for creative humor
+    } else if (evaluatorPersonality === "sarcastic") {
+      temperature = 0.5; // Medium temperature for witty sarcasm
+    }
+
     // Call OpenAI for evaluation
     const response = await openaiClient.chat.completions.create({
       model: modelConfig.model,
@@ -1507,7 +1517,7 @@ IMPORTANTE:
         },
       ],
       max_tokens: modelConfig.max_tokens,
-      temperature: 0.3, // Lower temperature for more consistent evaluation
+      temperature: temperature, // Use adjusted temperature
     });
 
     // Parse the evaluation response
