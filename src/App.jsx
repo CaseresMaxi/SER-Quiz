@@ -59,8 +59,20 @@ export default function App() {
   const [difficultyLevel, setDifficultyLevel] = useState("normal");
   const [usePdfAssistants, setUsePdfAssistants] = useState(true); // Auto-detect by default
   const [showPricingSection, setShowPricingSection] = useState(false);
+  const [generationProgress, setGenerationProgress] = useState(""); // Add progress tracking
   const fileInputRef = useRef(null);
   const premiumFileInputRef = useRef(null);
+  const generationAbortController = useRef(null); // Add abort controller for cancellation
+
+  // Add new state for answer statistics
+  const [answerStats, setAnswerStats] = useState({
+    correct: 0,
+    incorrect: 0,
+    skipped: 0,
+  });
+
+  // Add state to control final results display
+  const [showFinalResults, setShowFinalResults] = useState(false);
 
   // Add new state for initial question type selection
   const [showQuestionTypeSelection, setShowQuestionTypeSelection] =
@@ -251,6 +263,8 @@ export default function App() {
         setCurrentIdx(0);
         setSelected({});
         setShowResult(false);
+        setAnswerStats({ correct: 0, incorrect: 0, skipped: 0 }); // Reset stats
+        setShowFinalResults(false); // Reset final results display
 
         // Load custom questions
         const shuffled = jsonData.sort(() => 0.5 - Math.random());
@@ -307,6 +321,8 @@ export default function App() {
     setShowResult(false);
     setError(null);
     setShowInfoModal(false);
+    setAnswerStats({ correct: 0, incorrect: 0, skipped: 0 }); // Reset stats
+    setShowFinalResults(false); // Reset final results display
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -353,6 +369,10 @@ export default function App() {
 
     setIsGenerating(true);
     setError(null);
+    setGenerationProgress("Iniciando generación...");
+
+    // Create abort controller for cancellation
+    generationAbortController.current = new AbortController();
 
     try {
       // Check if user wants to use Assistants API for PDFs
@@ -362,9 +382,16 @@ export default function App() {
           file.name.toLowerCase().endsWith(".pdf")
       );
 
+      setGenerationProgress(
+        hasPdfFiles && usePdfAssistants
+          ? "Subiendo archivos PDF a OpenAI..."
+          : "Procesando archivos..."
+      );
+
       let generatedQuestions;
       if (usePdfAssistants && hasPdfFiles) {
         // Use Assistants API for PDFs
+        setGenerationProgress("Usando Assistant API para procesar PDFs...");
         generatedQuestions = await generateQuestionsFromFiles(
           uploadedFiles,
           customApiKey || undefined,
@@ -374,6 +401,7 @@ export default function App() {
         );
       } else {
         // Use traditional method or smart detection
+        setGenerationProgress("Generando preguntas con IA...");
         generatedQuestions = await generateQuestionsWithSmartDetection(
           uploadedFiles,
           customApiKey || undefined,
@@ -381,6 +409,8 @@ export default function App() {
           { evaluatorPersonality, difficultyLevel }
         );
       }
+
+      setGenerationProgress("Finalizando...");
 
       // Update state with generated questions
       setQuestions(generatedQuestions);
@@ -435,8 +465,12 @@ export default function App() {
     } catch (err) {
       console.error("Error generating questions:", err);
 
-      // Show user-friendly error message (already formatted by validation)
-      if (err.message.includes("🚫 No se puede generar el cuestionario")) {
+      // Check if it was cancelled
+      if (err.name === "AbortError") {
+        setError("Generación cancelada por el usuario");
+      } else if (
+        err.message.includes("🚫 No se puede generar el cuestionario")
+      ) {
         setError(err.message);
       } else {
         // For other API errors, show standard message
@@ -444,6 +478,15 @@ export default function App() {
       }
     } finally {
       setIsGenerating(false);
+      setGenerationProgress("");
+      generationAbortController.current = null;
+    }
+  };
+
+  const handleCancelGeneration = () => {
+    if (generationAbortController.current) {
+      generationAbortController.current.abort();
+      console.log("🛑 Generación cancelada por el usuario");
     }
   };
 
@@ -481,6 +524,8 @@ export default function App() {
     setDevelopmentAnswers({});
     setShowResult(false);
     setCurrentIdx(0);
+    setAnswerStats({ correct: 0, incorrect: 0, skipped: 0 }); // Reset stats
+    setShowFinalResults(false); // Reset final results display
 
     // Simply READ questions for the new type from Firebase storage
     const { customQuizKey, customFileNameKey } = getLocalStorageKeys(type);
@@ -574,6 +619,8 @@ export default function App() {
     setSelected({});
     setDevelopmentAnswers({});
     setShowResult(false);
+    setAnswerStats({ correct: 0, incorrect: 0, skipped: 0 }); // Reset stats
+    setShowFinalResults(false); // Reset final results display
   };
 
   const InfoModal = () => {
@@ -1102,21 +1149,128 @@ export default function App() {
               </div>
             )}
 
-            <button
-              onClick={handleGenerateQuestions}
-              disabled={uploadedFiles.length === 0 || isGenerating}
-              className="generate-questions-btn"
-            >
-              {isGenerating ? (
-                <>
-                  <span className="spinner">⟳</span>
-                  Generando preguntas...
-                </>
-              ) : (
-                <>🧠 Generar Preguntitas con IA</>
+            {isGenerating && generationProgress && (
+              <div className="generation-progress">
+                <div className="progress-text">{generationProgress}</div>
+                <div className="progress-bar">
+                  <div className="progress-fill"></div>
+                </div>
+              </div>
+            )}
+
+            <div className="generation-actions">
+              <button
+                onClick={handleGenerateQuestions}
+                disabled={uploadedFiles.length === 0 || isGenerating}
+                className="generate-questions-btn"
+              >
+                {isGenerating ? (
+                  <>
+                    <span className="spinner">⟳</span>
+                    Generando preguntas...
+                  </>
+                ) : (
+                  <>🧠 Generar Preguntitas con IA</>
+                )}
+              </button>
+
+              {isGenerating && (
+                <button
+                  onClick={handleCancelGeneration}
+                  className="cancel-generation-btn"
+                  disabled={!generationAbortController.current}
+                >
+                  🛑 Cancelar
+                </button>
               )}
-            </button>
+            </div>
           </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Stats Counter Component
+  const StatsCounter = () => {
+    const total =
+      answerStats.correct + answerStats.incorrect + answerStats.skipped;
+
+    return (
+      <div className="stats-counter">
+        <div className="stats-item correct">
+          <span className="stats-icon">✅</span>
+          <span className="stats-number">{answerStats.correct}</span>
+          <span className="stats-label">Correctas</span>
+        </div>
+        <div className="stats-item incorrect">
+          <span className="stats-icon">❌</span>
+          <span className="stats-number">{answerStats.incorrect}</span>
+          <span className="stats-label">Erróneas</span>
+        </div>
+        <div className="stats-item skipped">
+          <span className="stats-icon">⏭️</span>
+          <span className="stats-number">{answerStats.skipped}</span>
+          <span className="stats-label">Omitidas</span>
+        </div>
+      </div>
+    );
+  };
+
+  // Final Results Component
+  const FinalResults = () => {
+    const total = questions.length;
+    const answered = answerStats.correct + answerStats.incorrect;
+    const correctPercentage =
+      total > 0 ? Math.round((answerStats.correct / total) * 100) : 0;
+
+    return (
+      <div className="final-results">
+        <div className="final-results-header">
+          <h3 className="final-title">🎉 ¡Cuestionario Completado!</h3>
+          <div className="final-score">
+            <span className="score-percentage">{correctPercentage}%</span>
+            <span className="score-label">de precisión</span>
+          </div>
+        </div>
+
+        <div className="final-stats-grid">
+          <div className="final-stat-card correct">
+            <div className="stat-icon">✅</div>
+            <div className="stat-content">
+              <div className="stat-number">{answerStats.correct}</div>
+              <div className="stat-label">Correctas</div>
+            </div>
+          </div>
+
+          <div className="final-stat-card incorrect">
+            <div className="stat-icon">❌</div>
+            <div className="stat-content">
+              <div className="stat-number">{answerStats.incorrect}</div>
+              <div className="stat-label">Erróneas</div>
+            </div>
+          </div>
+
+          <div className="final-stat-card skipped">
+            <div className="stat-icon">⏭️</div>
+            <div className="stat-content">
+              <div className="stat-number">{answerStats.skipped}</div>
+              <div className="stat-label">Omitidas</div>
+            </div>
+          </div>
+
+          <div className="final-stat-card total">
+            <div className="stat-icon">📊</div>
+            <div className="stat-content">
+              <div className="stat-number">{total}</div>
+              <div className="stat-label">Total</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="final-actions">
+          <Button onClick={resetToDefault} className="restart-button">
+            🔄 Nuevo cuestionario
+          </Button>
         </div>
       </div>
     );
@@ -1248,7 +1402,13 @@ export default function App() {
       // For development questions, evaluate with AI
       handleDevelopmentEvaluation();
     } else {
-      // For choice questions, show result immediately
+      // For choice questions, show result immediately and update stats
+      const isCorrect = evaluate();
+      setAnswerStats((prev) => ({
+        ...prev,
+        correct: isCorrect ? prev.correct + 1 : prev.correct,
+        incorrect: isCorrect ? prev.incorrect : prev.incorrect + 1,
+      }));
       setShowResult(true);
     }
   }
@@ -1288,6 +1448,13 @@ export default function App() {
         [`${current.id}_evaluation`]: evaluation,
       }));
 
+      // Update stats for development questions
+      setAnswerStats((prev) => ({
+        ...prev,
+        correct: evaluation.isCorrect ? prev.correct + 1 : prev.correct,
+        incorrect: evaluation.isCorrect ? prev.incorrect : prev.incorrect + 1,
+      }));
+
       setShowResult(true);
     } catch (err) {
       console.error("Error evaluating answer:", err);
@@ -1303,7 +1470,12 @@ export default function App() {
   }
 
   function handleSkip() {
-    // Skip current question without answering
+    // Skip current question without answering and update stats
+    setAnswerStats((prev) => ({
+      ...prev,
+      skipped: prev.skipped + 1,
+    }));
+
     if (currentIdx < questions.length - 1) {
       setCurrentIdx((idx) => idx + 1);
       setShowResult(false);
@@ -1323,6 +1495,11 @@ export default function App() {
       }
     }
   }
+
+  // Function to show final results
+  const handleShowFinalResults = () => {
+    setShowFinalResults(true);
+  };
 
   // Show loading while checking auth or Firebase storage
   if (authLoading) return <p className="loading">Cargando…</p>;
@@ -1701,6 +1878,7 @@ export default function App() {
             {" • "}
             📄 {loadedFileName}
           </span>
+          <StatsCounter />
           <div className="question-type-selector">
             <button
               className="change-mode-button"
@@ -1717,21 +1895,23 @@ export default function App() {
         <section id="quiz-activo">
           <Card className="quiz-card">
             <CardContent className="quiz-content">
-              <div className="question-header">
-                <h3 className="question-title">
-                  {currentIdx + 1}. {current.question}
-                  {questionType === "development" && (
-                    <span className="premium-indicator">
-                      <span className="premium-badge-small">PREMIUM</span>
-                    </span>
-                  )}
-                </h3>
-                <span className="question-counter-badge">
-                  {currentIdx + 1}/{questions.length}
-                </span>
-              </div>
+              {!showFinalResults && (
+                <div className="question-header">
+                  <h3 className="question-title">
+                    {currentIdx + 1}. {current.question}
+                    {questionType === "development" && (
+                      <span className="premium-indicator">
+                        <span className="premium-badge-small">PREMIUM</span>
+                      </span>
+                    )}
+                  </h3>
+                  <span className="question-counter-badge">
+                    {currentIdx + 1}/{questions.length}
+                  </span>
+                </div>
+              )}
 
-              {questionType === "choice" ? (
+              {questionType === "choice" && !showFinalResults && (
                 // Choice questions (existing functionality)
                 <>
                   {isMultiple ? (
@@ -1740,7 +1920,10 @@ export default function App() {
                         <label key={opt} className="option-label">
                           <Checkbox
                             checked={(selected[current.id] || []).includes(opt)}
-                            onCheckedChange={() => toggleOption(opt)}
+                            onCheckedChange={
+                              showResult ? undefined : () => toggleOption(opt)
+                            }
+                            disabled={showResult}
                           />
                           <span>{opt}</span>
                         </label>
@@ -1749,14 +1932,18 @@ export default function App() {
                   ) : (
                     <RadioGroup
                       value={(selected[current.id] || [])[0] || ""}
-                      onValueChange={(val) => toggleOption(val)}
+                      onValueChange={
+                        showResult ? undefined : (val) => toggleOption(val)
+                      }
                       className="options-container"
+                      disabled={showResult}
                     >
                       {current.options.map((opt) => (
                         <label key={opt} className="option-label">
                           <RadioGroupItem
                             value={opt}
                             name={`question-${current.id}`}
+                            disabled={showResult}
                           />
                           <span>{opt}</span>
                         </label>
@@ -1764,7 +1951,8 @@ export default function App() {
                     </RadioGroup>
                   )}
                 </>
-              ) : (
+              )}
+              {questionType === "development" && !showFinalResults && (
                 // Development questions
                 <div className="development-container">
                   {/* <div className="premium-notice">
@@ -1777,9 +1965,17 @@ export default function App() {
                     className="development-textarea"
                     placeholder="Escribe tu respuesta aquí..."
                     value={developmentAnswers[current.id] || ""}
-                    onChange={(e) =>
-                      handleDevelopmentAnswerChange(current.id, e.target.value)
+                    onChange={
+                      showResult
+                        ? undefined
+                        : (e) =>
+                            handleDevelopmentAnswerChange(
+                              current.id,
+                              e.target.value
+                            )
                     }
+                    disabled={showResult}
+                    readOnly={showResult}
                     rows={6}
                   />
                   <div className="development-help">
@@ -1833,7 +2029,7 @@ export default function App() {
 
               {showResult && (
                 <div className="result-container">
-                  {questionType === "choice" ? (
+                  {questionType === "choice" && !showFinalResults && (
                     <>
                       <p
                         className={cn(
@@ -1864,7 +2060,8 @@ export default function App() {
                         )}
                       </div>
                     </>
-                  ) : (
+                  )}
+                  {questionType === "development" && !showFinalResults && (
                     <div className="development-result">
                       <div className="ai-evaluation">
                         {developmentAnswers[`${current.id}_evaluation`] ? (
@@ -1969,10 +2166,20 @@ export default function App() {
                   )}
                   {currentIdx < questions.length - 1 ? (
                     <Button onClick={handleNext}>Siguiente pregunta</Button>
+                  ) : showFinalResults ? (
+                    <FinalResults />
                   ) : (
-                    <p className="completion-message">
-                      ¡Has completado el cuestionario!
-                    </p>
+                    <div className="quiz-completed">
+                      <p className="completion-message">
+                        ¡Has completado el cuestionario!
+                      </p>
+                      <Button
+                        onClick={handleShowFinalResults}
+                        className="view-results-button"
+                      >
+                        📊 Ver resultado final
+                      </Button>
+                    </div>
                   )}
                 </div>
               )}

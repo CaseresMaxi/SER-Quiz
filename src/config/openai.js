@@ -415,36 +415,58 @@ async function processFilesWithAssistant(
 
     debugLog(`🏃 Run iniciado: ${run.id}`);
 
-    // Step 5: Wait for completion
+    // Step 5: Wait for completion with optimized polling
     let runStatus = run;
     let attempts = 0;
-    const maxAttempts = 60; // 5 minutes max
+    const maxAttempts = 30; // Reduced from 60 to 30 (2.5 minutes max)
+    let pollInterval = 2000; // Start with 2 seconds
+    const maxPollInterval = 10000; // Max 10 seconds between polls
 
     while (runStatus.status !== "completed" && attempts < maxAttempts) {
-      await new Promise((resolve) => setTimeout(resolve, 5000)); // Wait 5 seconds
-      runStatus = await openaiClient.beta.threads.runs.retrieve(
-        thread.id,
-        run.id
-      );
-      attempts++;
+      // Use exponential backoff for polling
+      await new Promise((resolve) => setTimeout(resolve, pollInterval));
 
-      debugLog(
-        `🔄 Status del run: ${runStatus.status} (${attempts}/${maxAttempts})`
-      );
-
-      if (runStatus.status === "failed") {
-        throw new Error(
-          `Assistant run falló: ${
-            runStatus.last_error?.message || "Error desconocido"
-          }`
+      try {
+        runStatus = await openaiClient.beta.threads.runs.retrieve(
+          thread.id,
+          run.id
         );
-      }
+        attempts++;
 
-      if (runStatus.status === "requires_action") {
-        // Handle any required actions if needed
         debugLog(
-          "⚠️  Run requiere acción - esto no debería ocurrir en este flujo"
+          `🔄 Status del run: ${
+            runStatus.status
+          } (${attempts}/${maxAttempts}) - Polling cada ${pollInterval / 1000}s`
         );
+
+        // Handle different statuses
+        if (runStatus.status === "failed") {
+          throw new Error(
+            `Assistant run falló: ${
+              runStatus.last_error?.message || "Error desconocido"
+            }`
+          );
+        }
+
+        if (runStatus.status === "requires_action") {
+          debugLog(
+            "⚠️  Run requiere acción - esto no debería ocurrir en este flujo"
+          );
+        }
+
+        if (runStatus.status === "expired") {
+          throw new Error("Assistant run expiró - timeout del servidor");
+        }
+
+        // Exponential backoff: increase interval for longer-running tasks
+        if (attempts > 10) {
+          pollInterval = Math.min(pollInterval * 1.2, maxPollInterval);
+        }
+      } catch (pollError) {
+        // If polling fails, wait a bit longer and retry
+        debugLog(`⚠️  Error en polling, reintentando...: ${pollError.message}`);
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        continue;
       }
     }
 

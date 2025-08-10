@@ -46,7 +46,7 @@ const PaymentButton = ({
 
       // Call backend to create payment preference
       const response = await fetch(
-        "https://ser-back-production.up.railway.app/api/create-payment",
+        "https://ser-back.onrender.com/api/create-payment",
         {
           method: "POST",
           headers: {
