@@ -1314,7 +1314,7 @@ export default function App() {
                   </div>
                   <div className="option-badge free">GRATIS</div>
                 </div>
-                <div className="option-arrow">→</div>
+                {/* <div className="option-arrow">→</div> */}
               </div>
 
               <div
@@ -1339,7 +1339,7 @@ export default function App() {
                   </div>
                   <div className="option-badge premium">PREMIUM</div>
                 </div>
-                <div className="option-arrow">→</div>
+                {/* <div className="option-arrow">→</div> */}
                 {!hasActiveSubscription() && (
                   <div className="premium-overlay">
                     <div className="premium-lock">🔒</div>
@@ -1596,7 +1596,7 @@ export default function App() {
               onClick={() => setShowAuthModal(true)}
             >
               <span className="btn-icon">🎭</span>
-              <span className="btn-text">Identificate</span>
+              <span className="btn-text">Iniciar sesión</span>
             </button>
           </div>
         </div>
