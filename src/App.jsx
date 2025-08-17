@@ -192,6 +192,58 @@ export default function App() {
       }
     }
 
+    // If no valid custom quiz found, show question type selection instead of loading defaults
+    console.log(
+      `📖 No hay preguntas guardadas para ${currentType}, mostrando selección de modalidad`
+    );
+    setShowQuestionTypeSelection(true);
+    setLoading(false);
+  };
+
+  // Function to load questions or defaults when user actively selects a modality
+  const loadQuestionsOrDefaults = (forceType = null) => {
+    const currentType = forceType || questionType;
+
+    // Use different localStorage keys for different question types
+    const { customQuizKey, customFileNameKey } =
+      getLocalStorageKeys(currentType);
+
+    // Check if there's a custom quiz saved in Firebase storage for this type
+    const savedCustomQuiz = storage.getItem(customQuizKey);
+    const savedFileName = storage.getItem(customFileNameKey);
+
+    if (savedCustomQuiz && savedFileName) {
+      try {
+        const jsonData = JSON.parse(savedCustomQuiz);
+        // Validate structure before loading
+        const isValidStructure = jsonData.every(
+          (q) =>
+            q.question &&
+            Array.isArray(q.options) &&
+            Array.isArray(q.correct) &&
+            q.id !== undefined
+        );
+
+        if (isValidStructure) {
+          // Load saved custom questions
+          const shuffled = jsonData.sort(() => 0.5 - Math.random());
+          setQuestions(shuffled);
+          setIsCustomQuiz(true);
+          setLoadedFileName(savedFileName);
+          setLoading(false);
+          return;
+        } else {
+          // Clear invalid data from Firebase storage
+          storage.removeItem(customQuizKey);
+          storage.removeItem(customFileNameKey);
+        }
+      } catch (err) {
+        // Clear corrupted data from Firebase storage
+        storage.removeItem(customQuizKey);
+        storage.removeItem(customFileNameKey);
+      }
+    }
+
     // Load default questions if no valid custom quiz found
     loadDefaultQuestions();
   };
@@ -566,24 +618,12 @@ export default function App() {
       }
     }
 
-    // No saved questions for this type - load default questions WITHOUT modifying Firebase storage
+    // No saved questions for this type - show question type selection instead
     console.log(
-      `📖 No hay preguntas guardadas para ${type}, cargando por defecto`
+      `📖 No hay preguntas guardadas para ${type}, mostrando selección de modalidad`
     );
-    fetch("preguntitas.json")
-      .then((r) => r.json())
-      .then((data) => {
-        // shuffle and keep first 20 for the session
-        const shuffled = data.sort(() => 0.5 - Math.random()).slice(0, 20);
-        setQuestions(shuffled);
-        setIsCustomQuiz(false);
-        setLoadedFileName("preguntitas.json");
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError("Error al cargar las preguntas por defecto");
-        setLoading(false);
-      });
+    setShowQuestionTypeSelection(true);
+    setLoading(false);
   };
 
   // New function to handle initial question type selection
@@ -605,8 +645,8 @@ export default function App() {
       setShowQuestionTypeSelection(false);
       setSelectionLoading(false);
       setLoading(true);
-      // Load questions for the selected type
-      loadQuestions(type);
+      // Load questions for the selected type, loading defaults if no saved questions
+      loadQuestionsOrDefaults(type);
     }, 800);
   };
 
