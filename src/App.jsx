@@ -1536,6 +1536,14 @@ export default function App() {
         { evaluatorPersonality, difficultyLevel }
       );
 
+      // Debug logging para verificar la evaluación recibida
+      console.log("🔍 Evaluación recibida de la IA:", {
+        isCorrect: evaluation.isCorrect,
+        score: evaluation.score,
+        questionId: current.id,
+        evaluationObject: evaluation,
+      });
+
       // Store the evaluation result
       setDevelopmentAnswers((prev) => ({
         ...prev,
@@ -1543,11 +1551,24 @@ export default function App() {
       }));
 
       // Update stats for development questions
-      setAnswerStats((prev) => ({
-        ...prev,
-        correct: evaluation.isCorrect ? prev.correct + 1 : prev.correct,
-        incorrect: evaluation.isCorrect ? prev.incorrect : prev.incorrect + 1,
-      }));
+      console.log("📊 Actualizando estadísticas:", {
+        evaluationIsCorrect: evaluation.isCorrect,
+        willIncrementCorrect: evaluation.isCorrect,
+        willIncrementIncorrect: !evaluation.isCorrect,
+      });
+
+      setAnswerStats((prev) => {
+        const newStats = {
+          ...prev,
+          correct: evaluation.isCorrect ? prev.correct + 1 : prev.correct,
+          incorrect: evaluation.isCorrect ? prev.incorrect : prev.incorrect + 1,
+        };
+        console.log("📈 Estadísticas actualizadas:", {
+          antes: prev,
+          despues: newStats,
+        });
+        return newStats;
+      });
 
       setShowResult(true);
     } catch (err) {

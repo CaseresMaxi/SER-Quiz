@@ -7,12 +7,9 @@ export const AI_CONFIG = {
   maxTokens: 3000, // Máximo de tokens por respuesta
   temperature: ENV_CONFIG.AI_TEMPERATURE,
 
-  // Configuración de preguntas (desde variables de entorno)
-  questionsPerGeneration: Math.max(ENV_CONFIG.MAX_QUESTIONS, 10), // Mínimo 10, configurable
-  developmentQuestionsPerGeneration: Math.max(
-    Math.floor(ENV_CONFIG.MAX_QUESTIONS * 0.67),
-    8
-  ), // 2/3 del máximo, mínimo 8
+  // Configuración de preguntas - FIJO entre 10-12 preguntas
+  questionsPerGeneration: 12, // Exactamente 12 preguntas de opción múltiple
+  developmentQuestionsPerGeneration: 10, // Exactamente 10 preguntas de desarrollo
   optionsPerQuestion: 4, // Número de opciones por pregunta (3-4 recomendado)
 
   // Configuración de archivos (desde variables de entorno)
@@ -100,65 +97,65 @@ export const AI_CONFIG = {
     office: [".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx"],
   },
 
-  // Configuración de prompts
+  // Configuración de prompts TEMÁTICOS
   systemPrompt:
-    "Eres un profesor universitario de élite especializado en crear preguntas de examen EXTREMADAMENTE EXIGENTES y DESAFIANTES basadas en contenido educativo. Tu especialidad es generar preguntas que requieren pensamiento crítico avanzado, análisis profundo y síntesis compleja. NUNCA generas preguntas triviales o de memorización simple. Todas tus preguntas deben desafiar incluso a los estudiantes más brillantes y evaluar comprensión profunda del material. Genera preguntas claras, precisas y intelectualmente desafiantes en español, con una mezcla obligatoria de preguntas de respuesta única y múltiples respuestas correctas.",
+    "Eres un profesor universitario de élite especializado en crear preguntas de examen EXTREMADAMENTE EXIGENTES sobre TEMAS y CONCEPTOS derivados de material educativo. Tu especialidad es generar preguntas temáticas que requieren pensamiento crítico avanzado sobre teorías, conceptos y principios. NUNCA generas preguntas triviales, sobre contenido textual o memorización simple. Todas tus preguntas deben desafiar comprensión temática profunda y evaluar análisis conceptual avanzado. Genera preguntas claras, precisas y temáticamente desafiantes en español, enfocadas en conocimiento conceptual con mezcla obligatoria de preguntas de respuesta única y múltiples respuestas correctas.",
 
   systemPromptDevelopment:
-    "Eres un profesor universitario experto en crear preguntas de desarrollo de alto nivel académico. Te especializas en generar preguntas que requieren análisis crítico y pensamiento profundo, PERO siempre basadas estrictamente en el contenido proporcionado. NUNCA agregas información externa o conocimiento general. Solo usas lo que está explícitamente presente en el material dado.",
+    "Eres un profesor universitario experto en crear preguntas de desarrollo temáticas de alto nivel académico. Te especializas en generar preguntas sobre TEMAS TRATADOS que requieren análisis crítico y pensamiento profundo sobre conceptos y teorías. Tu enfoque es evaluar comprensión temática profunda, NO el contenido per se del material. Generas preguntas sobre conocimiento conceptual derivado del análisis del material proporcionado.",
 
-  // Instrucciones específicas para la generación
+  // Instrucciones específicas para la generación TEMÁTICA
   instructions: [
-    "Genera preguntas educativas MUY EXIGENTES de nivel universitario avanzado basadas en el contenido proporcionado",
-    "Las preguntas deben ser AUTOCONTENIDAS con CONTEXTO SUFICIENTE para entenderlas completamente",
-    "NO hagas referencia a 'secciones', 'tablas' o 'figuras' específicas del documento",
-    "INCLUYE en cada pregunta el CONTEXTO necesario del tema para poder responderla",
-    "Las preguntas deben ser CONCRETAS sobre información específica pero con contexto claro",
-    "Lo que se espera como respuesta debe estar CLARAMENTE explicado en la pregunta",
-    "Cada pregunta debe tener opciones de respuesta DESAFIANTES con distractores convincentes",
+    "Genera preguntas MUY EXIGENTES sobre los TEMAS TRATADOS en el material, no sobre el contenido per se",
+    "Las preguntas deben ser AUTOCONTENIDAS y enfocadas en CONCEPTOS, TEORÍAS y PRINCIPIOS",
+    "NO hagas preguntas sobre cómo el material presenta la información o está estructurado",
+    "INCLUYE el CONTEXTO TEMÁTICO necesario para comprender la pregunta sin referencias al documento",
+    "Las preguntas deben ser CONCRETAS sobre temas específicos pero INTELECTUALMENTE DESAFIANTES",
+    "Enfócate en COMPRENSIÓN CONCEPTUAL y ANÁLISIS TEMÁTICO, no en memorización de contenido",
+    "Cada pregunta debe evaluar conocimiento temático con opciones DESAFIANTES temáticamente plausibles",
     "OBLIGATORIO: Genera una mezcla equilibrada de preguntas con UNA sola respuesta correcta y preguntas con MÚLTIPLES respuestas correctas",
-    "Para preguntas de respuesta única: usa opciones que requieran análisis profundo y pensamiento crítico",
-    "Para preguntas de respuestas múltiples: combina conceptos, requiere identificación de varios elementos correctos",
-    "Las opciones incorrectas deben ser PLAUSIBLES pero claramente distinguibles con conocimiento profundo",
-    "Nivel de exigencia: MÁXIMO - preguntas que desafíen incluso a estudiantes avanzados",
-    "Las preguntas deben evaluar comprensión profunda, análisis crítico, síntesis y aplicación de conocimientos",
-    "Incluye preguntas que requieran COMPARAR, CONTRASTAR, EVALUAR y ANALIZAR conceptos complejos",
-    "Genera preguntas que combinen múltiples conceptos del material en situaciones complejas",
-    "Las preguntas deben ser claras, precisas pero INTELECTUALMENTE DESAFIANTES",
-    "Incluye una fuente para cada pregunta basada en el archivo correspondiente",
-    "Si hay archivos sin contenido procesable, enfócate en los que sí tienen contenido útil",
-    "Si no hay suficiente contenido, genera preguntas específicas sobre lo disponible (no generales)",
+    "Para preguntas de respuesta única: evalúa análisis crítico de conceptos y teorías específicas",
+    "Para preguntas de respuestas múltiples: combina múltiples conceptos temáticos en análisis complejos",
+    "Las opciones incorrectas deben ser PLAUSIBLES temáticamente pero distinguibles con conocimiento profundo",
+    "Nivel de exigencia: MÁXIMO - preguntas que desafíen comprensión temática incluso de estudiantes avanzados",
+    "Las preguntas deben evaluar comprensión conceptual profunda, síntesis temática y aplicación teórica",
+    "Incluye preguntas que requieran COMPARAR, CONTRASTAR, EVALUAR conceptos y teorías complejas",
+    "Genera preguntas que combinen múltiples conceptos temáticos en situaciones analíticas complejas",
+    "Las preguntas deben ser claras, precisas y TEMÁTICAMENTE DESAFIANTES",
+    "Incluye una fuente para cada pregunta basada en el archivo del cual se derivaron los temas",
+    "Si hay múltiples temas disponibles, enfócate en los conceptos más significativos y complejos",
+    "Las preguntas deben evaluar COMPRENSIÓN TEMÁTICA PROFUNDA, no memorización textual",
     "DISTRIBUCIÓN OBLIGATORIA: 40% preguntas de respuesta única, 60% preguntas de respuestas múltiples",
-    "Las preguntas deben ser de un nivel de dificultad EXTREMO, aptas para evaluaciones de excelencia universitaria",
-    "JAMÁS GENERES PREGUNTAS QUE SU RESPUESTA NO COINCIDA CON EL MATERIAL DADO",
-    "JAMÁS GENERES PREGUNTAS QUE NO ESTÉN RELACIONADAS CON EL TEMARIO DADO",
-    "JAMÁS GENERES PREGUNTAS TRIVIALES O DE MEMORIZACIÓN SIMPLE",
-    "Las preguntas deben requerir PENSAMIENTO CRÍTICO y ANÁLISIS PROFUNDO del material",
-    "EJEMPLO BUENO (respuesta única): 'En el contexto de un sistema que implementa autenticación multifactor con tres capas de seguridad, ¿cuál es el factor más crítico para prevenir ataques de ingeniería social según las mejores prácticas descritas?'",
-    "EJEMPLO BUENO (respuestas múltiples): 'Considerando el modelo de seguridad propuesto que incluye cinco componentes principales, ¿cuáles de los siguientes elementos son fundamentales para garantizar la integridad de los datos Y la disponibilidad del sistema simultáneamente?'",
-    "EJEMPLO MALO: '¿Cuáles son los permisos mencionados en la tabla 2?'",
-    "Las preguntas deben hacer que el estudiante DEMUESTRE comprensión profunda, no solo recordar información",
+    "Las preguntas deben ser de un nivel de dificultad EXTREMO en comprensión conceptual y temática",
+    "JAMÁS GENERES PREGUNTAS SOBRE REFERENCIAS TEXTUALES O ESTRUCTURA DEL MATERIAL",
+    "JAMÁS GENERES PREGUNTAS SOBRE CÓMO EL MATERIAL TRATA LOS TEMAS",
+    "JAMÁS GENERES PREGUNTAS TRIVIALES O DE MEMORIZACIÓN DE CONTENIDO",
+    "Las preguntas deben requerir PENSAMIENTO CRÍTICO sobre CONCEPTOS y TEORÍAS",
+    "EJEMPLO EXCELENTE (respuesta única): 'En sistemas que implementan autenticación multifactor con múltiples capas de seguridad, ¿cuál es el factor más crítico para prevenir ataques de ingeniería social?'",
+    "EJEMPLO EXCELENTE (respuestas múltiples): 'Considerando modelos de seguridad que integran múltiples componentes, ¿cuáles elementos son fundamentales para garantizar integridad de datos Y disponibilidad simultáneamente?'",
+    "EJEMPLO MALO: '¿Cuáles son los permisos mencionados en la tabla 2?' (referencia al contenido)",
+    "Las preguntas deben evaluar COMPRENSIÓN TEMÁTICA PROFUNDA, no recordación de información textual",
   ],
 
-  // Instrucciones específicas para preguntas a desarrollar
+  // Instrucciones específicas para preguntas de desarrollo TEMÁTICAS
   developmentInstructions: [
-    "REGLA FUNDAMENTAL: Solo usa información que aparece explícitamente en el material proporcionado",
-    "Las preguntas deben ser AUTOCONTENIDAS con CONTEXTO SUFICIENTE para entenderlas",
-    "NO hagas referencia a 'secciones', 'tablas' o 'figuras' específicas del documento",
-    "INCLUYE en la pregunta el CONTEXTO y TEMA necesario para entender de qué se trata",
-    "NO agregues conocimiento externo, por obvio o conocido que sea",
-    "NO generes preguntas ambiguas, abstractas o interpretativas generales",
-    "Cada pregunta debe ser 100% respondible con el contenido dado",
-    "Si mencionas un concepto, debe estar presente textualmente en los archivos",
-    "Enfócate en análisis profundo de lo que SÍ está en el material",
-    "Promueve la reflexión crítica sobre el contenido específico proporcionado",
-    "Las preguntas deben requerir síntesis de información específica del material",
-    "Evita referencias a información no contenida en los archivos",
-    "Si el material es limitado, profundiza en lo disponible de manera específica",
-    "Genera preguntas que demuestren comprensión del contenido específico",
-    "Lo que se espera responder debe estar CLARAMENTE explicado en la pregunta",
-    "EJEMPLO BUENO: 'Considerando que el material describe un proceso con tres etapas específicas, analiza cada etapa...'",
-    "EJEMPLO MALO: 'Según la sección 3, analiza el proceso mencionado'",
+    "REGLA FUNDAMENTAL: Enfócate en los TEMAS TRATADOS, no en el contenido per se del material",
+    "Las preguntas deben ser AUTOCONTENIDAS y centradas en CONCEPTOS y TEORÍAS específicas",
+    "NO hagas preguntas sobre cómo el material presenta la información o está estructurado",
+    "INCLUYE el CONTEXTO TEMÁTICO necesario para comprender la pregunta sin referencias al documento",
+    "Enfócate en CONOCIMIENTO TEMÁTICO derivado del análisis del material proporcionado",
+    "NO generes preguntas sobre referencias textuales o estructura del material",
+    "Cada pregunta debe evaluar comprensión temática profunda y análisis conceptual",
+    "Los conceptos preguntados deben derivarse de los temas tratados en los archivos",
+    "Enfócate en análisis crítico de TEMAS y CONCEPTOS identificados en el material",
+    "Promueve la reflexión sobre TEORÍAS, PRINCIPIOS y CONCEPTOS específicos",
+    "Las preguntas deben requerir síntesis de conocimiento temático y conceptual",
+    "Evita referencias al material como fuente - enfócate en los temas que contiene",
+    "Si hay múltiples temas, profundiza en los conceptos más significativos y complejos",
+    "Genera preguntas que demuestren comprensión temática profunda, no memorización textual",
+    "Lo que se espera como análisis temático debe estar CLARAMENTE explicado en la pregunta",
+    "EJEMPLO EXCELENTE: 'Considerando el proceso de validación que incluye tres etapas específicas, analiza críticamente cada etapa...'",
+    "EJEMPLO MALO: 'Según la sección 3, analiza cómo el material presenta el proceso' (referencia al contenido)",
   ],
 };
 
@@ -211,8 +208,8 @@ export function getQuestionsCount(questionType = "choice") {
   if (questionType === "development") {
     return AI_CONFIG.developmentQuestionsPerGeneration;
   }
-  // Asegurar que siempre se generen al menos 10 preguntas de opción múltiple
-  return Math.max(AI_CONFIG.questionsPerGeneration, 10);
+  // Retorna exactamente el número configurado (10-12 preguntas)
+  return AI_CONFIG.questionsPerGeneration;
 }
 
 // Función para formatear el tamaño de archivo

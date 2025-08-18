@@ -509,49 +509,49 @@ async function processFilesWithAssistant(
 function createAssistantPrompt(questionType, questionsToGenerate, aiConfig) {
   const basePrompt = `Analiza los documentos PDF adjuntos y genera exactamente ${questionsToGenerate} preguntas de ${
     questionType === "development" ? "desarrollo" : "opción múltiple"
-  } en español.
+  } en español sobre los TEMAS TRATADOS.
 
-INSTRUCCIONES CRÍTICAS:
-1. Basa las preguntas ÚNICAMENTE en el contenido de los PDFs adjuntos
-2. NO uses conocimiento externo - solo lo que aparece en los documentos
-3. Las preguntas deben ser autocontenidas con contexto suficiente
-4. Nivel universitario pero basado estrictamente en el material proporcionado
+INSTRUCCIONES CRÍTICAS TEMÁTICAS:
+1. Genera preguntas sobre los TEMAS TRATADOS en los PDFs, NO sobre el contenido per se
+2. Enfócate en CONCEPTOS, TEORÍAS y PRINCIPIOS derivados del análisis de los documentos
+3. Las preguntas deben ser TEMÁTICAS, autocontenidas y con contexto conceptual suficiente
+4. Evalúa comprensión temática profunda, no memorización de contenido textual
 5. Responde ÚNICAMENTE con JSON válido sin texto adicional
 
 ${
   questionType === "development"
-    ? `FORMATO PARA PREGUNTAS DE DESARROLLO:
+    ? `FORMATO PARA PREGUNTAS DE DESARROLLO TEMÁTICAS:
 [
   {
-    "question": "Considerando que [contexto del documento], desarrolla y analiza [qué se espera]...",
-    "options": ["Puntos clave del PDF", "Aspectos del material", "Criterios del documento"],
-    "correct": ["Respuestas esperadas del contenido", "Puntos del PDF"],
-    "suggestedAnswer": "Respuesta detallada de 200-400 palabras basada exclusivamente en el contenido del PDF",
+    "question": "Considerando el concepto de [tema específico], desarrolla y analiza [qué se espera sobre el tema]...",
+    "options": ["Aspectos temáticos clave", "Conceptos fundamentales", "Principios teóricos"],
+    "correct": ["Respuestas temáticas esperadas", "Conceptos clave"],
+    "suggestedAnswer": "Respuesta detallada de 200-400 palabras que demuestra comprensión temática profunda y análisis conceptual",
     "source": "Generado de: nombre_archivo.pdf"
   }
 ]`
-    : `FORMATO PARA PREGUNTAS DE OPCIÓN MÚLTIPLE EXTREMADAMENTE EXIGENTES:
+    : `FORMATO PARA PREGUNTAS DE OPCIÓN MÚLTIPLE TEMÁTICAS EXIGENTES:
 
-REQUISITOS OBLIGATORIOS PARA CADA PREGUNTA:
-- Nivel universitario avanzado que desafíe a estudiantes brillantes
+REQUISITOS OBLIGATORIOS TEMÁTICOS:
+- Nivel universitario avanzado que evalúe comprensión conceptual profunda
 - 40% preguntas con UNA respuesta correcta, 60% preguntas con MÚLTIPLES respuestas correctas
-- Opciones incorrectas PLAUSIBLES que requieran conocimiento profundo para descartar
-- Preguntas que evalúen ANÁLISIS CRÍTICO, SÍNTESIS y APLICACIÓN de conocimientos
-- Combinación de múltiples conceptos del material en situaciones complejas
-- JAMÁS preguntas triviales o de memorización simple
+- Opciones incorrectas PLAUSIBLES temáticamente que requieran conocimiento conceptual profundo
+- Preguntas que evalúen ANÁLISIS CRÍTICO, SÍNTESIS temática y APLICACIÓN de teorías
+- Combinación de múltiples conceptos temáticos en situaciones analíticas complejas
+- JAMÁS preguntas sobre contenido textual, referencias o memorización simple
 
 [
   {
-    "question": "En el contexto de [tema complejo del PDF con múltiples conceptos], considerando [situación desafiante], ¿cuál/cuáles [pregunta que requiera análisis profundo y síntesis]?",
-    "options": ["Opción A - Distractor plausible", "Opción B - Correcta con análisis", "Opción C - Correcta con síntesis", "Opción D - Distractor convincente"],
-    "correct": ["Opción B - Correcta con análisis", "Opción C - Correcta con síntesis"],
-    "suggestedAnswer": "Explicación detallada del análisis crítico requerido para identificar por qué estas opciones son correctas, demostrando comprensión profunda del material del PDF",
+    "question": "En el contexto del tema [concepto complejo con múltiples elementos], considerando [situación temática desafiante], ¿cuál/cuáles [pregunta que requiera análisis conceptual profundo]?",
+    "options": ["Opción A - Distractor temático plausible", "Opción B - Correcta conceptualmente", "Opción C - Correcta teóricamente", "Opción D - Distractor conceptual convincente"],
+    "correct": ["Opción B - Correcta conceptualmente", "Opción C - Correcta teóricamente"],
+    "suggestedAnswer": "Explicación detallada del análisis conceptual requerido para identificar por qué estas opciones son correctas, demostrando comprensión temática profunda",
     "source": "Generado de: nombre_archivo.pdf"
   }
 ]`
 }
 
-Genera exactamente ${questionsToGenerate} preguntas basándote exclusivamente en los PDFs adjuntos.`;
+Genera exactamente ${questionsToGenerate} preguntas temáticas derivadas del análisis de los PDFs adjuntos.`;
 
   return basePrompt;
 }
@@ -1135,44 +1135,44 @@ CONTENIDO DE ARCHIVOS:
 ${filesInfo}
 
 REGLAS CRÍTICAS - DEBES SEGUIRLAS ESTRICTAMENTE:
-1. Las preguntas DEBEN estar basadas ÚNICAMENTE en el contenido proporcionado
-2. NO inventes información que no esté en los archivos
-3. NO agregues conocimiento externo o general del tema
-4. Cada pregunta debe ser respondible COMPLETAMENTE con la información proporcionada
-5. Si el contenido es limitado, enfócate en análisis profundo de lo que SÍ está presente
-6. NO hagas referencias a conceptos no mencionados en el material
-7. Las preguntas deben ser AUTOCONTENIDAS con CONTEXTO SUFICIENTE para entenderlas
-8. NO hagas referencia a "secciones", "tablas" o "figuras" específicas del documento
-9. INCLUYE en la pregunta el CONTEXTO y TEMA necesario para entender de qué se trata
-10. Las preguntas deben ser CONCRETAS sobre temas específicos pero con contexto claro
-11. Lo que se espera responder debe estar CLARAMENTE explicado en la pregunta
+1. Las preguntas deben ser sobre los TEMAS TRATADOS en el material, NO sobre el contenido per se del material
+2. Enfócate en los conceptos, teorías y temas que se abordan en los documentos
+3. Las preguntas deben ser sobre el CONOCIMIENTO TEMÁTICO que se puede extraer del material
+4. NO hagas preguntas sobre cómo el material presenta la información o está estructurado
+5. NO preguntes sobre el documento en sí, sino sobre los temas que contiene
+6. Las preguntas deben ser CLARAS y AUTOCONTENIDAS con CONTEXTO SUFICIENTE
+7. INCLUYE el CONTEXTO TEMÁTICO necesario para entender la pregunta
+8. Las preguntas pueden incluir referencias explícitas a temas cuando sea relevante para la comprensión
+9. Evita preguntas vagas sobre "el material" o "el documento" - enfócate en los temas específicos
+10. Lo que se espera responder debe estar CLARAMENTE explicado en la pregunta
+11. Las preguntas deben evaluar comprensión de los temas, no memorización del contenido textual
 
 CARACTERÍSTICAS DE LAS PREGUNTAS A DESARROLLAR:
-- Nivel universitario avanzado pero basado en el contenido real
-- Requieren análisis profundo del material proporcionado
-- Apropiadas para exámenes pero respondibles con el contenido dado
-- Deben promover la reflexión sobre los temas específicos del material
-- Cada pregunta debe poder responderse en 200-500 palabras usando solo el contenido
-- Enfócate en conceptos, relaciones e ideas que aparecen explícitamente en los archivos
-- INCLUYE EL CONTEXTO NECESARIO: "Considerando que [contexto del documento], desarrolla y analiza..."
-- EVITA REFERENCIAS VAGAS: "según la sección X" o "en la tabla Y"
+- Nivel universitario avanzado enfocado en los TEMAS y CONCEPTOS identificados en el material
+- Requieren análisis profundo de los TEMAS TRATADOS, no del material en sí
+- Apropiadas para evaluar comprensión temática y conceptual
+- Deben promover la reflexión sobre los conceptos, teorías y principios abordados
+- Cada pregunta debe evaluar comprensión de los temas de forma clara y directa
+- Enfócate en conceptos, relaciones e ideas temáticas derivadas del material
+- INCLUYE EL CONTEXTO TEMÁTICO: "Considerando el concepto de [tema], desarrolla y analiza..."
+- EVITA REFERENCIAS AL MATERIAL: "según el documento" o "en el material se dice"
 
-EJEMPLOS DE PREGUNTAS CON CONTEXTO ADECUADO:
-✅ BUENO: "Considerando que en el material se describe un proceso de validación que incluye tres etapas específicas (verificación, análisis y confirmación), desarrolla un análisis detallado de cada etapa explicando su función y cómo se interrelacionan."
-❌ MALO: "Según la sección 4, analiza el proceso de validación."
+EJEMPLOS DE PREGUNTAS CON ENFOQUE TEMÁTICO ADECUADO:
+✅ EXCELENTE: "Considerando el proceso de validación que incluye tres etapas (verificación, análisis y confirmación), desarrolla un análisis crítico de cada etapa explicando su función específica y cómo se interrelacionan para garantizar la efectividad del proceso."
+❌ MALO: "Según la sección 4, analiza el proceso de validación descrito en el material."
 
-✅ BUENO: "Dado que el documento presenta un modelo conceptual donde intervienen factores económicos, sociales y tecnológicos en la toma de decisiones, analiza críticamente cómo estos factores se integran y cuál es su impacto relativo."
-❌ MALO: "Reflexiona sobre la importancia de los factores en general."
+✅ EXCELENTE: "Analiza críticamente el modelo de toma de decisiones que integra factores económicos, sociales y tecnológicos, explicando cómo estos elementos se complementan y cuál es el impacto relativo de cada uno en el proceso decisorio."
+❌ MALO: "Reflexiona sobre cómo el documento presenta los factores de decisión."
 
 FORMATO DE RESPUESTA (JSON):
 Responde ÚNICAMENTE con un array JSON válido en este formato exacto:
 
 [
   {
-    "question": "Considerando que [contexto específico del material], desarrolla y analiza [qué se espera como respuesta]...",
-    "options": ["Puntos clave del contenido", "Aspectos mencionados en el material", "Criterios basados en el archivo"],
-    "correct": ["Puntos esperados basados en el contenido", "Aspectos del material", "Ideas del archivo"],
-    "suggestedAnswer": "Respuesta detallada y completa de 200-400 palabras que muestra cómo debe responderse la pregunta usando exclusivamente el contenido proporcionado. Esta respuesta servirá como referencia para evaluar otras respuestas.",
+    "question": "Considerando [contexto temático específico], desarrolla y analiza [qué se espera como respuesta sobre el tema]...",
+    "options": ["Aspectos temáticos clave", "Conceptos fundamentales del tema", "Principios teóricos relevantes"],
+    "correct": ["Respuestas esperadas sobre el tema", "Conceptos clave", "Principios aplicables"],
+    "suggestedAnswer": "Respuesta detallada de 200-400 palabras que demuestra comprensión profunda del tema, analizando conceptos, relaciones y aplicaciones teóricas. Enfocada en el conocimiento temático, no en el contenido textual.",
     "source": "Generado de: nombre_archivo.ext"
   }
 ]
@@ -1181,15 +1181,15 @@ IMPORTANTE:
 - Responde SOLO con el JSON, sin texto adicional
 - Asegúrate de que el JSON sea válido
 - Usa comillas dobles para todas las cadenas
-- En "options": incluye puntos que aparecen en el material proporcionado
-- En "correct": incluye respuestas basadas estrictamente en el contenido dado
-- En "suggestedAnswer": proporciona una respuesta modelo completa, detallada y basada 100% en el contenido
+- En "options": incluye aspectos temáticos y conceptuales relevantes
+- En "correct": incluye respuestas basadas en la comprensión temática
+- En "suggestedAnswer": proporciona una respuesta modelo que demuestre comprensión profunda del tema
 - Genera exactamente ${getQuestionsCount("development")} preguntas
-- TODA pregunta debe ser verificable contra el contenido proporcionado
-- Si menciones un concepto, debe estar presente en los archivos
-- NO agregues información externa, por conocida que sea
-- CADA PREGUNTA debe incluir el CONTEXTO NECESARIO para entenderla sin consultar el documento
-- Las preguntas deben ser AUTOCONTENIDAS y CLARAS sobre qué se espera como respuesta`;
+- TODA pregunta debe evaluar comprensión de TEMAS, no memorización de contenido
+- Los conceptos preguntados deben derivarse de los temas tratados en los archivos
+- Las preguntas deben ser sobre CONOCIMIENTO TEMÁTICO, no sobre el material per se
+- CADA PREGUNTA debe ser CLARA y AUTOCONTENIDA sobre el tema específico
+- Las preguntas deben promover análisis de CONCEPTOS y TEORÍAS, no descripción del contenido`;
   } else {
     // Prompt original para preguntas de opción múltiple
     const instructions = getFormattedInstructions("choice");
@@ -1200,32 +1200,32 @@ IMPORTANTE:
 CONTENIDO DE ARCHIVOS:
 ${filesInfo}
 
-REGLAS ESPECÍFICAS PARA PREGUNTAS EXTREMADAMENTE EXIGENTES:
-1. Las preguntas deben ser AUTOCONTENIDAS con CONTEXTO SUFICIENTE para entenderlas
-2. NO hagas referencia a "secciones", "tablas" o "figuras" específicas del documento
-3. INCLUYE en la pregunta el CONTEXTO necesario del tema
-4. Las preguntas deben ser CONCRETAS sobre información específica del material pero INTELECTUALMENTE DESAFIANTES
-5. EVITA preguntas vagas o que requieran consultar el documento para entender el contexto
-6. Lo que se pregunta debe estar CLARAMENTE explicado pero requerir ANÁLISIS PROFUNDO
+REGLAS ESPECÍFICAS PARA PREGUNTAS TEMÁTICAS EXTREMADAMENTE EXIGENTES:
+1. Las preguntas deben ser sobre los TEMAS TRATADOS, no sobre el contenido per se del material
+2. Enfócate en CONCEPTOS, TEORÍAS y PRINCIPIOS derivados del material analizado
+3. INCLUYE el CONTEXTO TEMÁTICO necesario para comprender la pregunta
+4. Las preguntas deben ser CONCRETAS sobre temas específicos pero INTELECTUALMENTE DESAFIANTES
+5. EVITA preguntas sobre cómo el material presenta la información o está estructurado
+6. Las preguntas deben evaluar COMPRENSIÓN TEMÁTICA y requerir ANÁLISIS PROFUNDO
 7. OBLIGATORIO: Genera 40% preguntas de respuesta única y 60% preguntas de respuestas múltiples
-8. Las opciones incorrectas deben ser PLAUSIBLES y requerir conocimiento profundo para descartar
-9. Las preguntas deben evaluar COMPRENSIÓN PROFUNDA, ANÁLISIS CRÍTICO y SÍNTESIS de conceptos
-10. Incluye preguntas que requieran COMPARAR, CONTRASTAR, EVALUAR y APLICAR conocimientos
-11. Las preguntas deben combinar múltiples conceptos del material en situaciones complejas
-12. JAMÁS generes preguntas triviales o de memorización simple
+8. Las opciones incorrectas deben ser PLAUSIBLES temáticamente y requerir conocimiento profundo
+9. Las preguntas deben evaluar COMPRENSIÓN CONCEPTUAL, ANÁLISIS CRÍTICO y SÍNTESIS temática
+10. Incluye preguntas que requieran COMPARAR, CONTRASTAR, EVALUAR conceptos y teorías
+11. Las preguntas deben combinar múltiples conceptos temáticos en situaciones complejas
+12. JAMÁS generes preguntas triviales, sobre referencias textuales o memorización de contenido
 
-EJEMPLOS DE PREGUNTAS EXIGENTES AUTOCONTENIDAS:
+EJEMPLOS DE PREGUNTAS TEMÁTICAS EXIGENTES:
 
-✅ EXCELENTE (respuesta única): "En el contexto de un sistema distribuido que implementa consistencia eventual con tres estrategias de replicación (síncrona, asíncrona y híbrida), ¿cuál es la estrategia más efectiva para minimizar la latencia mientras se mantiene la integridad de datos en escenarios de alta concurrencia, considerando las limitaciones de red descritas en el material?"
+✅ EXCELENTE (respuesta única): "En el contexto de sistemas distribuidos que implementan consistencia eventual con estrategias de replicación (síncrona, asíncrona e híbrida), ¿cuál es la estrategia más efectiva para minimizar la latencia mientras se mantiene la integridad de datos en escenarios de alta concurrencia?"
 
-✅ EXCELENTE (respuestas múltiples): "Considerando el modelo de arquitectura de microservicios propuesto que incluye componentes de autenticación, autorización, logging, monitoring y service discovery, ¿cuáles de los siguientes principios son fundamentales para garantizar TANTO la escalabilidad horizontal COMO la tolerancia a fallos del sistema completo?"
+✅ EXCELENTE (respuestas múltiples): "Considerando la arquitectura de microservicios que integra componentes de autenticación, autorización, logging, monitoring y service discovery, ¿cuáles de los siguientes principios son fundamentales para garantizar TANTO la escalabilidad horizontal COMO la tolerancia a fallos del sistema?"
 
-✅ BUENO (respuesta única): "En el contexto de un algoritmo de cifrado que utiliza tres capas de seguridad (simétrica, asimétrica y hash), ¿cuál es el factor más crítico para prevenir ataques de fuerza bruta según las mejores prácticas de seguridad descritas?"
+✅ BUENO (respuesta única): "En el contexto de algoritmos de cifrado que utilizan múltiples capas de seguridad (simétrica, asimétrica y hash), ¿cuál es el factor más crítico para prevenir ataques de fuerza bruta según las mejores prácticas de seguridad?"
 
-✅ BUENO (respuestas múltiples): "Dado el proceso de optimización de base de datos que involucra indexación, particionamiento y cacheo, ¿cuáles de las siguientes técnicas son esenciales para mejorar simultáneamente el rendimiento de consultas Y la integridad referencial?"
+✅ BUENO (respuestas múltiples): "En procesos de optimización de bases de datos que involucran indexación, particionamiento y cacheo, ¿cuáles técnicas son esenciales para mejorar simultáneamente el rendimiento de consultas Y la integridad referencial?"
 
-❌ MALO: "¿Cuáles son los permisos mencionados en la tabla 3?"
-❌ MALO: "¿Qué es una base de datos?" (demasiado general y trivial)
+❌ MALO: "¿Cuáles son los permisos mencionados en la tabla 3?" (referencia al contenido)
+❌ MALO: "¿Cómo el material presenta las bases de datos?" (sobre el contenido, no el tema)
 
 INSTRUCCIONES ORIGINALES:
 ${instructions}
@@ -1235,30 +1235,30 @@ Responde ÚNICAMENTE con un array JSON válido en este formato exacto:
 
 [
   {
-    "question": "En el contexto de [tema específico del material], ¿cuál/cómo/qué [pregunta concreta con contexto incluido]?",
+    "question": "En el contexto del tema [concepto o teoría específica], ¿cuál/cómo/qué [pregunta temática concreta]?",
     "options": ["Opción A", "Opción B", "Opción C", "Opción D"],
     "correct": ["Opción A", "Opción C"],
-    "suggestedAnswer": "Explicación detallada de por qué estas opciones son correctas basándose en el contenido específico del material proporcionado.",
+    "suggestedAnswer": "Explicación detallada de por qué estas opciones son correctas basándose en la comprensión conceptual y temática derivada del análisis del material.",
     "source": "Generado de: nombre_archivo.ext"
   }
 ]
 
-IMPORTANTE - REQUISITOS CRÍTICOS: 
+IMPORTANTE - REQUISITOS CRÍTICOS TEMÁTICOS: 
 - Responde SOLO con el JSON, sin texto adicional
 - Asegúrate de que el JSON sea válido
 - Usa comillas dobles para todas las cadenas
 - Las respuestas correctas deben estar exactamente como aparecen en las opciones
-- En "suggestedAnswer": proporciona explicación detallada de por qué las opciones son correctas basándose en análisis profundo
-- Genera exactamente ${questionsToGenerate} preguntas (mínimo 10)
+- En "suggestedAnswer": proporciona explicación de por qué las opciones son correctas basándose en comprensión temática
+- Genera exactamente ${questionsToGenerate} preguntas
 - Cada pregunta debe tener exactamente ${AI_CONFIG.optionsPerQuestion} opciones
 - OBLIGATORIO: 40% preguntas con UNA respuesta correcta, 60% preguntas con MÚLTIPLES respuestas correctas
-- TODA pregunta debe incluir el CONTEXTO NECESARIO para entenderla sin consultar el documento
-- Las preguntas deben ser EXTREMADAMENTE EXIGENTES y requerir PENSAMIENTO CRÍTICO AVANZADO
-- Las preguntas deben ser AUTOCONTENIDAS y CLARAS sobre el tema específico
-- NO generes preguntas que requieran consultar referencias del documento para entender el contexto
-- JAMÁS generes preguntas triviales - todas deben desafiar a estudiantes avanzados
-- Los distractores (opciones incorrectas) deben ser PLAUSIBLES y requerir conocimiento profundo para descartar
-- Las preguntas deben combinar múltiples conceptos y evaluar comprensión profunda, no memorización`;
+- TODA pregunta debe ser TEMÁTICA y AUTOCONTENIDA sobre conceptos específicos
+- Las preguntas deben ser EXTREMADAMENTE EXIGENTES y requerir PENSAMIENTO CRÍTICO sobre TEMAS
+- Enfócate en COMPRENSIÓN CONCEPTUAL, no en memorización de contenido textual
+- NO generes preguntas sobre referencias textuales, estructuras del documento o contenido per se
+- JAMÁS generes preguntas triviales - todas deben evaluar comprensión temática profunda
+- Los distractores deben ser PLAUSIBLES temáticamente y requerir conocimiento conceptual profundo
+- Las preguntas deben combinar múltiples conceptos temáticos y evaluar comprensión teórica, no memorización`;
   }
 }
 
@@ -1469,17 +1469,17 @@ ${question.suggestedAnswer || "No disponible"}
 RESPUESTA DEL ESTUDIANTE:
 "${userAnswer}"
 
-INSTRUCCIONES PARA LA EVALUACIÓN:
-1. Evalúa la respuesta ÚNICAMENTE basándote en el contenido del material proporcionado
-2. Usa la respuesta modelo como referencia de calidad y estructura esperada
-3. Compara la respuesta del estudiante con la respuesta modelo y los puntos clave
-4. Verifica si la respuesta del estudiante está alineada con la información del material
-5. NO uses conocimiento externo para evaluar - solo el contenido dado
-6. Sé muy específico con tu análisis, citando el material cuando sea relevante
-7. Usa el contexto de todas las preguntas para interpretar mejor la respuesta
-8. Proporciona feedback basado estrictamente en lo que aparece en el material
-9. Si la respuesta va más allá del material, menciona que debe ceñirse al contenido
-10. Si hay errores respecto al material, corrígelos citando el contenido correcto
+INSTRUCCIONES PARA LA EVALUACIÓN PERMISIVA:
+1. Evalúa la respuesta basándote en el contenido del material proporcionado
+2. USA CRITERIOS PERMISIVOS: Si la respuesta está RELATIVAMENTE CORRECTA, considérala CORRECTA
+3. BENEVOLENTE: Si la respuesta incluye algunos puntos clave del material, considérala CORRECTA
+4. NO EXIJAS PERFECCIÓN: Respuestas parcialmente correctas son CORRECTAS para estadísticas
+5. Busca ASPECTOS POSITIVOS en la respuesta antes que errores
+6. Si la respuesta demuestra comprensión básica del tema, clasifícala como CORRECTA
+7. SOLO marca como INCORRECTA si la respuesta está fundamentalmente equivocada o sin relación
+8. Prioriza el ESFUERZO y COMPRENSIÓN GENERAL sobre detalles específicos
+9. Las respuestas pueden ser menos detalladas que el modelo y aún ser CORRECTAS
+10. Enfoque CONSTRUCTIVO: Busca dar feedback positivo y alentador
 
 INSTRUCCIÓN CRUCIAL SOBRE EL TONO:
 - Usa tu personalidad y tono configurado en TODOS los campos de respuesta
@@ -1495,22 +1495,43 @@ Responde ÚNICAMENTE con un objeto JSON válido en este formato exacto:
 {
   "isCorrect": true/false,
   "score": "Correcto/Parcialmente correcto/Incorrecto",
-  "analysis": "Análisis detallado con tu PERSONALIDAD y TONO específico, comparando la respuesta con el material proporcionado",
-  "feedback": "Feedback con tu PERSONALIDAD y TONO específico, basado en el contenido del material",
-  "improvements": "Sugerencias de mejora con tu PERSONALIDAD y TONO específico, usando únicamente el material disponible",
+  "analysis": "Análisis detallado con tu PERSONALIDAD y TONO específico, enfocándote en aspectos positivos",
+  "feedback": "Feedback CONSTRUCTIVO con tu PERSONALIDAD y TONO específico, destacando lo bueno de la respuesta",
+  "improvements": "Sugerencias de mejora ALENTADORAS con tu PERSONALIDAD y TONO específico",
   "correctAnswer": "Respuesta ejemplar con tu PERSONALIDAD y TONO específico, basada en el contenido proporcionado"
 }
 
+REGLAS ESPECÍFICAS PARA ESTADÍSTICAS SIMPLIFICADAS:
+- MARCA "isCorrect": true SI la respuesta está RELATIVAMENTE correcta, incluye algunos puntos clave, o demuestra comprensión básica
+- MARCA "isCorrect": true SI la respuesta está PARCIALMENTE correcta - esto cuenta como CORRECTA en estadísticas
+- MARCA "isCorrect": false SOLO si la respuesta está completamente equivocada o no tiene relación con el tema
+- ENFOQUE BENEVOLENTE: En caso de duda, marca como CORRECTA
+- Las respuestas "Parcialmente correctas" deben tener "isCorrect": true para simplificar estadísticas
+
 IMPORTANTE:
 - Responde SOLO con el JSON, sin texto adicional
-- Basa toda evaluación en el material proporcionado y la respuesta modelo
-- No introduzcas información externa
-- Cita o referencie el material y la respuesta modelo cuando sea útil
-- La respuesta modelo te da el estándar de calidad esperado
+- USA CRITERIOS PERMISIVOS para determinar isCorrect
+- Basa evaluación en comprensión general del tema, no perfección
+- La respuesta modelo es referencia, pero NO exijas ese nivel de detalle
 - CRUCIAL: Aplica tu personalidad y tono en TODOS los campos del JSON (analysis, feedback, improvements, correctAnswer)
-- Si eres HATER: incluye emojis de enojo y sarcasmo en TODOS los campos
+- Si eres HATER: incluye emojis de enojo y sarcasmo en TODOS los campos (pero sé permisivo con isCorrect)
 - Si eres gracioso: incluye humor en TODOS los campos
-- Si eres motivador: sé positivo en TODOS los campos`;
+- Si eres motivador: sé positivo en TODOS los campos
+
+EJEMPLOS DE EVALUACIÓN PERMISIVA:
+✅ MARCA COMO CORRECTA (isCorrect: true):
+- Respuesta que menciona 2-3 puntos clave del material, aunque falte detalle
+- Respuesta que demuestra comprensión general del tema, aunque sea breve
+- Respuesta que tiene algunos errores menores pero el concepto principal es correcto
+- Respuesta parcialmente desarrollada pero en la dirección correcta
+
+❌ MARCA COMO INCORRECTA (isCorrect: false) SOLO:
+- Respuesta completamente fuera del tema
+- Respuesta que contradice fundamentalmente el material
+- Respuesta vacía o sin sentido
+- Respuesta que no demuestra ninguna comprensión del tema
+
+RECUERDA: En caso de duda, SÉ PERMISIVO y marca como CORRECTA`;
 
     // Get model configuration
     const modelConfig = getModelConfig();
@@ -1569,6 +1590,8 @@ IMPORTANTE:
 // Function to parse evaluation response from OpenAI
 function parseEvaluationResponse(responseContent) {
   try {
+    console.log("🔍 Raw response de la IA:", responseContent);
+
     // Clean the response to extract only the JSON
     let jsonString = responseContent.trim();
 
@@ -1580,8 +1603,18 @@ function parseEvaluationResponse(responseContent) {
       jsonString = jsonString.substring(jsonStart, jsonEnd + 1);
     }
 
+    console.log("🧹 JSON extraído:", jsonString);
+
     // Parse JSON
     const evaluation = JSON.parse(jsonString);
+
+    console.log("✅ Evaluación parseada:", evaluation);
+    console.log(
+      "🎯 isCorrect value:",
+      evaluation.isCorrect,
+      "Type:",
+      typeof evaluation.isCorrect
+    );
 
     // Validate required fields
     if (
