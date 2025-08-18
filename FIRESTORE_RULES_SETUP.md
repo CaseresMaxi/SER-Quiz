@@ -81,6 +81,21 @@ Las reglas deben permitir:
 }
 ```
 
+### Colección `quiz_history/{historyId}`
+```javascript
+{
+  userId: string,
+  userEmail: string,
+  quizData: string, // JSON string with quiz questions
+  fileName: string,
+  type: string, // 'choice' or 'development'
+  name: string, // Display name for the quiz
+  createdAt: timestamp,
+  version: number,
+  source: string // 'manual_upload', 'ai_generated', etc.
+}
+```
+
 ## 🚨 Errores Comunes
 
 ### Error: "permission-denied"
@@ -99,6 +114,9 @@ Una vez configurado correctamente, deberías ver en la consola:
 📦 Datos migrados de localStorage a Firebase
 📡 Firebase data synced in real-time
 ✅ Firebase data saved: [key]
+📚 Saving existing choice quiz to history before replacement...
+✅ Successfully saved choice quiz to history
+📚 Quiz saved to history: 📝 Opción múltiple - example.json (ID: [historyId])
 ```
 
 ## 🆘 Si Sigues Teniendo Problemas

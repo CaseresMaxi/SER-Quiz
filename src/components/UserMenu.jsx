@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
+import QuizHistoryModal from "./QuizHistoryModal";
 import "./UserMenu.css";
 
 const UserMenuDropdown = ({
@@ -17,6 +18,7 @@ const UserMenuDropdown = ({
   setShowInfoModal,
   triggerRef,
   onChangeQuestionType,
+  onOpenQuizHistory,
 }) => {
   const [position, setPosition] = useState({ top: 0, left: 0, right: "auto" });
 
@@ -218,6 +220,23 @@ const UserMenuDropdown = ({
           <button
             className="menu-item"
             onClick={() => {
+              onOpenQuizHistory();
+              onClose();
+            }}
+          >
+            <span className="menu-icon">📚</span>
+            <div className="menu-text">
+              <span className="menu-label">Historial de Cuestionarios</span>
+              <span className="menu-description">
+                Ver cuestionarios anteriores
+              </span>
+            </div>
+            <span className="menu-arrow">›</span>
+          </button>
+
+          <button
+            className="menu-item"
+            onClick={() => {
               setShowInfoModal(true);
               onClose();
             }}
@@ -283,8 +302,10 @@ const UserMenu = ({
   onOpenPremiumModal,
   onOpenPricingSection,
   onChangeQuestionType,
+  onLoadQuizFromHistory,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showQuizHistory, setShowQuizHistory] = useState(false);
   const triggerRef = useRef(null);
 
   // Close menu when clicking outside or pressing escape
@@ -351,6 +372,14 @@ const UserMenu = ({
     setIsOpen(false);
   };
 
+  const handleOpenQuizHistory = () => {
+    setShowQuizHistory(true);
+  };
+
+  const handleCloseQuizHistory = () => {
+    setShowQuizHistory(false);
+  };
+
   return (
     <>
       <div className="user-menu-container">
@@ -397,6 +426,21 @@ const UserMenu = ({
         onOpenPricingSection={onOpenPricingSection}
         triggerRef={triggerRef}
         onChangeQuestionType={onChangeQuestionType}
+        onOpenQuizHistory={handleOpenQuizHistory}
+      />
+
+      <QuizHistoryModal
+        isOpen={showQuizHistory}
+        onClose={handleCloseQuizHistory}
+        onQuizSelect={(quiz) => {
+          console.log("Quiz selected from history:", quiz);
+          // Close the quiz history modal
+          setShowQuizHistory(false);
+          // Load the quiz directly using the function from App.jsx
+          if (onLoadQuizFromHistory) {
+            onLoadQuizFromHistory(quiz);
+          }
+        }}
       />
     </>
   );

@@ -33,6 +33,7 @@ export default function App() {
     storage,
     isReady: storageReady,
     isLoading: storageLoading,
+    resetHistoryFlag,
   } = useFirebaseStorage();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showSubscriptionDashboard, setShowSubscriptionDashboard] =
@@ -274,7 +275,7 @@ export default function App() {
       });
   };
 
-  const handleFileUpload = (event) => {
+  const handleFileUpload = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
 
@@ -287,7 +288,7 @@ export default function App() {
     setError(null);
 
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
       try {
         const jsonData = JSON.parse(e.target.result);
 
@@ -324,6 +325,9 @@ export default function App() {
         setIsCustomQuiz(true);
         setLoadedFileName(file.name);
         setLoading(false);
+
+        // Reset history flag since this is a new uploaded quiz
+        await resetHistoryFlag();
 
         // Save original custom questions to Firebase storage (not shuffled)
         const { customQuizKey, customFileNameKey } = getLocalStorageKeys();
@@ -479,6 +483,9 @@ export default function App() {
               uploadedFiles.length > 1 ? "s" : ""
             }) - ${new Date().toLocaleDateString()}`;
       setLoadedFileName(fileName);
+
+      // Reset history flag since this is a new AI-generated quiz
+      await resetHistoryFlag();
 
       // CRITICAL: Save immediately to Firebase storage
       const { customQuizKey, customFileNameKey } = getLocalStorageKeys();
@@ -661,6 +668,53 @@ export default function App() {
     setShowResult(false);
     setAnswerStats({ correct: 0, incorrect: 0, skipped: 0 }); // Reset stats
     setShowFinalResults(false); // Reset final results display
+  };
+
+  // Function to load quiz directly from history without page reload
+  const handleLoadQuizFromHistory = (entry) => {
+    console.log("📚 Cargando cuestionario desde historial:", entry);
+
+    try {
+      // Parse and validate quiz data
+      const quizData = JSON.parse(entry.quizData);
+
+      // Validate structure
+      const isValidStructure = quizData.every(
+        (q) =>
+          q.question &&
+          Array.isArray(q.options) &&
+          Array.isArray(q.correct) &&
+          q.id !== undefined
+      );
+
+      if (!isValidStructure) {
+        throw new Error("Estructura de cuestionario inválida");
+      }
+
+      // Set question type
+      setQuestionType(entry.type);
+
+      // Reset quiz state
+      setCurrentIdx(0);
+      setSelected({});
+      setDevelopmentAnswers({});
+      setShowResult(false);
+      setAnswerStats({ correct: 0, incorrect: 0, skipped: 0 });
+      setShowFinalResults(false);
+      setShowQuestionTypeSelection(false);
+
+      // Load questions directly
+      const shuffled = quizData.sort(() => 0.5 - Math.random());
+      setQuestions(shuffled);
+      setIsCustomQuiz(true);
+      setLoadedFileName(entry.fileName);
+      setLoading(false);
+
+      console.log("✅ Cuestionario cargado desde historial exitosamente");
+    } catch (error) {
+      console.error("❌ Error cargando cuestionario desde historial:", error);
+      setError(`Error al cargar el cuestionario: ${error.message}`);
+    }
   };
 
   const InfoModal = () => {
@@ -1567,6 +1621,7 @@ export default function App() {
               onOpenPremiumModal={() => setShowPremiumModal(true)}
               onOpenPricingSection={() => setShowPricingSection(true)}
               onChangeQuestionType={handleChangeQuestionTypeFromMenu}
+              onLoadQuizFromHistory={handleLoadQuizFromHistory}
             />
             <h3 className="quiz-master-title">Preguntitas</h3>
           </div>
@@ -1864,6 +1919,7 @@ export default function App() {
             onOpenPremiumModal={() => setShowPremiumModal(true)}
             onOpenPricingSection={() => setShowPricingSection(true)}
             onChangeQuestionType={handleChangeQuestionTypeFromMenu}
+            onLoadQuizFromHistory={handleLoadQuizFromHistory}
           />
           <h2 className="quiz-master-title">
             <a href="#inicio" className="logo-link">

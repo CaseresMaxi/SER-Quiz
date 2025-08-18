@@ -16,5 +16,15 @@ service cloud.firestore {
       allow read: if request.auth != null && request.auth.uid == resource.data.userId;
       allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
     }
+    
+    // Quiz History - Users can manage their own quiz history
+    match /quiz_history/{historyId} {
+      // Allow read and delete if the history entry belongs to the authenticated user
+      allow read, delete: if request.auth != null && request.auth.uid == resource.data.userId;
+      // Allow create only if the new document has the correct userId
+      allow create: if request.auth != null && 
+                      request.auth.uid == request.resource.data.userId &&
+                      request.resource.data.keys().hasAll(['userId', 'quizData', 'fileName', 'type', 'name', 'createdAt']);
+    }
   }
 } 
