@@ -3686,7 +3686,7 @@
 
 .info-text {
   font-size: clamp(0.8rem, 2.5vw, 0.9rem);
-  opacity: 0.7;
+  /* opacity: 0.7; */
   color: rgba(255, 255, 255, 0.8);
   display: inline-flex;
   align-items: center;
@@ -3695,7 +3695,7 @@
   background: rgba(255, 255, 255, 0.05);
   border-radius: 25px;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   max-width: 90vw;
   box-sizing: border-box;
   text-align: center;
