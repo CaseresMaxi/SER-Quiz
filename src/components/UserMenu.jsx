@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import QuizHistoryModal from "./QuizHistoryModal";
 import "./UserMenu.css";
+import { useQuizHistory } from "../hooks/useQuizHistory";
 
 const UserMenuDropdown = ({
   isOpen,
@@ -11,6 +12,7 @@ const UserMenuDropdown = ({
   hasActiveSubscription,
   getDaysRemaining,
   isExpiringSoon,
+  showQuestionTypeSelection,
   logout,
   onOpenSubscriptionDashboard,
   onOpenPremiumModal,
@@ -147,6 +149,7 @@ const UserMenuDropdown = ({
 
         <div className="menu-items">
           <button
+            disabled={showQuestionTypeSelection}
             className="menu-item"
             onClick={() => {
               if (hasActiveSubscription()) {
@@ -293,6 +296,7 @@ const UserMenuDropdown = ({
 const UserMenu = ({
   user,
   subscription,
+  showQuestionTypeSelection,
   hasActiveSubscription,
   getDaysRemaining,
   isExpiringSoon,
@@ -307,6 +311,24 @@ const UserMenu = ({
   const [isOpen, setIsOpen] = useState(false);
   const [showQuizHistory, setShowQuizHistory] = useState(false);
   const triggerRef = useRef(null);
+
+  const [historyEntries, setHistoryEntries] = useState([]);
+  const { getQuizHistory } = useQuizHistory();
+
+  const loadHistory = async () => {
+    try {
+      const entries = await getQuizHistory("all", 50);
+      setHistoryEntries(entries);
+    } catch (error) {
+      console.error("Error loading quiz history:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (historyEntries.length <= 0) {
+      loadHistory();
+    }
+  }, [historyEntries, isOpen]);
 
   // Close menu when clicking outside or pressing escape
   useEffect(() => {
@@ -414,7 +436,9 @@ const UserMenu = ({
       <UserMenuDropdown
         isOpen={isOpen}
         onClose={handleClose}
+        historyEntries={historyEntries}
         user={user}
+        showQuestionTypeSelection={showQuestionTypeSelection}
         setShowInfoModal={setShowInfoModal}
         subscription={subscription}
         hasActiveSubscription={hasActiveSubscription}

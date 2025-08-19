@@ -1630,6 +1630,7 @@ export default function App() {
             <UserMenu
               user={user}
               subscription={subscription}
+              showQuestionTypeSelection={showQuestionTypeSelection}
               hasActiveSubscription={hasActiveSubscription}
               getDaysRemaining={getDaysRemaining}
               isExpiringSoon={isExpiringSoon}
@@ -1928,6 +1929,7 @@ export default function App() {
           <UserMenu
             user={user}
             subscription={subscription}
+            showQuestionTypeSelection={showQuestionTypeSelection}
             hasActiveSubscription={hasActiveSubscription}
             getDaysRemaining={getDaysRemaining}
             isExpiringSoon={isExpiringSoon}
