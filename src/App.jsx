@@ -14,6 +14,7 @@ import { isAppReady, getConfigStatus } from "./utils/envValidator";
 import { useAuth } from "./hooks/useAuth";
 import { useSubscription } from "./hooks/useSubscription";
 import { useFirebaseStorage } from "./hooks/useFirebaseStorage";
+import { useQuizHistory } from "./hooks/useQuizHistory";
 import { AuthModal } from "./components/AuthModal";
 import PricingSection from "./components/PricingSection";
 import SubscriptionDashboard from "./components/SubscriptionDashboard";
@@ -35,6 +36,7 @@ export default function App() {
     isLoading: storageLoading,
     resetHistoryFlag,
   } = useFirebaseStorage();
+  const { getQuizHistory } = useQuizHistory();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showSubscriptionDashboard, setShowSubscriptionDashboard] =
     useState(false);
@@ -58,7 +60,7 @@ export default function App() {
   const [isEvaluating, setIsEvaluating] = useState(false); // Separate state for AI evaluation
   const [evaluatorPersonality, setEvaluatorPersonality] = useState("normal");
   const [difficultyLevel, setDifficultyLevel] = useState("normal");
-  const [usePdfAssistants, setUsePdfAssistants] = useState(true); // Auto-detect by default
+  const [apiPreference, setApiPreference] = useState("responses"); // "responses", "assistants", or "traditional"
   const [showPricingSection, setShowPricingSection] = useState(false);
   const [generationProgress, setGenerationProgress] = useState(""); // Add progress tracking
   const fileInputRef = useRef(null);
@@ -84,44 +86,48 @@ export default function App() {
     // Wait for storage to be ready before loading
     if (!storageReady) return;
 
-    // Debug: Show what's in Firebase storage
-    console.log("🔍 VERIFICACIÓN DE PERSISTENCIA AL INICIAR:");
-    const choiceQuiz = storage.getItem("customQuizData_choice");
-    const devQuiz = storage.getItem("customQuizData_development");
-    const savedType = storage.getItem("questionType");
+    const initializeApp = async () => {
+      // Debug: Show what's in Firebase storage
+      console.log("🔍 VERIFICACIÓN DE PERSISTENCIA AL INICIAR:");
+      const choiceQuiz = storage.getItem("customQuizData_choice");
+      const devQuiz = storage.getItem("customQuizData_development");
+      const savedType = storage.getItem("questionType");
 
-    console.log(
-      "📝 Preguntas choice guardadas:",
-      choiceQuiz ? `${JSON.parse(choiceQuiz).length} preguntas` : "❌ Ninguna"
-    );
-    console.log(
-      "🧠 Preguntas desarrollo guardadas:",
-      devQuiz ? `${JSON.parse(devQuiz).length} preguntas` : "❌ Ninguna"
-    );
-    console.log("🎯 Tipo guardado:", savedType || "❌ Ninguno");
+      console.log(
+        "📝 Preguntas choice guardadas:",
+        choiceQuiz ? `${JSON.parse(choiceQuiz).length} preguntas` : "❌ Ninguna"
+      );
+      console.log(
+        "🧠 Preguntas desarrollo guardadas:",
+        devQuiz ? `${JSON.parse(devQuiz).length} preguntas` : "❌ Ninguna"
+      );
+      console.log("🎯 Tipo guardado:", savedType || "❌ Ninguno");
 
-    // Load saved question type from Firebase storage
-    const savedQuestionType = storage.getItem("questionType");
-    if (
-      savedQuestionType &&
-      (savedQuestionType === "choice" || savedQuestionType === "development")
-    ) {
-      setQuestionType(savedQuestionType);
+      // Load saved question type from Firebase storage
+      const savedQuestionType = storage.getItem("questionType");
+      if (
+        savedQuestionType &&
+        (savedQuestionType === "choice" || savedQuestionType === "development")
+      ) {
+        setQuestionType(savedQuestionType);
 
-      // Check if there are saved questions for this type
-      const { customQuizKey } = getLocalStorageKeys(savedQuestionType);
-      const savedQuestions = storage.getItem(customQuizKey);
+        // Check if there are saved questions for this type
+        const { customQuizKey } = getLocalStorageKeys(savedQuestionType);
+        const savedQuestions = storage.getItem(customQuizKey);
 
-      if (savedQuestions && savedQuestionType === "development") {
-        console.log("🧠 Cargando preguntas de desarrollo guardadas...");
+        if (savedQuestions && savedQuestionType === "development") {
+          console.log("🧠 Cargando preguntas de desarrollo guardadas...");
+        }
+
+        await loadQuestions(savedQuestionType);
+      } else {
+        // No saved preference - show question type selection
+        setShowQuestionTypeSelection(true);
+        setLoading(false);
       }
+    };
 
-      loadQuestions(savedQuestionType);
-    } else {
-      // No saved preference - show question type selection
-      setShowQuestionTypeSelection(true);
-      setLoading(false);
-    }
+    initializeApp();
   }, [storageReady]);
 
   // Effect to check if user lost premium access while in development mode
@@ -133,7 +139,10 @@ export default function App() {
       setQuestionType("choice");
       storage.setItem("questionType", "choice");
       // Reload questions for choice mode
-      loadQuestions("choice");
+      const reloadQuestions = async () => {
+        await loadQuestions("choice");
+      };
+      reloadQuestions();
     }
   }, [hasActiveSubscription, questionType]);
 
@@ -150,7 +159,68 @@ export default function App() {
     return { customQuizKey, customFileNameKey };
   };
 
-  const loadQuestions = (forceType = null) => {
+  // Function to load the last quiz from history for a specific type
+  const loadLastQuizFromHistory = async (type) => {
+    try {
+      console.log(
+        `🔍 Buscando última pregunta de tipo ${type} en el historial...`
+      );
+      const historyEntries = await getQuizHistory(type, 1);
+
+      if (historyEntries.length > 0) {
+        const lastEntry = historyEntries[0]; // First entry is the most recent due to desc order
+        console.log(
+          `📚 Encontrada última pregunta ${type} en historial:`,
+          lastEntry.fileName
+        );
+
+        // Parse and validate quiz data
+        const quizData = JSON.parse(lastEntry.quizData);
+        const isValidStructure = quizData.every(
+          (q) =>
+            q.question &&
+            Array.isArray(q.options) &&
+            Array.isArray(q.correct) &&
+            q.id !== undefined
+        );
+
+        if (isValidStructure) {
+          // Save to current storage
+          const { customQuizKey, customFileNameKey } =
+            getLocalStorageKeys(type);
+          storage.setItem(customQuizKey, lastEntry.quizData);
+          storage.setItem(customFileNameKey, lastEntry.fileName);
+
+          // Load the quiz
+          const shuffled = quizData.sort(() => 0.5 - Math.random());
+          setQuestions(shuffled);
+          setIsCustomQuiz(true);
+          setLoadedFileName(lastEntry.fileName);
+          setLoading(false);
+
+          console.log(
+            `✅ Última pregunta ${type} cargada desde historial exitosamente`
+          );
+          return true;
+        } else {
+          console.warn(
+            `⚠️ Estructura inválida en última pregunta ${type} del historial`
+          );
+        }
+      } else {
+        console.log(`📭 No hay preguntas de tipo ${type} en el historial`);
+      }
+    } catch (error) {
+      console.error(
+        `❌ Error cargando última pregunta ${type} del historial:`,
+        error
+      );
+    }
+
+    return false;
+  };
+
+  const loadQuestions = async (forceType = null) => {
     const currentType = forceType || questionType;
 
     // Use different localStorage keys for different question types
@@ -193,12 +263,22 @@ export default function App() {
       }
     }
 
-    // If no valid custom quiz found, show question type selection instead of loading defaults
+    // If no valid custom quiz found, try to load from history
     console.log(
-      `📖 No hay preguntas guardadas para ${currentType}, mostrando selección de modalidad`
+      `📖 No hay preguntas guardadas para ${currentType}, buscando en historial...`
     );
-    setShowQuestionTypeSelection(true);
-    setLoading(false);
+
+    // Try to load the last quiz from history for this type
+    const loadedFromHistory = await loadLastQuizFromHistory(currentType);
+
+    if (!loadedFromHistory) {
+      // If no history found either, show question type selection
+      console.log(
+        `📖 No hay preguntas en historial para ${currentType}, mostrando selección de modalidad`
+      );
+      setShowQuestionTypeSelection(true);
+      setLoading(false);
+    }
   };
 
   // Function to load questions or defaults when user actively selects a modality
@@ -438,31 +518,45 @@ export default function App() {
           file.name.toLowerCase().endsWith(".pdf")
       );
 
-      setGenerationProgress(
-        hasPdfFiles && usePdfAssistants
-          ? "Subiendo archivos PDF a OpenAI..."
-          : "Procesando archivos..."
-      );
+      // Set progress message based on API preference
+      const progressMessage =
+        apiPreference === "responses" && hasPdfFiles
+          ? "Subiendo archivos PDF a OpenAI (Responses API)..."
+          : apiPreference === "assistants" && hasPdfFiles
+          ? "Subiendo archivos PDF a OpenAI (Assistants API)..."
+          : "Procesando archivos...";
+
+      setGenerationProgress(progressMessage);
 
       let generatedQuestions;
-      if (usePdfAssistants && hasPdfFiles) {
-        // Use Assistants API for PDFs
-        setGenerationProgress("Usando Assistant API para procesar PDFs...");
-        generatedQuestions = await generateQuestionsFromFiles(
+      if (
+        (apiPreference === "responses" || apiPreference === "assistants") &&
+        hasPdfFiles
+      ) {
+        // Use advanced API for PDFs
+        const apiMethodMessage =
+          apiPreference === "responses"
+            ? "Usando Responses API para procesar PDFs..."
+            : "Usando Assistants API para procesar PDFs...";
+
+        setGenerationProgress(apiMethodMessage);
+
+        generatedQuestions = await generateQuestionsWithSmartDetection(
           uploadedFiles,
           customApiKey || undefined,
           questionType,
           { evaluatorPersonality, difficultyLevel },
-          true // useAssistants = true
+          apiPreference // Pass the API preference
         );
       } else {
-        // Use traditional method or smart detection
+        // Use traditional method
         setGenerationProgress("Generando preguntas con IA...");
         generatedQuestions = await generateQuestionsWithSmartDetection(
           uploadedFiles,
           customApiKey || undefined,
           questionType,
-          { evaluatorPersonality, difficultyLevel }
+          { evaluatorPersonality, difficultyLevel },
+          "traditional" // Use traditional method
         );
       }
 
@@ -560,7 +654,7 @@ export default function App() {
     }));
   };
 
-  const handleQuestionTypeChange = (type) => {
+  const handleQuestionTypeChange = async (type) => {
     // Check if user is trying to access development mode without premium
     if (type === "development" && !hasActiveSubscription()) {
       console.log(
@@ -625,12 +719,22 @@ export default function App() {
       }
     }
 
-    // No saved questions for this type - show question type selection instead
+    // No saved questions for this type - try to load from history
     console.log(
-      `📖 No hay preguntas guardadas para ${type}, mostrando selección de modalidad`
+      `📖 No hay preguntas guardadas para ${type}, buscando en historial...`
     );
-    setShowQuestionTypeSelection(true);
-    setLoading(false);
+
+    // Try to load the last quiz from history for this type
+    const loadedFromHistory = await loadLastQuizFromHistory(type);
+
+    if (!loadedFromHistory) {
+      // If no history found either, show question type selection
+      console.log(
+        `📖 No hay preguntas en historial para ${type}, mostrando selección de modalidad`
+      );
+      setShowQuestionTypeSelection(true);
+      setLoading(false);
+    }
   };
 
   // New function to handle initial question type selection
@@ -1130,55 +1234,87 @@ export default function App() {
                     💡 Si no tienes una, se usará la configurada por defecto
                   </p>
 
-                  {/* PDF Processing Method Selection */}
+                  {/* API Processing Method Selection */}
                   <div className="pdf-method-config">
                     <label className="pdf-method-label">
-                      📄 Método de procesamiento de PDFs:
+                      🔧 Método de procesamiento de archivos:
                     </label>
                     <div className="pdf-method-options">
                       <label className="radio-option">
                         <input
                           type="radio"
-                          name="pdfMethod"
-                          checked={usePdfAssistants === true}
-                          onChange={() => setUsePdfAssistants(true)}
+                          name="apiMethod"
+                          checked={apiPreference === "responses"}
+                          onChange={() => setApiPreference("responses")}
                         />
                         <span className="radio-label">
-                          🤖 Assistants API (Recomendado para PDFs)
+                          🚀 Responses API (Nuevo - Recomendado)
                         </span>
                       </label>
                       <label className="radio-option">
                         <input
                           type="radio"
-                          name="pdfMethod"
-                          checked={usePdfAssistants === false}
-                          onChange={() => setUsePdfAssistants(false)}
+                          name="apiMethod"
+                          checked={apiPreference === "assistants"}
+                          onChange={() => setApiPreference("assistants")}
                         />
                         <span className="radio-label">
-                          🔧 Método tradicional (Más rápido)
+                          🤖 Assistants API (Legacy - Será depreciada)
+                        </span>
+                      </label>
+                      <label className="radio-option">
+                        <input
+                          type="radio"
+                          name="apiMethod"
+                          checked={apiPreference === "traditional"}
+                          onChange={() => setApiPreference("traditional")}
+                        />
+                        <span className="radio-label">
+                          ⚡ Método tradicional (Más rápido)
                         </span>
                       </label>
                     </div>
                     <div className="pdf-method-info">
-                      {usePdfAssistants ? (
+                      {apiPreference === "responses" ? (
+                        <div className="method-description responses">
+                          <strong>🚀 Enfoque Responses API (Híbrido):</strong>
+                          <ul>
+                            <li>
+                              ✅ Intenta usar tecnología más moderna de OpenAI
+                            </li>
+                            <li>✅ Fallback automático a método tradicional</li>
+                            <li>✅ Mejor compatibilidad y confiabilidad</li>
+                            <li>
+                              ✅ Futuro-proof (preparado para nuevas APIs)
+                            </li>
+                            <li>
+                              ⚠️ Límite: 512MB por archivo (cuando sube
+                              archivos)
+                            </li>
+                            <li>💰 Costo variable según método usado</li>
+                          </ul>
+                        </div>
+                      ) : apiPreference === "assistants" ? (
                         <div className="method-description assistants">
                           <strong>🤖 Assistants API:</strong>
                           <ul>
-                            <li>✅ Mejor calidad de extracción de texto</li>
+                            <li>✅ Calidad probada de extracción</li>
                             <li>✅ Soporte nativo para PDFs complejos</li>
                             <li>✅ Maneja PDFs escaneados mejor</li>
+                            <li>⚠️ Será depreciada en 2026</li>
                             <li>⚠️ Límite: 512MB por archivo</li>
                             <li>💰 Costo adicional por procesamiento</li>
                           </ul>
                         </div>
                       ) : (
                         <div className="method-description traditional">
-                          <strong>🔧 Método tradicional:</strong>
+                          <strong>⚡ Método tradicional:</strong>
                           <ul>
                             <li>⚡ Procesamiento local más rápido</li>
                             <li>💰 Solo costo de generación de preguntas</li>
                             <li>⚠️ Calidad variable según PDF</li>
                             <li>❌ Limitado con PDFs escaneados</li>
+                            <li>❌ No usa búsqueda avanzada en archivos</li>
                           </ul>
                         </div>
                       )}
