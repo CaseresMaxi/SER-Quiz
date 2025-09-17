@@ -1867,6 +1867,10 @@ RECUERDA: En caso de duda, SÉ PERMISIVO y marca como CORRECTA`;
       temperature = 0.5; // Medium temperature for witty sarcasm
     }
 
+    if (modelConfig.model && modelConfig.model.includes("gpt-5")) {
+      temperature = 1;
+    }
+
     // Call OpenAI for evaluation
     const response = await openaiClient.chat.completions.create({
       model: modelConfig.model,
